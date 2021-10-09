@@ -215,7 +215,7 @@
       transform: translate(-50%, -50%);
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 600px) and (orientation: portrait) {
       .nav, .footer {
         padding: 24px;
         min-width: calc(100vw - 24px * 2);
@@ -300,15 +300,100 @@
       }
     }
 
-    @media only screen and (max-width: 400px) {
+    @media only screen and (max-width: 400px) and (orientation: portrait) {
       .gallery-image img {
         height: calc(100vh - 62px * 6);
       }
     }
 
-    @media only screen and (max-width: 360px) {
+    @media only screen and (max-width: 360px) and (orientation: portrait) {
       .gallery-image img {
         height: calc(100vh - 62px * 4);
+      }
+    }
+
+    @media only screen and (max-width: 900px) and (orientation: landscape) {
+      .nav, .footer {
+        padding: 24px;
+        min-width: calc(100vw - 24px * 2);
+      }
+
+
+      .nav {
+        top: 0px;
+      }
+
+      .footer {
+        bottom: 0px;
+      }
+
+      .title {
+        left: 24px;
+        top: 24px;
+      }
+
+      .title, .footer-text {
+        font-size: 12px;
+        line-height: 12px;
+      }
+
+      .social {
+        top: 24px;
+      }
+
+      .glyph {
+        width: 14px;
+        height: 14px;
+        margin: 0px 8px;
+      }
+
+      .twitter-glyph {
+        left: 0px;
+        order: 0;
+        margin: 0px 8px 0px 0px;
+      }
+
+      .instagram-glyph {
+        left: 32px;
+        order: 1;
+      }
+
+      .linkedin-glyph {
+        left: 64px;
+        order: 2;
+      }
+
+      .email-glyph {
+        left: 96px;
+        order: 3;
+        margin: 0px 0px 0px 8px;
+      }
+
+      .gallery {
+        min-height: calc(100vh - 62px * 2);
+        top: 62px;
+      }
+
+      .gallery-image img {
+        height: calc(100vh - 62px * 2);
+      }
+
+      .portfolio {
+        left: 24px;
+        top: 24px;
+        /* margin: 0px 8px 0px 0px; */
+      }
+
+      .designer {
+        margin: 0px 8px 0px 0px;
+      }
+
+      .photographer {
+        margin: 0px 0px 0px 8px;
+      }
+
+      .copyright {
+        margin: 0px 0px 0px 8px;
       }
     }
   </style>
