@@ -3,6 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name = "description" content = "I'm a freelance photographer and designer based in Manila, Philippines.">
   <meta name = "keywords" content = "achrovisual, Eugenio Pastoral, photography">
+  <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>achrovisual</title>
   <link rel = "icon" href = "./assets/favicon/favicon.ico" sizes = "any">
@@ -55,7 +56,7 @@
       flex: none;
       order: 0;
       flex-grow: 0;
-      margin: 0px 48px 0px 0px;
+      /* margin: 0px 48px 0px 0px; */
     }
 
     .socials {
@@ -73,7 +74,7 @@
       flex: none;
       order: 1;
       flex-grow: 0;
-      margin: 0px 0px 0px 48px;
+      /* margin: 0px 0px 0px 48px; */
     }
 
     .glyph {
@@ -128,7 +129,7 @@
       flex: none;
       order: 0;
       flex-grow: 0;
-      margin: 0px 48px 0px 0px;
+      /* margin: 0px 48px 0px 0px; */
     }
 
     .footer-text {
@@ -172,7 +173,7 @@
       left: 1101px;
       color: #FFFFFF;
       order: 1;
-      margin: 0px 0px 0px 48px;
+      /* margin: 0px 0px 0px 48px; */
     }
 
     .gallery {
@@ -218,7 +219,15 @@
       .nav, .footer {
         padding: 24px;
         min-width: calc(100vw - 24px * 2);
-        height: auto;
+      }
+
+
+      .nav {
+        top: 0px;
+      }
+
+      .footer {
+        bottom: 0px;
       }
 
       .title {
@@ -227,8 +236,8 @@
       }
 
       .title, .footer-text {
-        font-size: 14px;
-        line-height: 14px;
+        font-size: 12px;
+        line-height: 12px;
       }
 
       .social {
@@ -236,8 +245,8 @@
       }
 
       .glyph {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
         margin: 0px 8px;
       }
 
@@ -269,13 +278,13 @@
       }
 
       .gallery-image img {
-        height: calc(100vh - 62px * 5);
+        height: calc(100vh - 62px * 5.5);
       }
 
       .portfolio {
         left: 24px;
         top: 24px;
-        margin: 0px 8px 0px 0px;
+        /* margin: 0px 8px 0px 0px; */
       }
 
       .designer {
@@ -288,6 +297,18 @@
 
       .copyright {
         margin: 0px 0px 0px 8px;
+      }
+    }
+
+    @media only screen and (max-width: 400px) {
+      .gallery-image img {
+        height: calc(100vh - 62px * 6);
+      }
+    }
+
+    @media only screen and (max-width: 360px) {
+      .gallery-image img {
+        height: calc(100vh - 62px * 4);
       }
     }
   </style>
