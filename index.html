@@ -217,6 +217,7 @@
 
     @media only screen and (max-width: 700px) and (orientation: portrait) {
       .nav, .footer {
+        align-items: center;
         padding: 24px;
         min-width: calc(100vw - 24px * 2);
       }
@@ -227,7 +228,8 @@
       }
 
       .footer {
-        bottom: 0px;
+        top: 62px;
+        height: 14px;
       }
 
       .title {
@@ -274,7 +276,7 @@
 
       .gallery {
         min-height: calc(100vh - 62px * 2);
-        top: 62px;
+        bottom: 0px;
       }
 
       .gallery-image img {
