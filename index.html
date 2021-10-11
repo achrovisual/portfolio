@@ -231,13 +231,17 @@
     }
 
     @media screen and (max-width: 67.5em) {
+      .nav, .footer {
+        min-width: calc(100vw - 28px * 2);
+      }
+
       .nav {
-        padding: 56px 56px 28px 56px;
+        padding: 28px 28px 14px 28px;
       }
 
       .footer {
         align-items: flex-end;
-        padding: 28px 56px 0px 56px;
+        padding: 14px 28px 0px 28px;
 
         order: 1;
       }
@@ -267,9 +271,13 @@
       }
 
       .gallery {
-        padding: 56px 0px 56px 0px;
+        padding: 28px 0px 28px 0px;
 
         order: 2;
+      }
+
+      .gallery-image img {
+        max-width: calc(100vw - 56px);
       }
     }
 
@@ -277,14 +285,6 @@
       .title, .footer-text {
         font-size: 10px;
         font-size: 1.125rem;
-      }
-
-      .title {
-        margin: 0px 0px 2.5vw 0px
-      }
-
-      .socials {
-        margin: 2.5vw 0px 0px 0px
       }
 
       .glyph {
@@ -296,6 +296,14 @@
     @media screen and (max-width: 30em) {
       .nav {
         flex-direction: column;
+      }
+
+      .title {
+        margin: 0px 0px 2.5vw 0px
+      }
+
+      .socials {
+        margin: 2.5vw 0px 0px 0px
       }
 
       .footer {
