@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -56,15 +57,14 @@
       font-family: Lexend Deca;
       font-style: normal;
       font-weight: normal;
-      font-size: 24px;
-      line-height: 24px;
+      font-size: 2.221vw;
+      line-height: 1.05;
 
       color: #FFFFFF;
 
       flex: none;
       order: 0;
       flex-grow: 0;
-      /* margin: 0px 48px 0px 0px; */
     }
 
     .socials {
@@ -82,18 +82,17 @@
       flex: none;
       order: 1;
       flex-grow: 0;
-      /* margin: 0px 0px 0px 48px; */
     }
 
     .glyph {
       position: static;
-      width: 24px;
-      height: 24px;
+      width: 2.221vw;
+      height: 2.221vw;
       top: 0px;
 
       flex: none;
       flex-grow: 0;
-      margin: 0px 32px;
+      margin: 0px 2.5vw;
     }
 
     .glyph:hover {
@@ -103,7 +102,7 @@
     .twitter-glyph {
       left: 0px;
       order: 0;
-      margin: 0px 32px 0px 0px;
+      margin: 0px 2.5vw 0px 0px;
     }
 
     .instagram-glyph {
@@ -119,7 +118,7 @@
     .email-glyph {
       left: 168px;
       order: 3;
-      margin: 0px 0px 0px 32px;
+      margin: 0px 0px 0px 2.5vw;
     }
 
     .portfolio {
@@ -137,7 +136,6 @@
       flex: none;
       order: 0;
       flex-grow: 0;
-      /* margin: 0px 48px 0px 0px; */
     }
 
     .footer-text {
@@ -149,8 +147,8 @@
       font-family: Lexend Deca;
       font-style: normal;
       font-weight: normal;
-      font-size: 24px;
-      line-height: 24px;
+      font-size: 2.221vw;
+      line-height: 1.05;
 
       color: #818589;
 
@@ -168,20 +166,19 @@
     .designer {
       left: 0px;
       order: 0;
-      margin: 0px 32px 0px 0px;
+      margin: 0px 5vw 0px 0px;
     }
 
     .photographer {
       left: 108px;
       order: 1;
-      margin: 0px 0px 0px 32px;
+      margin: 0px 0px 0px 0px;
     }
 
     .copyright {
       left: 1101px;
       color: #FFFFFF;
       order: 1;
-      /* margin: 0px 0px 0px 48px; */
     }
 
     .gallery {
@@ -215,196 +212,14 @@
     }
 
     .gallery-image img {
-      height: calc(100vh - 136px * 2.5);
+      height: auto;
+      max-height: 100%;
+      max-width: calc(100vw - 112px);
       position: absolute;
       top: 50%;
       left: 50%;
 
       transform: translate(-50%, -50%);
-    }
-
-    @media only screen and (max-width: 700px) and (orientation: portrait) {
-      .nav, .footer {
-        align-items: center;
-        padding: 24px;
-        min-width: calc(100vw - 24px * 2);
-      }
-
-
-      .nav {
-        top: 0px;
-      }
-
-      .footer {
-        top: 62px;
-        height: 14px;
-      }
-
-      .title {
-        left: 24px;
-        top: 24px;
-      }
-
-      .title, .footer-text {
-        font-size: 12px;
-        line-height: 12px;
-      }
-
-      .social {
-        top: 24px;
-      }
-
-      .glyph {
-        width: 14px;
-        height: 14px;
-        margin: 0px 8px;
-      }
-
-      .twitter-glyph {
-        left: 0px;
-        order: 0;
-        margin: 0px 8px 0px 0px;
-      }
-
-      .instagram-glyph {
-        left: 32px;
-        order: 1;
-      }
-
-      .linkedin-glyph {
-        left: 64px;
-        order: 2;
-      }
-
-      .email-glyph {
-        left: 96px;
-        order: 3;
-        margin: 0px 0px 0px 8px;
-      }
-
-      .gallery {
-        min-height: calc(100vh - 62px * 2);
-        bottom: 0px;
-      }
-
-      .gallery-image img {
-        height: calc(100vh - 62px * 5.5);
-      }
-
-      .portfolio {
-        left: 24px;
-        top: 24px;
-        /* margin: 0px 8px 0px 0px; */
-      }
-
-      .designer {
-        margin: 0px 8px 0px 0px;
-      }
-
-      .photographer {
-        margin: 0px 0px 0px 8px;
-      }
-
-      .copyright {
-        margin: 0px 0px 0px 8px;
-      }
-    }
-
-    @media only screen and (max-width: 400px) and (orientation: portrait) {
-      .gallery-image img {
-        height: calc(100vh - 62px * 6);
-      }
-    }
-
-    @media only screen and (max-width: 360px) and (orientation: portrait) {
-      .gallery-image img {
-        height: calc(100vh - 62px * 4);
-      }
-    }
-
-    @media only screen and (max-width: 900px) and (orientation: landscape) {
-      .nav, .footer {
-        padding: 24px;
-        min-width: calc(100vw - 24px * 2);
-      }
-
-
-      .nav {
-        top: 0px;
-      }
-
-      .footer {
-        bottom: 0px;
-      }
-
-      .title {
-        left: 24px;
-        top: 24px;
-      }
-
-      .title, .footer-text {
-        font-size: 12px;
-        line-height: 12px;
-      }
-
-      .social {
-        top: 24px;
-      }
-
-      .glyph {
-        width: 14px;
-        height: 14px;
-        margin: 0px 8px;
-      }
-
-      .twitter-glyph {
-        left: 0px;
-        order: 0;
-        margin: 0px 8px 0px 0px;
-      }
-
-      .instagram-glyph {
-        left: 32px;
-        order: 1;
-      }
-
-      .linkedin-glyph {
-        left: 64px;
-        order: 2;
-      }
-
-      .email-glyph {
-        left: 96px;
-        order: 3;
-        margin: 0px 0px 0px 8px;
-      }
-
-      .gallery {
-        min-height: calc(100vh - 62px * 2);
-        top: 62px;
-      }
-
-      .gallery-image img {
-        height: calc(100vh - 62px * 2);
-      }
-
-      .portfolio {
-        left: 24px;
-        top: 24px;
-        /* margin: 0px 8px 0px 0px; */
-      }
-
-      .designer {
-        margin: 0px 8px 0px 0px;
-      }
-
-      .photographer {
-        margin: 0px 0px 0px 8px;
-      }
-
-      .copyright {
-        margin: 0px 0px 0px 8px;
-      }
     }
   </style>
 </head>
