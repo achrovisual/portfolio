@@ -20,9 +20,9 @@ body {
 }
 
 .cta {
-  padding: 80px;
+  padding: 128px;
   justify-content: center;  
-  gap: 32px;
+  gap: 48px;
 }
 
 .header {
@@ -30,22 +30,24 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 16px;
+  gap: 24px;
   align-self: stretch;
 }
 
 .header__title {
-  font-size: 40px;
   font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+
+  font-size: 3.5rem;
+  line-height: 2.8rem;
+  font-weight: 500;
 }
 
 .header__subtitle {
-  font-size: 20px;
   font-style: normal;
+
+  font-size: 1.6rem;
+  line-height: 2.4rem;
   font-weight: 400;
-  line-height: normal;
 }
 
 .socials {
