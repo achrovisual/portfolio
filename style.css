@@ -65,13 +65,29 @@ body {
 }
 
 .gallery {
+  width: calc(100vw / 2);
+  height: 100vh;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 16px;
+  overflow: hidden;
 }
 
 .gallery__item {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  overflow: visible;
+
+  /* background-color: #fff; */
+}
+
+.gallery__item img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .gallery__item_full {
