@@ -2,6 +2,9 @@
 
 body {
   background-color: #000000;
+
+  color: #FFF;
+  font-family: "Lexend Deca";
 }
 
 .container {
@@ -23,6 +26,39 @@ body {
   padding: 80px;
   justify-content: center;  
   gap: 32px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.header__title {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.header__subtitle {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.socials {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;  
+}
+
+.glyph:hover {
+  fill: #FFFFFF;
 }
 
 .gallery {
