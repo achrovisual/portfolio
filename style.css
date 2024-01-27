@@ -75,7 +75,8 @@ body {
 }
 
 .gallery__item {
-  aspect-ratio: 4 / 5;
+  width: calc((50vw - 48px) * 0.5);
+  aspect-ratio: 1 / 1;
   display: flex;
   flex: none;
   order: 0;
@@ -92,6 +93,7 @@ body {
 }
 
 .gallery__item_full {
-  aspect-ratio: unset !important;
+  width: 100%;
+  aspect-ratio: 2 / 1;
   grid-column: 1 / span 2;
 }
