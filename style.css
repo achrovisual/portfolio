@@ -27,21 +27,25 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  align-items: flex-start;
+  align-items: center;
+  /* justify-content: center; */
+
+  flex-direction: column;
 }
 
 .section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 1 0 0;
-  align-self: stretch;  
+  flex: 0 1 0;
 }
 
 .cta {
+  max-width: 624px;
   padding: 64px;
   justify-content: center;  
   gap: 48px;
+  flex: 1 0 0;
 }
 
 .header {
@@ -80,23 +84,32 @@ body {
 }
 
 .gallery {
-  width: calc(100vw / 2 - 32px);
+  width: 1040px;
   height: 100%;
   padding: 16px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 16px;
 
-  animation: scroll var(--iteration-time) linear infinite;
+  display: flex;
+  gap: 16px;
+
+  /* animation: scroll var(--iteration-time) linear infinite; */
+}
+
+.gallery__column {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  gap: 16px;
 }
 
 .gallery__item {
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  width: 336px;
+  height: 420px;
+  /* aspect-ratio: 1 / 1; */
   display: flex;
   flex: none;
   order: 0;
   flex-grow: 0;
+  /* grid-column: 1 / span 2; */
 
   /* background-color: #fff; */
 }
@@ -107,50 +120,12 @@ body {
   border-radius: 8px;
 }
 
-.gallery__item_full {
-  width: 100%;
-  aspect-ratio: 2 / 1;
-  grid-column: 1 / span 2;
-}
+.faded {
+  --mask: linear-gradient(to top, 
+  rgba(0,0,0, 1) 0,   rgba(0,0,0, 1) 40%, 
+  rgba(0,0,0, 0) 95%, rgba(0,0,0, 0) 0
+) 100% 50% / 100% 100% repeat-x;
 
-@keyframes scroll {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .cta {
-    padding: 8px;
-  }
-
-  .header__title {
-    font-style: normal;
-  
-    font-size: 2.0rem;
-    line-height: 2.4rem;
-    font-weight: 500;
-  }
-  
-  .header__subtitle {
-    font-style: normal;
-  
-    font-size: 1.2rem;
-    line-height: 1.4rem;
-    font-weight: 400;
-  }
-
-  .gallery {
-    width: calc(100% - 16px);
-    padding: 8px;
-    grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
-    grid-gap: 8px;
-  }
-  
-  .gallery__item {
-    width: 100%;
-  }
+  -webkit-mask: var(--mask); 
+  mask: var(--mask);
 }
