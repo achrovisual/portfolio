@@ -76,9 +76,15 @@ body {
 }
 
 .socials {
+  height: 100%;
   display: flex;
   align-items: flex-start;
   gap: 24px;  
+}
+
+.socials a {
+  width: 24px;
+  height: 24px;
 }
 
 .glyph:hover {
@@ -136,4 +142,38 @@ body {
 
 .empty {
   opacity: 0;
+}
+
+.nav {
+  width: 1040px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wordmark img {
+  width: 32px;
+  height: 32px;
+  border-radius: 128px;
+}
+
+.wordmark span {
+  font-style: normal;
+  text-align: center;
+
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  font-weight: 400;
 }
