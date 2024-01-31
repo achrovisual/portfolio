@@ -36,12 +36,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .nav {
-  width: calc(100% - 32px);
   display: flex;
-  flex: 0 1 0;
+  flex: 1 0 0;
   align-items: center;
   justify-content: space-between;
-  margin: 16px;
+  padding: 16px;
 }
 
 .wordmark {
