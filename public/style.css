@@ -11,7 +11,7 @@ html {
 
     font-size: 10px;
     font-family: 'Lexend Deca';
-    color: var(--white)
+    color: var(--white);
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
