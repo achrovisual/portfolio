@@ -35,7 +35,7 @@ import SocialsBar from './SocialsBar.vue'
 import ProfileTag from './ProfileTag.vue'
 
 export default {
-    name: 'ProfileHeader',
+    name: 'PortfolioHeader',
     components: {
         SocialsBar,
         ProfileTag

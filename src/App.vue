@@ -1,5 +1,5 @@
 <template>
-  <ProfileHeader></ProfileHeader>
+  <PortfolioHeader></PortfolioHeader>
   <div class="container">
     <div class = "section">
       
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import ProfileHeader from './components/ProfileHeader.vue'
+import PortfolioHeader from './components/PortfolioHeader.vue'
 
 export default {
   name: 'App',
   components: {
-    ProfileHeader
+    PortfolioHeader
   }
 }
 </script>
