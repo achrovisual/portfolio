@@ -1,32 +1,35 @@
 <template>
-    <div class = "header__container">
-        <div class = "profile__container-name">
-            <div class = "profile__header-container">
-                <div class = "profile__title-container">
-                    <span class = "profile__title">
-                        Eugenio Pastoral
-                    </span>
-                    
-                    <span class="profile__subtitle">
-                        Developer and product designer based in Manila
-                    </span>
+    <div class = "padding_restrict header__container">
+        <div class = "workable_area">        
+            <div class = "profile__container-name">
+                <div class = "profile__header-container">
+                    <div class = "profile__title-container">
+                        <span class = "profile__title">
+                            Eugenio Pastoral
+                        </span>
+                        
+                        <span class="profile__subtitle">
+                            Developer and product designer based in Manila
+                        </span>
+                    </div>
+                    <SocialsBar></SocialsBar>
                 </div>
-                <SocialsBar></SocialsBar>
+                <div class = "profile__display_photo">
+                </div>
             </div>
-            <div class = "profile__display_photo">
+            <div class = "profile__container-description">
+                <span class = "profile__description">
+                    With my extensive experience in UI/UX design and web development, combined with my broad skill set encompassing areas like network and cloud engineering, I can turn engaging ideas from design to code. This diverse background makes me a versatile developer capable of crafting elegant and captivating digital experiences.
+                </span>
+                <div class = "profile__tags-container">
+                    <ProfileTag label="Software Engineering"></ProfileTag>
+                    <ProfileTag label="Network Engineering"></ProfileTag>
+                    <ProfileTag label="UI/UX Design"></ProfileTag>
+                    <ProfileTag label="Branding"></ProfileTag>
+                </div>
             </div>
         </div>
-        <div class = "profile__container-description">
-            <span class = "profile__description">
-                With my extensive experience in UI/UX design and web development, combined with my broad skill set encompassing areas like network and cloud engineering, I can turn engaging ideas from design to code. This diverse background makes me a versatile developer capable of crafting elegant and captivating digital experiences.
-            </span>
-            <div class = "profile__tags-container">
-                <ProfileTag label="Software Engineering"></ProfileTag>
-                <ProfileTag label="Network Engineering"></ProfileTag>
-                <ProfileTag label="UI/UX Design"></ProfileTag>
-                <ProfileTag label="Branding"></ProfileTag>
-            </div>
-        </div>
+        
     </div>
 </template>
 
@@ -40,7 +43,7 @@ export default {
         SocialsBar,
         ProfileTag
     }
-
+    
 }
 </script>
 
@@ -48,11 +51,10 @@ export default {
 <style scoped>
 .header__container {
     display: flex;
-    padding: 64px 270px;
     flex-direction: column;
     align-items: flex-start;
+    align-self: stretch;
     gap: 64px;
-    /* background-color: white; */
 }
 
 .profile__container-name {
