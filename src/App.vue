@@ -5,15 +5,18 @@
       
     </div>
   </div>
+  <PortfolioFooter></PortfolioFooter>
 </template>
 
 <script>
 import PortfolioHeader from './components/PortfolioHeader.vue'
+import PortfolioFooter from './components/PortfolioFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    PortfolioHeader
+    PortfolioHeader,
+    PortfolioFooter
   }
 }
 </script>
