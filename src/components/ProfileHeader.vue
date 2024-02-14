@@ -1,6 +1,6 @@
 <template>
     <div class = "header__container">
-        <div class = "profile__container">
+        <div class = "profile__container-name">
             <div class = "profile__header-container">
                 <div class = "profile__title-container">
                     <span class = "profile__title">
@@ -16,20 +16,31 @@
             <div class = "profile__display_photo">
             </div>
         </div>
+        <div class = "profile__container-description">
+            <span class = "profile__description">
+                With my extensive experience in UI/UX design and web development, combined with my broad skill set encompassing areas like network and cloud engineering, I can turn engaging ideas from design to code. This diverse background makes me a versatile developer capable of crafting elegant and captivating digital experiences.
+            </span>
+            <div class = "profile__tags-container">
+                <ProfileTag label="Software Engineering"></ProfileTag>
+                <ProfileTag label="Network Engineering"></ProfileTag>
+                <ProfileTag label="UI/UX Design"></ProfileTag>
+                <ProfileTag label="Branding"></ProfileTag>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import SocialsBar from './SocialsBar.vue'
+import ProfileTag from './ProfileTag.vue'
 
 export default {
     name: 'ProfileHeader',
-    props: {
-        msg: String
-    },
     components: {
-        SocialsBar
+        SocialsBar,
+        ProfileTag
     }
+
 }
 </script>
 
@@ -44,7 +55,7 @@ export default {
     /* background-color: white; */
 }
 
-.profile__container {
+.profile__container-name {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,8 +93,28 @@ export default {
     height: 210px;
     
     border-radius: 50%;
-
+    
     background-image: url(~@/assets/avatar.png);
     background-size: contain;
+}
+
+.profile__container-description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    align-self: stretch;
+}
+
+.profile__description {
+    color: var(--Gray-50);
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.profile__tags-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
 }
 </style>
