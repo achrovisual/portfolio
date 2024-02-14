@@ -1,5 +1,5 @@
 <template>
-  <NavBar></NavBar>
+  <StickyHeader></StickyHeader>
   <div class="container">
     <div class = "section">
       
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
+import StickyHeader from './components/StickyHeader.vue'
 
 export default {
   name: 'App',
   components: {
-    NavBar
+    StickyHeader
   }
 }
 </script>
