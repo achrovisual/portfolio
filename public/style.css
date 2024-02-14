@@ -42,3 +42,19 @@ body {
     align-items: center;
     flex-direction: column;    
 }
+
+.padding_restrict {
+    padding: 64px 270px;
+}
+
+.workable_area {
+    display: inherit;
+    width: 100%;
+    min-width: 1200px;
+    max-width: 1400px;
+    align-items: inherit;
+    flex-direction: inherit;
+    gap: inherit;
+    align-self: inherit;
+    margin:auto;
+}
