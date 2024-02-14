@@ -3,15 +3,22 @@
 :root {
     --black: #000000;
     --white: #FFFFFF;
+
+    /* Google Material Design */
+    --Gray-50: #FAFAFA;
+    --Gray-400: #BDBDBD;
+
 }
 
 html {
     width: 100vw;
     height: 100vh;
-
-    font-size: 10px;
-    font-family: 'Lexend Deca';
+    
     color: var(--white);
+    font-family: 'Lexend Deca';
+    font-size: 10px;
+    font-style: normal;
+
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
