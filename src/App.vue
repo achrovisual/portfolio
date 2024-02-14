@@ -1,5 +1,5 @@
 <template>
-  <StickyHeader></StickyHeader>
+  <ProfileHeader></ProfileHeader>
   <div class="container">
     <div class = "section">
       
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import StickyHeader from './components/StickyHeader.vue'
+import ProfileHeader from './components/ProfileHeader.vue'
 
 export default {
   name: 'App',
   components: {
-    StickyHeader
+    ProfileHeader
   }
 }
 </script>
