@@ -13,6 +13,8 @@
     --padding-lr: 270px;
     --padding-tb: 64px;
     
+    --working-width: calc(100vw - calc(2 * var(--padding-lr)));
+    --card-width: 300px;
 }
 
 html {
@@ -41,7 +43,6 @@ body {
 
 .container {
     display: flex;
-    height: 100%;
     align-items: center;
     flex-direction: column;    
 }
