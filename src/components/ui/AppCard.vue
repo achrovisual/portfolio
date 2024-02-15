@@ -1,26 +1,32 @@
 <template>
-    <div class = "profile__card-container">
-        <div class = "profile__card-display_photo"></div>
-        <div class = "profile__card_title-container">
-            <div class = "profile__card_title">
-                <span>
-                    {{ name }}
+    <SplideSlide>
+        <div class = "profile__card-container">
+            <div class = "profile__card-display_photo"></div>
+            <div class = "profile__card_title-container">
+                <div class = "profile__card_title">
+                    <span>
+                        {{ name }}
+                    </span>
+                </div>
+                <span class = "profile__card-description">
+                    {{ description }}
                 </span>
             </div>
-            <span class = "profile__card-description">
-                {{ description }}
-            </span>
         </div>
-        
-    </div>
+    </SplideSlide>
 </template>
 
 <script>
+import { SplideSlide } from '@splidejs/vue-splide';
+
 export default {
     name: 'AppCard',
     props: {
         name: { required: true, type: String },
         description: { required: true, type: String },
+    },
+    components: {
+        SplideSlide
     }
 }
 </script>
