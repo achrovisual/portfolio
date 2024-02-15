@@ -10,7 +10,7 @@
                         Want to work with me? I'd love to hear from you.
                     </span>
                 </div>
-                <ExternalButton label = "Get in touch"></ExternalButton>
+                <AppButton label = "Get in touch"></AppButton>
             </div>
             <div class = "footer__copyright">
                 <SocialsBar></SocialsBar>
@@ -23,14 +23,14 @@
 </template>
 
 <script>
-import SocialsBar from './SocialsBar.vue'
-import ExternalButton from './ExternalButton.vue'
+import SocialsBar from '../ui/SocialsBar.vue'
+import AppButton from '../ui/AppButton.vue'
 
 export default {
     name: 'PortfolioHeader',
     components: {
         SocialsBar,
-        ExternalButton
+        AppButton
     }
     
 }

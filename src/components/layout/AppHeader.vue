@@ -22,10 +22,10 @@
                     With my extensive experience in UI/UX design and web development, combined with my broad skill set encompassing areas like network and cloud engineering, I can turn engaging ideas from design to code. This diverse background makes me a versatile developer capable of crafting elegant and captivating digital experiences.
                 </span>
                 <div class = "profile__tags-container">
-                    <ProfileTag label="Software Engineering"></ProfileTag>
-                    <ProfileTag label="Network Engineering"></ProfileTag>
-                    <ProfileTag label="UI/UX Design"></ProfileTag>
-                    <ProfileTag label="Branding"></ProfileTag>
+                    <AppTag label="Software Engineering"></AppTag>
+                    <AppTag label="Network Engineering"></AppTag>
+                    <AppTag label="UI/UX Design"></AppTag>
+                    <AppTag label="Branding"></AppTag>
                 </div>
             </div>
         </div>
@@ -34,14 +34,14 @@
 </template>
 
 <script>
-import SocialsBar from './SocialsBar.vue'
-import ProfileTag from './ProfileTag.vue'
+import SocialsBar from '../ui/SocialsBar.vue'
+import AppTag from '../ui/AppTag.vue'
 
 export default {
     name: 'PortfolioHeader',
     components: {
         SocialsBar,
-        ProfileTag
+        AppTag
     }
     
 }

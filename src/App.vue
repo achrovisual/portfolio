@@ -1,22 +1,22 @@
 <template>
-  <PortfolioHeader></PortfolioHeader>
+  <AppHeader></AppHeader>
   <div class="container">
     <div class = "section">
       
     </div>
   </div>
-  <PortfolioFooter></PortfolioFooter>
+  <AppFooter></AppFooter>
 </template>
 
 <script>
-import PortfolioHeader from './components/PortfolioHeader.vue'
-import PortfolioFooter from './components/PortfolioFooter.vue'
+import AppHeader from './components/layout/AppHeader.vue'
+import AppFooter from './components/layout/AppFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    PortfolioHeader,
-    PortfolioFooter
+    AppHeader,
+    AppFooter
   }
 }
 </script>
