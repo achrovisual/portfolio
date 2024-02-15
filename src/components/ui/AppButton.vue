@@ -11,7 +11,7 @@
 
 <script>
 export default {
-    name: 'ExternalButton',
+    name: 'AppButton',
     props: {
         label: { required: true, type: String },
         url: { required: false, type: String },

@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'StickyHeader',
+  name: 'AppSimplifiedHeader',
   props: {
     msg: String
   }

@@ -38,7 +38,7 @@ import SocialsBar from '../ui/SocialsBar.vue'
 import AppTag from '../ui/AppTag.vue'
 
 export default {
-    name: 'PortfolioHeader',
+    name: 'AppHeader',
     components: {
         SocialsBar,
         AppTag

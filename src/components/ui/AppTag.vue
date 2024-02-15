@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: 'ProfileTag',
+    name: 'AppTag',
     props: {
         label: { required: true, type: String },
     }

@@ -27,7 +27,7 @@ import SocialsBar from '../ui/SocialsBar.vue'
 import AppButton from '../ui/AppButton.vue'
 
 export default {
-    name: 'PortfolioHeader',
+    name: 'AppFooter',
     components: {
         SocialsBar,
         AppButton
