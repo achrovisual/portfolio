@@ -9,6 +9,9 @@
     --Gray-400: #BDBDBD;
     --Gray-500: #9E9E9E;
     --Blue-700: #1976D2;
+
+    --padding-lr: 270px;
+    --padding-tb: 64px;
     
 }
 
@@ -44,7 +47,7 @@ body {
 }
 
 .padding_restrict {
-    padding: 64px 270px;
+    padding: var(--padding-tb) var(--padding-lr);
 }
 
 .workable_area {
