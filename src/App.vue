@@ -1,8 +1,13 @@
 <template>
   <AppHeader></AppHeader>
-  <div class="container">
-    <div class = "section">
-      
+  <div class = "container">
+    <div class = "overflow_hidden">
+      <div class= "padding_restrict">
+        <div class = "workable_area profile__body">
+          <AppCardGroup label = "Development"></AppCardGroup>
+          <AppCardGroup label = "Design"></AppCardGroup>
+        </div>
+      </div>
     </div>
   </div>
   <AppFooter></AppFooter>
@@ -11,22 +16,23 @@
 <script>
 import AppHeader from './components/layout/AppHeader.vue'
 import AppFooter from './components/layout/AppFooter.vue'
+import AppCardGroup from './components/ui/AppCardGroup.vue'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    AppCardGroup
   }
 }
 </script>
 
 <style>
-.section {
-  height: calc(100vh / 2);
+.profile__body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 1 0 0;
+  gap: 64px;
 }
 </style>
