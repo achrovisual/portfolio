@@ -18,12 +18,8 @@
             </div>
         </div>
         <div class = "profile__card_group-container">
-            <div class = "overflow">
-                <AppCard name = "Coins" description = "Your Budget Tracking Companion"></AppCard>
-                <AppCard name = "ACRVSL" description = "Reusable Web Components"></AppCard>
-                <AppCard name = "meSHM" description = "All-in-one Management Facility"></AppCard>
-                <AppCard name = "MVISion" description = "Secure and Scalable API"></AppCard>
-                <AppCard name = "Axie Finder" description = "A Discord Bot for Finding Axies"></AppCard>
+            <div class = "overflow" >
+                <AppCard v-for = "item in content" :key = "item.id" :name = "item.name" :description = "item.description"></AppCard>
             </div>
         </div>
     </div>
@@ -37,6 +33,7 @@ export default {
     name: 'AppCardGroup',
     props: {
         label: { required: true, type: String },
+        content: Array
     },
     components: {
         AppCard,
