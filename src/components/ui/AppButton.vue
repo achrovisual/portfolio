@@ -1,5 +1,5 @@
 <template>
-    <div class = "button-external">
+    <div class = "button">
         <span>{{ label }}</span>
         <a href = "{{ url }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -21,7 +21,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.button-external {
+.button {
     display: flex;
     padding: 16px 32px;
     justify-content: center;
@@ -32,14 +32,14 @@ export default {
     background: var(--Blue-700);
 }
 
-.button-external > span {
+.button > span {
     color: var(--Gray-50);
     text-align: center;
     font-size: 1.6rem;
     font-weight: 400;
 }
 
-.button-external a {
+.button a {
     width: 18px;
     height: 18px;
 }
