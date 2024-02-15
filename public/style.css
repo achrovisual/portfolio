@@ -3,24 +3,25 @@
 :root {
     --black: #000000;
     --white: #FFFFFF;
-
+    
     /* Google Material Design */
     --Gray-50: #FAFAFA;
     --Gray-400: #BDBDBD;
+    --Gray-500: #9E9E9E;
     --Blue-700: #1976D2;
-
+    
 }
 
 html {
     max-width: 100vw;
     height: 100vh;
-
+    
     color: var(--white);
     font-family: 'Lexend Deca';
     font-size: 10px;
     font-style: normal;
-
-
+    
+    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -37,7 +38,6 @@ body {
 
 .container {
     display: flex;
-    width: 100%;
     height: 100%;
     align-items: center;
     flex-direction: column;    
@@ -57,4 +57,9 @@ body {
     gap: inherit;
     align-self: inherit;
     margin:auto;
+}
+
+.overflow_hidden {
+    width: 100%;
+    overflow: hidden;
 }
