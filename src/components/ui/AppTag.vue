@@ -1,5 +1,5 @@
 <template>
-    <div class = "profile__tag">
+    <div class = "tag">
         <span>{{ label }}</span>
     </div>
 </template>
@@ -15,7 +15,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.profile__tag {
+.tag {
     display: flex;
     padding: 8px 16px;
     align-items: flex-start;
@@ -24,7 +24,7 @@ export default {
     background: var(--Blue-700);
 }
 
-.profile__tag > span {
+.tag > span {
     color: var(--Gray-50);
     text-align: center;
     font-size: 1.2rem;
