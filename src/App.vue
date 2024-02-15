@@ -18,6 +18,7 @@ import AppFooter from './components/layout/AppFooter.vue'
 import AppCardGroup from './components/ui/AppCardGroup.vue'
 import uniqueId from "lodash.uniqueid";
 
+import '@splidejs/vue-splide/css/core';
 
 export default {
   name: 'App',
