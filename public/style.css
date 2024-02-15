@@ -54,7 +54,7 @@ body {
 .workable_area {
     display: inherit;
     width: 100%;
-    min-width: 1200px;
+    min-width: 992px;
     max-width: 1400px;
     align-items: inherit;
     flex-direction: inherit;
