@@ -1,5 +1,5 @@
 <template>
-    <Splide :has-track="false" class = "profile__cards_section-container">
+    <Splide :has-track="false" class = "profile__cards_section-container" :options="options">
         <div class = "profile__cards_section_title-container">
             <span class = "profile__cards_section-title">
                 {{ label }}
@@ -13,11 +13,11 @@
                 </div>
             </div>
         </div>
-        <SplideTrack class = "profile__card_group-container">
-            <div class = "overflow">
-                <AppCard v-for = "item in content" :key = "item.id" :name = "item.name" :description = "item.description"></AppCard>
-            </div>
+        <SplideTrack class = "profile__card_group-container overflow">
+            <AppCard v-for = "item in content" :key = "item.id" :name = "item.name" :description = "item.description"></AppCard>
         </SplideTrack>
+
+        <ul class="splide__pagination"></ul>
     </Splide>
     
 </template>
@@ -37,16 +37,18 @@ export default {
         Splide,
         SplideTrack,
     },
-    setup() {
-        const options = {
-            drag   : 'free',
-            // snap   : false,
-        };
-        
+    data() {
         return {
-            options,
+            options: {
+                drag: 'free',
+                snap: true,
+                gap: '16px',
+                autoWidth: true,
+                width: '100%',
+            }
         }
-    },
+    }
+    
 }
 
 // new Splide( '.splide', {
@@ -57,11 +59,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .profile__cards_section-container {
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 32px;
     align-self: stretch;
+    
+    overflow: visible;
 }
 
 .profile__cards_section_title-container {
@@ -95,14 +100,18 @@ export default {
 }
 
 .overflow {
-    display: flex;
-    align-items: flex-start;
-    align-content: flex-start;
+    width: var(--working-width);
+    display: block;
     gap: 16px;
 } 
 
 .splide {
     width: 100% !important;
+}
+
+.splide__track {
+    width: 100% !important;
+    cursor: grab;
 }
 
 .splide__arrow {
@@ -111,6 +120,7 @@ export default {
     background: url(~@/assets/arrow.svg);
     border: none;
     outline: inherit;
+    cursor: pointer;
 }
 
 .splide__arrow--prev {
@@ -120,5 +130,13 @@ export default {
 .splide__arrow--prev, .splide__arrow--next {
     width: 18px;
     height: 18px;
+}
+
+.splide:not(.is-overflow) .splide__arrows {
+    display: none;
+}
+
+.splide__pagination {
+    visibility: hidden;
 }
 </style>
