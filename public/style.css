@@ -10,7 +10,7 @@
     --Gray-500: #9E9E9E;
     --Blue-700: #1976D2;
 
-    --padding-lr: 270px;
+    --padding-lr: 10%;
     --padding-tb: 64px;
     
     --working-width: calc(100vw - calc(2 * var(--padding-lr)));
