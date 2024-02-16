@@ -10,7 +10,7 @@
                         Want to work with me? I'd love to hear from you.
                     </span>
                 </div>
-                <AppButton label = "Get in touch"></AppButton>
+                <AppButton label = "Get in touch" url = "https://achrovisual.com/"></AppButton>
             </div>
             <div class = "footer__copyright">
                 <SocialsBar></SocialsBar>
