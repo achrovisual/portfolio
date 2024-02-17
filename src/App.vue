@@ -34,19 +34,19 @@ export default {
         id: uniqueId("card_group-"),
         label: "Development",
         content: [
-        { id: uniqueId("card-"), name: "Coins", description: "Your Budget Tracking Companion" },
-        { id: uniqueId("card-"), name: "ACRVSL", description: "Reusable Web Components" },
-        { id: uniqueId("card-"), name: "meSHM", description: "All-in-one Management Facility" },
-        { id: uniqueId("card-"), name: "MVISion", description: "Secure and Scalable API" },
-        { id: uniqueId("card-"), name: "Axie Finder", description: "A Discord Bot for Finding Axies" },
+        { id: uniqueId("card-"), name: "Coins", description: "Your Budget Tracking Companion", done: false },
+        { id: uniqueId("card-"), name: "ACRVSL", description: "Reusable Web Components", done: false },
+        { id: uniqueId("card-"), name: "meSHM", description: "All-in-one Management Facility", done: true },
+        { id: uniqueId("card-"), name: "MVISion", description: "Secure and Scalable API", done: true },
+        { id: uniqueId("card-"), name: "Axie Finder", description: "A Discord Bot for Finding Axies", done: true },
         ],
       },
       {
         id: uniqueId("card_group-"),
         label: "Design",
         content: [
-        { id: uniqueId("card-"), name: "Delivery²", description: "Case Study" },
-        { id: uniqueId("card-"), name: "Kada", description: "Case Study" },
+        { id: uniqueId("card-"), name: "Delivery²", description: "Case Study", done: true },
+        { id: uniqueId("card-"), name: "Kada", description: "Case Study", done: true },
         ],
       },
       ]
