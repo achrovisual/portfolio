@@ -14,7 +14,7 @@
             </div>
         </div>
         <SplideTrack class = "profile__card_group-container overflow">
-            <AppCard v-for = "item in content" :key = "item.id" :name = "item.name" :description = "item.description"></AppCard>
+            <AppCard v-for = "item in content" :key = "item.id" :name = "item.name" :description = "item.description" :done = "item.done"></AppCard>
         </SplideTrack>
 
         <ul class="splide__pagination"></ul>

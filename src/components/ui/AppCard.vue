@@ -7,6 +7,9 @@
                     <span>
                         {{ name }}
                     </span>
+                    <span v-if = "!done" class = "profile__card_subtitle">
+                        Coming Soon
+                    </span>
                 </div>
                 <span class = "profile__card-description">
                     {{ description }}
@@ -23,6 +26,7 @@ export default {
     name: 'AppCard',
     props: {
         name: { required: true, type: String },
+        done: { required: true, type: Boolean },
         description: { required: true, type: String },
     },
     components: {
@@ -64,6 +68,13 @@ export default {
     align-items: center;
     gap: 8px;
     align-self: stretch;
+}
+
+.profile__card_subtitle {
+    color: var(--Gray-500) !important;
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
 }
 
 .profile__card_title > span {
