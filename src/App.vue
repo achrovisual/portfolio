@@ -18,7 +18,7 @@ export default {
         id: uniqueId("pages-"),
         content: [
         { id: uniqueId("page-"), label: "Work", url: "/" },
-        { id: uniqueId("page-"), label: "Photography", url: "/about" }
+        { id: uniqueId("page-"), label: "Photography", url: "/photography" }
         ]
       },
       ]
