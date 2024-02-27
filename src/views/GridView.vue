@@ -1,5 +1,16 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <AppSimplifiedHeader></AppSimplifiedHeader>
 </template>
+
+<script>
+import AppSimplifiedHeader from '../components/layout/AppSimplifiedHeader.vue';
+export default {
+  name: 'App',
+  components: {
+    AppSimplifiedHeader
+  },
+}
+</script>
+
+<style scoped>
+</style>
