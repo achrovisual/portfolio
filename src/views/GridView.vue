@@ -1,5 +1,7 @@
 <template>
-  <AppSimplifiedHeader></AppSimplifiedHeader>
+  <div class = "wrapper">
+    <AppSimplifiedHeader></AppSimplifiedHeader>
+  </div>
 </template>
 
 <script>
@@ -13,4 +15,7 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  background-color: var(--white);
+}
 </style>

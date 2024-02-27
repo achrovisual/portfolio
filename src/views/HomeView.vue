@@ -1,15 +1,17 @@
 <template>
-  <AppHeader></AppHeader>
-  <div class = "container">
-    <div class = "overflow_hidden">
-      <div class= "padding_restrict">
-        <div class = "workable_area profile__body">
-          <AppCardGroup  v-for = "group in CardGroups" :key = "group.id" :label = "group.label" :content = "group.content"></AppCardGroup>
+  <div class = "wrapper">
+    <AppHeader></AppHeader>
+    <div class = "container">
+      <div class = "overflow_hidden">
+        <div class= "padding_restrict">
+          <div class = "workable_area profile__body">
+            <AppCardGroup  v-for = "group in CardGroups" :key = "group.id" :label = "group.label" :content = "group.content"></AppCardGroup>
+          </div>
         </div>
       </div>
     </div>
+    <AppFooter></AppFooter>
   </div>
-  <AppFooter></AppFooter>
 </template>
 
 <script>
@@ -57,6 +59,10 @@ export default {
 </script>
 
 <style>
+.wrapper {
+  background-color: var(--black);
+}
+
 .profile__body {
   display: flex;
   flex-direction: column;

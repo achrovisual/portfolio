@@ -43,6 +43,14 @@ body {
     background-color: var(--black);
 }
 
+.wrapper {
+    height: inherit;
+    width: inherit;
+    display: inherit;
+    flex-direction: inherit;
+    margin: inherit;
+}
+
 .container {
     display: flex;
     align-items: center;
