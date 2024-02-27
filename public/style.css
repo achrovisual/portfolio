@@ -42,7 +42,6 @@ body {
 }
 
 .wrapper {
-    height: inherit;
     width: inherit;
     display: inherit;
     flex-direction: inherit;
