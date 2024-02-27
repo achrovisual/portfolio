@@ -26,7 +26,7 @@ export default {
 <style scoped>
 .nav {
   display: flex;
-  flex: 1 0 0;
+  flex: 0 1 0;
   align-items: center;
   justify-content: space-between;
   padding: 16px;
