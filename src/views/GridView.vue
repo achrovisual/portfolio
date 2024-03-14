@@ -11,6 +11,10 @@ export default {
   components: {
     AppSimplifiedHeader
   },
+  mounted() {
+    var navbar = document.getElementById("navbar__container");
+    navbar.classList.add("light-mode");
+  }
 }
 </script>
 

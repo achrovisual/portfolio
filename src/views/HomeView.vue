@@ -54,6 +54,10 @@ export default {
       ]
       
     }
+  },
+  mounted() {
+    var navbar = document.getElementById("navbar__container");
+    navbar.classList.remove("light-mode");
   }
 }
 </script>
