@@ -1,5 +1,5 @@
 <template>
-    <div class = "navbar__container">
+    <div class = "navbar__container" id = "navbar__container">
         <AppNavBarLink v-for = "item in pages" :key = "item.id" :label = "item.label" :url = "item.url"></AppNavBarLink>
     </div>
 </template>
