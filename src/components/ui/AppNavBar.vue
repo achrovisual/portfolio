@@ -38,4 +38,8 @@ export default {
     box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.10);
     backdrop-filter: blur(50px);
 }
+
+.light-mode {
+    background: rgba(224, 224, 224, 0.75);
+}
 </style>

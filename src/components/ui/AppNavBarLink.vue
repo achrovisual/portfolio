@@ -39,4 +39,12 @@ export default {
     border-radius: 32px;
     background: var(--Gray-800);
 }
+
+.light-mode .navbar__link-container > span {
+    color: var(--Gray-900);
+}
+
+.light-mode .navbar__link-container:hover, .light-mode .router-link-active, .light-mode .router-link-exact-active {
+    background: var(--Gray-50);
+}
 </style>
