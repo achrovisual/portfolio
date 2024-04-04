@@ -36,19 +36,19 @@ export default {
         id: uniqueId("card_group-"),
         label: "Development",
         content: [
-        { id: uniqueId("card-"), name: "Coins", description: "Your Budget Tracking Companion", done: false },
-        { id: uniqueId("card-"), name: "ACRVSL", description: "Reusable Web Components", done: false },
-        { id: uniqueId("card-"), name: "meSHM", description: "All-in-one Management Facility", done: true },
-        { id: uniqueId("card-"), name: "MVISion", description: "Secure and Scalable API", done: true },
-        { id: uniqueId("card-"), name: "Axie Finder", description: "A Discord Bot for Finding Axies", done: true },
+        { id: uniqueId("card-"), name: "Coins", description: "Your Budget Tracking Companion", thumbnail: "coins.png", done: false },
+        // { id: uniqueId("card-"), name: "ACRVSL", description: "Reusable Web Components", thumbnail: "acrvsl.png", done: false },
+        { id: uniqueId("card-"), name: "meSHM", description: "All-in-one Management Facility", thumbnail: "meshm.png", done: true },
+        { id: uniqueId("card-"), name: "MVISion", description: "Secure and Scalable API", thumbnail: "mvision.png", done: true },
+        { id: uniqueId("card-"), name: "Axie Finder", description: "A Discord Bot for Finding Axies", thumbnail: "axiefinder.png", done: true },
         ],
       },
       {
         id: uniqueId("card_group-"),
         label: "Design",
         content: [
-        { id: uniqueId("card-"), name: "Delivery²", description: "Case Study", done: true },
-        { id: uniqueId("card-"), name: "Kada", description: "Case Study", done: true },
+        { id: uniqueId("card-"), name: "Delivery²", description: "Case Study", thumbnail: "deliverysq.png", done: true },
+        { id: uniqueId("card-"), name: "Kada", description: "Case Study", thumbnail: "kada.png", done: true },
         ],
       },
       ]
