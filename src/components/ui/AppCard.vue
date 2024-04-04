@@ -1,7 +1,9 @@
 <template>
     <SplideSlide>
         <div class = "profile__card-container">
-            <div class = "profile__card-display_photo"></div>
+            <div class = "profile__card-display_photo">
+                <img :src="'/thumbnails/' + thumbnail">
+            </div>
             <div class = "profile__card_title-container">
                 <div class = "profile__card_title">
                     <span>
@@ -28,6 +30,7 @@ export default {
         name: { required: true, type: String },
         done: { required: true, type: Boolean },
         description: { required: true, type: String },
+        thumbnail: { required: true, type: String },
     },
     components: {
         SplideSlide
@@ -50,9 +53,14 @@ export default {
     height: 300px;
     justify-content: center;
     align-items: center;    
+    overflow: hidden;
     
     border-radius: 8px;
-    background: white;
+}
+
+div.profile__card-display_photo > img {
+    width: 100%;
+    height: 100%;
 }
 
 .profile__card_title-container {
