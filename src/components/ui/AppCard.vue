@@ -55,6 +55,7 @@ export default {
     align-items: center;    
     overflow: hidden;
     
+    background-color: var(--Gray-900);
     border-radius: 8px;
 }
 
