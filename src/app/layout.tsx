@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { localFont } from "next/font/local";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +11,23 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const helveticaNeue = localFont({
+  src: [
+      {
+      path: '../public/fonts/HelveticaNeueRoman.otf', // Adjust filename
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/HelveticaNeueMedium.otf', // Adjust filename
+      weight: '600',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-helvetica-neue',
 });
 
 export const metadata: Metadata = {
