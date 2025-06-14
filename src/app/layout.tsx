@@ -18,12 +18,12 @@ const helveticaNeue = localFont({
   // https://www.cdnfonts.com/helvetica-neue-5.font
   src: [
       {
-      path: '../public/fonts/HelveticaNeueRoman.otf', // Adjust filename
+      path: '../../public/fonts/HelveticaNeueRoman.otf',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../public/fonts/HelveticaNeueMedium.otf', // Adjust filename
+      path: '../../public/fonts/HelveticaNeueMedium.otf',
       weight: '600',
       style: 'normal',
     },
