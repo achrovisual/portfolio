@@ -14,6 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 const helveticaNeue = localFont({
+  // https://typography.fandom.com/wiki/Helvetica_Neue
+  // https://www.cdnfonts.com/helvetica-neue-5.font
   src: [
       {
       path: '../public/fonts/HelveticaNeueRoman.otf', // Adjust filename
