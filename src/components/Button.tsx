@@ -1,5 +1,6 @@
-// src/components/Button.tsx
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 
 interface ButtonProps {
@@ -26,18 +27,24 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   alignment = "left",
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
   if (!title && !subtitle && !imageUrl && !icon) {
     return null;
   }
   let baseStyles =
-    "flex flex-row items-center p-2 bg-stone-200/80 rounded-full";
+    "flex flex-row items-center p-2 bg-stone-200/80 rounded-full transition-all duration-300 ease-out cursor-pointer";
   const textAlignClass = `text-${alignment}`;
 
   return (
-    <div className={`${baseStyles} ${className}`} onClick={onClick}>
+    <div
+      className={`${baseStyles} ${className}`}
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {(imageUrl || icon) && (
         <div
-          className="flex-shrink-0 w-12 h-12 aspect-square rounded-full bg-cover bg-center flex items-center justify-center"
+          className="flex-shrink-0 w-12 h-12 aspect-square rounded-full bg-cover bg-center flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-110"
           style={imageUrl ? { backgroundImage: `url('${imageUrl}')` } : {}}
         >
           {!imageUrl && icon && (
@@ -51,9 +58,20 @@ const Button: React.FC<ButtonProps> = ({
           )}
         </div>
       )}
+
       {(title || subtitle) && (
         <div
-          className={`flex flex-col justify-evenly px-4 flex-grow min-w-0 ${textAlignClass}`}
+          className={`
+                flex flex-col justify-evenly min-w-0
+                transition-all duration-300 ease-out
+                ${
+                  isHovered
+                    ? "max-w-full opacity-100 px-4"
+                    : "max-w-0 opacity-0 px-0"
+                }
+                ${textAlignClass}
+                overflow-hidden
+            `}
         >
           {title && (
             <span className="text-black text-md font-semibold whitespace-nowrap">
@@ -61,7 +79,7 @@ const Button: React.FC<ButtonProps> = ({
             </span>
           )}
           {subtitle && (
-            <span className="text-gray text-xs opacity-80 whitespace-nowrap">
+            <span className="text-gray-600 text-xs opacity-80 whitespace-nowrap">
               {subtitle}
             </span>
           )}
