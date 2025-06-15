@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { localFont } from "next/font/local";
 import "./globals.css";
+import Navbar from "../components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,19 +18,19 @@ const helveticaNeue = localFont({
   // https://typography.fandom.com/wiki/Helvetica_Neue
   // https://www.cdnfonts.com/helvetica-neue-5.font
   src: [
-      {
-      path: '../../public/fonts/HelveticaNeueRoman.otf',
-      weight: '500',
-      style: 'normal',
+    {
+      path: "../../public/fonts/HelveticaNeueRoman.otf",
+      weight: "500",
+      style: "normal",
     },
     {
-      path: '../../public/fonts/HelveticaNeueMedium.otf',
-      weight: '600',
-      style: 'normal',
+      path: "../../public/fonts/HelveticaNeueMedium.otf",
+      weight: "600",
+      style: "normal",
     },
   ],
-  display: 'swap',
-  variable: '--font-helvetica-neue',
+  display: "swap",
+  variable: "--font-helvetica-neue",
 });
 
 export const metadata: Metadata = {
@@ -44,9 +45,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${helveticaNeue.variable} antialiased`}>
+        <Navbar />
         {children}
       </body>
     </html>
