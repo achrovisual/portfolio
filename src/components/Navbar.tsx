@@ -10,6 +10,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         title="Eugenio Pastoral"
         subtitle="DevOps Engineer & UI Designer"
         imageUrl="/avatar.png"
+        defaultExpanded={true}
       />
       <div className="flex flex-row gap-2">
         <Button icon="mdi:instagram" />
