@@ -5,7 +5,7 @@ interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = () => {
   return (
-    <div className="p-4 flex justify-between font-[family-name:var(--font-helvetica-neue)]">
+    <div className="p-4 flex justify-between">
       <Button
         title="Eugenio Pastoral"
         subtitle="DevOps Engineer & UI Designer"
