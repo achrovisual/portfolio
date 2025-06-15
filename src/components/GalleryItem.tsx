@@ -42,8 +42,8 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
       <Image
         src={imageUrl}
         alt={primaryInfo.title}
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: 'cover' }} 
         className="rounded-4xl"
       />
 
