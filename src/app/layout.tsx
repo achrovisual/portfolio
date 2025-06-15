@@ -45,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${helveticaNeue.variable} antialiased`}>
+      <body className={`${helveticaNeue.variable} antialiased flex flex-col min-h-screen`}>
         <Navbar />
         {children}
       </body>
