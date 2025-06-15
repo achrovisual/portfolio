@@ -5,7 +5,7 @@ export default function Home() {
   const myGalleryData = [
     {
       id: 1,
-      imageUrl: "/images/000025940020.jpg",
+      imageUrl: "/images/000025940032.jpg",
       primaryInfo: {
         title: "Yashica Electro 35 GTN",
         subtitle: "Kodak ColorPlus 200",
