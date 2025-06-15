@@ -1,9 +1,8 @@
 "use client"; // This directive marks the component as a Client Component, meaning it will be rendered on the client side.
 
-import React, { useState } from "react"; // Imports React and the useState hook for managing component state.
+import React, { useState } from "react"; // Import useState
 import { Icon } from "@iconify/react"; // Imports the Icon component from the @iconify/react library for displaying icons.
 
-// Defines the props interface for the Button component, specifying the types of all allowed properties.
 interface ButtonProps {
   title?: string; // Optional title text to display on the button.
   subtitle?: string; // Optional subtitle text to display below the title.
@@ -17,7 +16,6 @@ interface ButtonProps {
   alignment?: "left" | "center" | "right"; // Optional alignment for the text content (title/subtitle).
 }
 
-// Defines the Button functional component, accepting props conforming to the ButtonProps interface.
 const Button: React.FC<ButtonProps> = ({
   title, // Destructures the title prop.
   subtitle, // Destructures the subtitle prop.
@@ -37,16 +35,30 @@ const Button: React.FC<ButtonProps> = ({
     return null;
   }
 
-  // Defines base CSS styles that are applied to the button's main container.
-  let baseStyles =
-    "flex flex-row items-center p-2 bg-stone-200/80 rounded-full transition-all duration-300 ease-out cursor-pointer";
-  // Determines the text alignment class based on the `alignment` prop.
+  // Base styles for the button, now always flex-row to keep icon on the left.
+  const baseClasses = [
+    "flex",
+    "flex-row", // Always flex-row to keep the icon on the left
+    "items-center",
+    "p-2",
+    "bg-stone-200/80",
+    "rounded-full",
+    "transition-all",
+    "duration-300",
+    "ease-out",
+    "cursor-pointer",
+    className, // Apply any additional custom classes from props
+  ].join(" "); // Joins array of classes into a single string
+
+  // Determines the text alignment class for the content within the text container
   const textAlignClass = `text-${alignment}`;
+
+  // Removed initialTranslateXClass as we are no longer using horizontal translation for fade-in/out.
 
   return (
     // The main container div for the button.
     <div
-      className={`${baseStyles} ${className}`} // Combines base styles with any additional classes provided.
+      className={baseClasses} // Uses the dynamically constructed class string
       onClick={onClick} // Attaches the onClick handler.
       onMouseEnter={() => setIsHovered(true)} // Sets isHovered to true when the mouse enters the button area.
       onMouseLeave={() => setIsHovered(false)} // Sets isHovered to false when the mouse leaves the button area.
@@ -77,13 +89,14 @@ const Button: React.FC<ButtonProps> = ({
           className={`
                 flex flex-col justify-evenly min-w-0
                 transition-all duration-300 ease-out
-                ${
-                  isHovered // Applies different width and opacity based on hover state for a "slide-in" effect.
-                    ? "max-w-full opacity-100 px-4"
-                    : "max-w-0 opacity-0 px-0"
-                }
                 ${textAlignClass} // Applies the text alignment class.
                 overflow-hidden // Hides overflowing content during the transition.
+                // Now only uses max-width and opacity for the fade-in/out animation.
+                ${
+                  isHovered
+                    ? "max-w-full opacity-100 px-4" // On hover: full width, visible, with padding
+                    : "max-w-0 opacity-0 px-0" // Not hovered: zero width, hidden, no padding
+                }
             `}
         >
           {/* Conditionally renders the title span if title is provided. */}
