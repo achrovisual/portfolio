@@ -1,132 +1,139 @@
 "use client"; // This directive marks the component as a Client Component, meaning it will be rendered on the client side.
 
-import React, { useState, useEffect } from "react"; // Import useState and useEffect
-import { Icon } from "@iconify/react"; // Imports the Icon component from the @iconify/react library for displaying icons.
+import React, { useState, useEffect } from "react"; // Imports React, the useState hook for managing component state, and the useEffect hook for side effects.
+import { Icon } from "@iconify/react"; // Imports the Icon component from the @iconify/react library for displaying various icons.
 
+// Defines the shape of the props that the Button component can accept.
 interface ButtonProps {
-  title?: string; // Optional title text to display on the button.
-  subtitle?: string; // Optional subtitle text to display below the title.
+  title?: string; // Optional title text for the button.
+  subtitle?: string; // Optional subtitle text for the button.
   imageUrl?: string; // Optional URL for an image to display on the button.
-  icon?: string; // Optional icon identifier from Iconify to display on the button.
-  iconSize?: number; // Optional size for the icon (defaults to 28 if not provided).
+  icon?: string; // Optional string representing an icon from Iconify.
+  iconSize?: number; // Optional size for the icon (defaults to 24 if not provided).
   iconColor?: string; // Optional color for the icon (defaults to "currentColor" if not provided).
-  variant?: "primary" | "secondary" | "danger"; // Optional predefined style variants for the button (currently unused in the component logic).
+  variant?: "primary" | "secondary" | "danger"; // Optional predefined visual variant for the button (e.g., for styling purposes).
   onClick?: () => void; // Optional click handler function for the button.
-  className?: string; // Optional additional CSS classes to apply to the button's container.
-  alignment?: "left" | "center" | "right"; // Optional alignment for the text content (title/subtitle).
-  defaultExpanded?: boolean; // New: Optional prop to control if the button is expanded by default.
+  className?: string; // Optional additional CSS classes to apply to the button.
+  alignment?: "left" | "center" | "right"; // Optional alignment for the text content within the button.
+  defaultExpanded?: boolean; // Optional boolean to determine if the text should be visible by default on mount.
 }
 
+// Defines the Button functional component, destructuring its props.
 const Button: React.FC<ButtonProps> = ({
-  title, // Destructures the title prop.
-  subtitle, // Destructures the subtitle prop.
-  imageUrl, // Destructures the imageUrl prop.
-  icon, // Destructures the icon prop.
-  iconSize = 24, // Destructures iconSize, providing a default value of 28.
-  iconColor = "currentColor", // Destructures iconColor, providing a default value of "currentColor".
-  onClick, // Destructures the onClick prop.
-  className = "", // Destructures className, providing an empty string as a default.
-  alignment = "left", // Destructures alignment, providing "left" as a default.
-  defaultExpanded = false, // Destructures defaultExpanded, providing false as a default.
+  title,
+  subtitle,
+  imageUrl,
+  icon,
+  iconSize = 24, // Default icon size if not provided.
+  iconColor = "currentColor", // Default icon color if not provided.
+  onClick,
+  className = "", // Default empty string for className.
+  alignment = "left", // Default alignment for text.
+  defaultExpanded = false, // Default to not expanded.
 }) => {
-  // `isTextVisible` now controls the animation state.
-  // It's initialized to false (hidden/shrunk) regardless of defaultExpanded,
-  // then animated in if defaultExpanded is true.
+  // State variable to control the visibility of the title and subtitle text.
   const [isTextVisible, setIsTextVisible] = useState(false);
 
-  // useEffect to trigger the animation on initial mount if defaultExpanded is true.
-  // A small timeout ensures the initial render cycle completes before animation starts.
+  // useEffect hook to handle initial expansion of text if defaultExpanded is true.
   useEffect(() => {
     if (defaultExpanded) {
+      // Sets a small delay before making the text visible, allowing for initial rendering.
       const timer = setTimeout(() => {
         setIsTextVisible(true);
-      }, 50); // Small delay to allow initial render. Adjust as needed.
-      return () => clearTimeout(timer); // Cleanup timeout if component unmounts
+      }, 50);
+      // Cleans up the timer if the component unmounts or defaultExpanded changes.
+      return () => clearTimeout(timer);
     }
-  }, [defaultExpanded]); // Re-run if defaultExpanded changes (though typically it won't after initial mount)
+  }, [defaultExpanded]); // Dependency array ensures this effect runs only when defaultExpanded changes.
 
-  // If no content props are provided, don't render the button at all.
+  // If no content (title, subtitle, image, or icon) is provided, the component renders nothing.
   if (!title && !subtitle && !imageUrl && !icon) {
     return null;
   }
 
-  // Base styles for the button, always flex-row to keep icon on the left.
+  // Defines an array of base CSS classes that are always applied to the button container.
   const baseClasses = [
-    "flex",
-    "flex-row", // Always flex-row to keep the icon on the left
-    "items-center",
-    "p-2",
-    "bg-stone-200/80",
-    "rounded-full",
-    "transition-all",
-    "duration-300",
-    "ease-out",
-    "cursor-pointer",
-    className, // Apply any additional custom classes from props
-  ].join(" "); // Joins array of classes into a single string
+    "flex", // Enables flexbox layout.
+    "flex-row", // Arranges items in a row.
+    "items-center", // Vertically centers items.
+    "p-2", // Adds padding.
+    "rounded-full", // Makes the button fully rounded.
+    "transition-all", // Enables transitions for all animatable properties.
+    "duration-300", // Sets transition duration to 300ms.
+    "ease-out", // Sets ease-out timing function for transitions.
+    "cursor-pointer", // Changes cursor to pointer on hover.
+    className, // Includes any additional classes passed via props.
+  ].join(" "); // Joins the array elements into a single string of classes.
 
-  // Determines the text alignment class for the content within the text container
+  // Defines an inline style object for the button's background color, using a CSS variable.
+  const buttonStyle = {
+    backgroundColor: "var(--button-background)",
+  };
+
+  // Determines the text alignment class based on the 'alignment' prop.
   const textAlignClass = `text-${alignment}`;
 
   return (
     // The main container div for the button.
     <div
-      className={baseClasses} // Uses the dynamically constructed class string
-      onClick={onClick} // Attaches the onClick handler.
-      // onMouseEnter/onMouseLeave now directly control `isTextVisible` for dynamic hover animation.
-      onMouseEnter={() => setIsTextVisible(true)}
+      className={baseClasses} // Applies the base CSS classes.
+      onClick={onClick} // Attaches the onClick event handler.
+      onMouseEnter={() => setIsTextVisible(true)} // Shows text on mouse enter.
       onMouseLeave={() => {
-        // Only set isTextVisible to false (shrink) if defaultExpanded is false
+        // Hides text on mouse leave, but only if defaultExpanded is false.
         if (!defaultExpanded) {
           setIsTextVisible(false);
         }
       }}
+      style={buttonStyle} // Applies the background color style.
     >
-      {/* Conditionally renders the image or icon container if imageUrl or icon is provided. */}
-      {(imageUrl || icon) && (
+      {(imageUrl || icon) && ( // Renders the image or icon section if either is provided.
         <div
-          className="flex-shrink-0 w-10 h-10 aspect-square rounded-full bg-cover bg-center flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-110"
-          // Sets the background image if imageUrl is provided.
-          style={imageUrl ? { backgroundImage: `url('${imageUrl}')` } : {}}
+          className="flex-shrink-0 w-10 h-10 aspect-square rounded-full bg-cover bg-center flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-110" // Styling for the image/icon container.
+          style={imageUrl ? { backgroundImage: `url('${imageUrl}')` } : {}} // Sets background image if imageUrl is provided.
         >
-          {/* Conditionally renders the Icon component only if imageUrl is NOT provided but an icon IS provided. */}
-          {!imageUrl && icon && (
-            <Icon
-              icon={icon} // Specifies the icon to display.
-              width={iconSize} // Sets the width of the icon.
-              height={iconSize} // Sets the height of the icon.
-              color={iconColor} // Sets the color of the icon.
-              className="flex-shrink-0" // Ensures the icon doesn't shrink.
-            />
-          )}
+          {!imageUrl &&
+            icon && ( // Renders the Icon component only if imageUrl is not present and an icon string is provided.
+              <Icon
+                icon={icon} // Specifies the icon to display.
+                width={iconSize} // Sets the icon's width.
+                height={iconSize} // Sets the icon's height.
+                color={iconColor} // Sets the icon's color.
+                className="flex-shrink-0" // Prevents the icon from shrinking.
+              />
+            )}
         </div>
       )}
 
-      {/* Conditionally renders the title/subtitle container if title or subtitle is provided. */}
-      {(title || subtitle) && (
+      {(title || subtitle) && ( // Renders the text content section if title or subtitle is provided.
         <div
           className={`
-                flex flex-col justify-evenly min-w-0
-                transition-all duration-300 ease-out
-                ${textAlignClass} // Applies the text alignment class.
-                overflow-hidden // Hides overflowing content during the transition.
+                flex flex-col justify-evenly min-w-0 // Flex container for title/subtitle, allowing them to stack.
+                transition-all duration-300 ease-out // Smooth transition for expansion/collapse.
+                ${textAlignClass} // Applies the determined text alignment.
+                overflow-hidden // Hides overflowing content during transition.
                 ${
-                  // Uses `isTextVisible` to control max-width, opacity, and padding.
-                  isTextVisible
-                    ? "max-w-full opacity-100 px-4" // Visible: full width, with padding
-                    : "max-w-0 opacity-0 px-0" // Hidden: zero width, hidden, no padding
+                  isTextVisible // Conditionally applies classes based on whether text should be visible.
+                    ? "max-w-full opacity-100 px-4" // When visible: expands to full width, fully opaque, adds horizontal padding.
+                    : "max-w-0 opacity-0 px-0" // When hidden: collapses width to 0, fully transparent, removes padding.
                 }
             `}
         >
-          {/* Conditionally renders the title span if title is provided. */}
-          {title && (
-            <span className="text-black text-md font-semibold whitespace-nowrap">
+          {title && ( // Renders the title if provided.
+            // Uses CSS variable for title color for theming flexibility.
+            <span
+              className="text-md font-semibold whitespace-nowrap" // Styling for the title text.
+              style={{ color: "var(--button-text-title)" }} // Applies title text color from CSS variable.
+            >
               {title}
             </span>
           )}
-          {/* Conditionally renders the subtitle span if subtitle is provided. */}
-          {subtitle && (
-            <span className="text-gray-600 text-xs opacity-80 whitespace-nowrap">
+          {subtitle && ( // Renders the subtitle if provided.
+            // Uses CSS variable for subtitle color for theming flexibility.
+            <span
+              className="text-xs opacity-80 whitespace-nowrap" // Styling for the subtitle text.
+              style={{ color: "var(--button-text-subtitle)" }} // Applies subtitle text color from CSS variable.
+            >
               {subtitle}
             </span>
           )}

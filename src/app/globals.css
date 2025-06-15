@@ -1,24 +1,65 @@
+/* global.css */
 @import "tailwindcss";
 
+/* Base (light mode) variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --button-background: #e7e5e4; /* stone-200/80 */
+  --button-text-title: #000000; /* black */
+  --button-text-subtitle: #6b7280; /* gray-600 */
+  --gallery-info-background: rgba(245, 245, 244, 0.5); /* stone-100/50 */
+  --gallery-info-text-title: #000000; /* black */
+  --gallery-info-text-subtitle: #6b7280; /* gray-600 */
 }
 
+/* @theme inline allows direct CSS variable use in Tailwind */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-helvetica-neue);
 }
 
-/* @media (prefers-color-scheme: dark) {
+/* Dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --button-background: #292524;
+    --button-text-title: #ffffff;
+    --button-text-subtitle: #a0a0a0;
+    --gallery-info-background: rgba(41, 37, 36, 0.5);
+    --gallery-info-text-title: #ffffff;
+    --gallery-info-text-subtitle: #a0a0a0;
   }
-} */
+}
+
+/* Manual dark mode toggle (overrides system preference) */
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --button-background: #292524;
+  --button-text-title: #ffffff;
+  --button-text-subtitle: #a0a0a0;
+  --gallery-info-background: rgba(41, 37, 36, 0.5);
+  --gallery-info-text-title: #ffffff;
+  --gallery-info-text-subtitle: #a0a0a0;
+}
+
+/* Optional: Manual light mode toggle */
+html.light {
+  --background: #ffffff;
+  --foreground: #171717;
+  --button-background: #e7e5e4;
+  --button-text-title: #000000;
+  --button-text-subtitle: #6b7280;
+  --gallery-info-background: rgba(245, 245, 244, 0.5);
+  --gallery-info-text-title: #000000;
+  --gallery-info-text-subtitle: #6b7280;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
+  transition: background 0.3s ease, color 0.3s ease; /* Smooth transitions */
 }
