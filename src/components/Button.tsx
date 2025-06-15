@@ -1,6 +1,6 @@
 "use client"; // This directive marks the component as a Client Component, meaning it will be rendered on the client side.
 
-import React, { useState } from "react"; // Import useState
+import React, { useState, useEffect } from "react"; // Import useState and useEffect
 import { Icon } from "@iconify/react"; // Imports the Icon component from the @iconify/react library for displaying icons.
 
 interface ButtonProps {
@@ -14,6 +14,7 @@ interface ButtonProps {
   onClick?: () => void; // Optional click handler function for the button.
   className?: string; // Optional additional CSS classes to apply to the button's container.
   alignment?: "left" | "center" | "right"; // Optional alignment for the text content (title/subtitle).
+  defaultExpanded?: boolean; // New: Optional prop to control if the button is expanded by default.
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -26,16 +27,30 @@ const Button: React.FC<ButtonProps> = ({
   onClick, // Destructures the onClick prop.
   className = "", // Destructures className, providing an empty string as a default.
   alignment = "left", // Destructures alignment, providing "left" as a default.
+  defaultExpanded = false, // Destructures defaultExpanded, providing false as a default.
 }) => {
-  // Declares a state variable `isHovered` to track the hover state of the button, initialized to false.
-  const [isHovered, setIsHovered] = useState(false);
+  // `isTextVisible` now controls the animation state.
+  // It's initialized to false (hidden/shrunk) regardless of defaultExpanded,
+  // then animated in if defaultExpanded is true.
+  const [isTextVisible, setIsTextVisible] = useState(false);
 
-  // If no title, subtitle, image, or icon is provided, the component renders nothing.
+  // useEffect to trigger the animation on initial mount if defaultExpanded is true.
+  // A small timeout ensures the initial render cycle completes before animation starts.
+  useEffect(() => {
+    if (defaultExpanded) {
+      const timer = setTimeout(() => {
+        setIsTextVisible(true);
+      }, 50); // Small delay to allow initial render. Adjust as needed.
+      return () => clearTimeout(timer); // Cleanup timeout if component unmounts
+    }
+  }, [defaultExpanded]); // Re-run if defaultExpanded changes (though typically it won't after initial mount)
+
+  // If no content props are provided, don't render the button at all.
   if (!title && !subtitle && !imageUrl && !icon) {
     return null;
   }
 
-  // Base styles for the button, now always flex-row to keep icon on the left.
+  // Base styles for the button, always flex-row to keep icon on the left.
   const baseClasses = [
     "flex",
     "flex-row", // Always flex-row to keep the icon on the left
@@ -53,15 +68,19 @@ const Button: React.FC<ButtonProps> = ({
   // Determines the text alignment class for the content within the text container
   const textAlignClass = `text-${alignment}`;
 
-  // Removed initialTranslateXClass as we are no longer using horizontal translation for fade-in/out.
-
   return (
     // The main container div for the button.
     <div
       className={baseClasses} // Uses the dynamically constructed class string
       onClick={onClick} // Attaches the onClick handler.
-      onMouseEnter={() => setIsHovered(true)} // Sets isHovered to true when the mouse enters the button area.
-      onMouseLeave={() => setIsHovered(false)} // Sets isHovered to false when the mouse leaves the button area.
+      // onMouseEnter/onMouseLeave now directly control `isTextVisible` for dynamic hover animation.
+      onMouseEnter={() => setIsTextVisible(true)}
+      onMouseLeave={() => {
+        // Only set isTextVisible to false (shrink) if defaultExpanded is false
+        if (!defaultExpanded) {
+          setIsTextVisible(false);
+        }
+      }}
     >
       {/* Conditionally renders the image or icon container if imageUrl or icon is provided. */}
       {(imageUrl || icon) && (
@@ -91,11 +110,11 @@ const Button: React.FC<ButtonProps> = ({
                 transition-all duration-300 ease-out
                 ${textAlignClass} // Applies the text alignment class.
                 overflow-hidden // Hides overflowing content during the transition.
-                // Now only uses max-width and opacity for the fade-in/out animation.
                 ${
-                  isHovered
-                    ? "max-w-full opacity-100 px-4" // On hover: full width, visible, with padding
-                    : "max-w-0 opacity-0 px-0" // Not hovered: zero width, hidden, no padding
+                  // Uses `isTextVisible` to control max-width, opacity, and padding.
+                  isTextVisible
+                    ? "max-w-full opacity-100 px-4" // Visible: full width, with padding
+                    : "max-w-0 opacity-0 px-0" // Hidden: zero width, hidden, no padding
                 }
             `}
         >
