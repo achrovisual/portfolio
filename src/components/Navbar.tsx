@@ -19,7 +19,6 @@ const Navbar: React.FC<NavbarProps> = () => {
           title="Not available for work"
           subtitle="But feel free to say hi"
           icon="ic:baseline-work-off"
-          alignment="right"
         />
       </div>
     </div>
