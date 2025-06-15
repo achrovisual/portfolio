@@ -1,14 +1,14 @@
 // This is a Client Component.
 "use client";
 
-import React from "react";
+import React, { useState } from "react"; // Import useState
 import Image from "next/image";
 
 interface GalleryItemProps {
   imageUrl: string;
   primaryInfo: { title: string; subtitle: string };
   secondaryInfo: { title: string; subtitle: string };
-  isActive: boolean; // Controls visibility and fade.
+  isActive: boolean; // Controls visibility and fade for the *entire item* in the slideshow.
 }
 
 const GalleryItem: React.FC<GalleryItemProps> = ({
@@ -17,9 +17,14 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
   secondaryInfo,
   isActive,
 }) => {
+  // State to manage the visibility of the information block.
+  // It's initialized to 'false' (hidden) by default.
+  const [isInfoVisible, setIsInfoVisible] = useState(false);
+
   return (
     // Main container for each gallery item.
     // Positions itself absolutely to fill its parent and handle fade based on 'isActive'.
+    // Add mouse event handlers here to control info block visibility.
     <div
       className={`absolute inset-0 w-full h-full rounded-4xl overflow-hidden
                   transition-opacity duration-1000 ease-in-out
@@ -28,6 +33,10 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
                       ? "opacity-100 z-10"
                       : "opacity-0 z-0 pointer-events-none"
                   }`}
+      // When the mouse enters this div, set isInfoVisible to true.
+      onMouseEnter={() => setIsInfoVisible(true)}
+      // When the mouse leaves this div, set isInfoVisible to false.
+      onMouseLeave={() => setIsInfoVisible(false)}
     >
       {/* Next.js Image component for optimized image display. */}
       <Image
@@ -38,11 +47,17 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         className="rounded-4xl"
       />
 
-      {/* Information block container, positioned at the bottom. */}
+      {/* Information block container, positioned at the bottom.
+          Apply transition and opacity classes based on `isInfoVisible` state. */}
       <div
-        className="absolute bottom-4 left-4 mx-auto w-fit z-20
+        className={`absolute bottom-4 left-4 mx-auto w-fit z-20
                       flex flex-row justify-between items-center gap-8
-                      bg-stone-100/50 px-6 py-4 rounded-3xl backdrop-blur-sm"
+                      bg-stone-100/50 px-6 py-4 rounded-3xl backdrop-blur-sm
+                      transition-opacity duration-500 ${
+                        isInfoVisible
+                          ? "opacity-100"
+                          : "opacity-0 pointer-events-none"
+                      }`}
       >
         {/* Primary info: title and subtitle. */}
         <div className="flex flex-col">
