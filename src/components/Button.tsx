@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
   subtitle, // Destructures the subtitle prop.
   imageUrl, // Destructures the imageUrl prop.
   icon, // Destructures the icon prop.
-  iconSize = 28, // Destructures iconSize, providing a default value of 28.
+  iconSize = 24, // Destructures iconSize, providing a default value of 28.
   iconColor = "currentColor", // Destructures iconColor, providing a default value of "currentColor".
   onClick, // Destructures the onClick prop.
   className = "", // Destructures className, providing an empty string as a default.
@@ -85,7 +85,7 @@ const Button: React.FC<ButtonProps> = ({
       {/* Conditionally renders the image or icon container if imageUrl or icon is provided. */}
       {(imageUrl || icon) && (
         <div
-          className="flex-shrink-0 w-12 h-12 aspect-square rounded-full bg-cover bg-center flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-110"
+          className="flex-shrink-0 w-10 h-10 aspect-square rounded-full bg-cover bg-center flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-110"
           // Sets the background image if imageUrl is provided.
           style={imageUrl ? { backgroundImage: `url('${imageUrl}')` } : {}}
         >
