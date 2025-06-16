@@ -80,7 +80,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         </div>
 
         {/* Secondary information section */}
-        <div className="flex flex-col items-end">
+        <div className="flex flex-col items-end min-w-[12rem]">
           <span
             className="text-md font-semibold whitespace-nowrap"
             // Applies text color using a CSS variable
