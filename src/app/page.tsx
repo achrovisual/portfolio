@@ -1,32 +1,30 @@
-import Image from "next/image";
 import Gallery from "../components/Gallery";
+import { fetchGalleryData, GalleryItem } from "../api/gallery";
 
-export default function Home() {
-  const myGalleryData = [
-    {
-      id: 1,
-      imageUrl: "/images/000025940032.jpg",
-      primaryInfo: {
-        title: "Yashica Electro 35 GTN",
-        subtitle: "Kodak ColorPlus 200",
-      },
-      secondaryInfo: { title: "Iloilo, Philippines", subtitle: "2024" },
-    },
-    {
-      id: 2,
-      imageUrl: "/images/000025940033.jpg",
-      primaryInfo: {
-        title: "Yashica Electro 35 GTN",
-        subtitle: "Kodak ColorPlus 200",
-      },
-      secondaryInfo: { title: "Iloilo, Philippines", subtitle: "2024" },
-    },
-  ];
+export default async function Home() {
+  let myGalleryData: GalleryItem[] = [];
+  let errorFetchingData: boolean = false;
+
+  try {
+    myGalleryData = await fetchGalleryData();
+  } catch (error) {
+    console.error("Failed to load gallery data in Home component:", error);
+    errorFetchingData = true;
+  }
 
   return (
     <div className="flex flex-grow flex-col">
-      {/* Pass the gallery data as a prop to the Gallery component */}
-      <Gallery galleryItemsData={myGalleryData} />
+      {errorFetchingData ? (
+        <p className="text-center text-red-500 mt-8">
+          Failed to load gallery images. Please try again later.
+        </p>
+      ) : myGalleryData.length > 0 ? (
+        <Gallery galleryItemsData={myGalleryData} />
+      ) : (
+        <p className="text-center text-gray-500 mt-8">
+          No gallery items found.
+        </p>
+      )}
     </div>
   );
 }
