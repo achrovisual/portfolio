@@ -11,7 +11,7 @@ export interface GalleryItem {
   };
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL; 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const USE_MOCK_DATA = true; // Set to 'true' to use mock data, 'false' for the real API
 const MOCK_DATA_DELAY = 500; // Simulate network latency with a delay in milliseconds
 
@@ -51,7 +51,9 @@ export async function fetchGalleryData(): Promise<GalleryItem[]> {
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(
-        `Failed to fetch gallery data: ${response.status} ${response.statusText} - ${errorData.message || 'Unknown error'}`
+        `Failed to fetch gallery data: ${response.status} ${
+          response.statusText
+        } - ${errorData.message || "Unknown error"}`
       );
     }
     const data: GalleryItem[] = await response.json();
