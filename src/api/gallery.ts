@@ -18,21 +18,30 @@ const MOCK_DATA_DELAY = 500; // Simulate network latency with a delay in millise
 const mockGalleryData: GalleryItem[] = [
   {
     id: 1,
-    imageUrl: "/images/000025940032.jpg",
+    imageUrl: "/images/001.jpg",
     primaryInfo: {
-      title: "Yashica Electro 35 GTN",
-      subtitle: "Kodak ColorPlus 200",
+      title: "Canon EOS 7D",
+      subtitle: "Digital",
     },
-    secondaryInfo: { title: "Iloilo, Philippines", subtitle: "2024" },
+    secondaryInfo: { title: "Batangas, Philippines", subtitle: "2018" },
   },
   {
     id: 2,
-    imageUrl: "/images/000025940033.jpg",
+    imageUrl: "/images/002.jpg",
     primaryInfo: {
-      title: "Yashica Electro 35 GTN",
-      subtitle: "Kodak ColorPlus 200",
+      title: "Canon EOS 7D",
+      subtitle: "Digital",
     },
-    secondaryInfo: { title: "Iloilo, Philippines", subtitle: "2024" },
+    secondaryInfo: { title: "Batangas, Philippines", subtitle: "2018" },
+  },
+    {
+    id: 3,
+    imageUrl: "/images/003.jpg",
+    primaryInfo: {
+      title: "Canon EOS 7D",
+      subtitle: "Digital",
+    },
+    secondaryInfo: { title: "Batangas, Philippines", subtitle: "2019" },
   },
 ];
 
