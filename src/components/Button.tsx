@@ -16,6 +16,7 @@ interface ButtonProps {
   className?: string; // Optional additional CSS classes to apply to the button.
   alignment?: "left" | "center" | "right"; // Optional alignment for the text content within the button.
   defaultExpanded?: boolean; // Optional boolean to determine if the text should be visible by default on mount.
+  href?: string; // NEW: Optional URL to link to. If provided, the button will render as an <a> tag.
 }
 
 // Defines the Button functional component, destructuring its props.
@@ -30,6 +31,7 @@ const Button: React.FC<ButtonProps> = ({
   className = "", // Default empty string for className.
   alignment = "left", // Default alignment for text.
   defaultExpanded = false, // Default to not expanded.
+  href, // NEW: Destructure href from props
 }) => {
   // State variable to control the visibility of the title and subtitle text.
   const [isTextVisible, setIsTextVisible] = useState(false);
@@ -73,11 +75,17 @@ const Button: React.FC<ButtonProps> = ({
   // Determines the text alignment class based on the 'alignment' prop.
   const textAlignClass = `text-${alignment}`;
 
+  // NEW: Determine which element to render (div or a)
+  const Tag = href ? "a" : "div";
+
   return (
-    // The main container div for the button.
-    <div
+    // The main container for the button, now conditionally rendering as 'a' or 'div'.
+    <Tag
       className={baseClasses} // Applies the base CSS classes.
-      onClick={onClick} // Attaches the onClick event handler.
+      // NEW: Apply href and target/rel props if Tag is 'a'
+      {...(href && { href, target: "_blank", rel: "noopener noreferrer" })}
+      // Only apply onClick if href is not provided. If href is provided, the browser handles navigation.
+      onClick={!href ? onClick : undefined}
       onMouseEnter={() => setIsTextVisible(true)} // Shows text on mouse enter.
       onMouseLeave={() => {
         // Hides text on mouse leave, but only if defaultExpanded is false.
@@ -139,7 +147,7 @@ const Button: React.FC<ButtonProps> = ({
           )}
         </div>
       )}
-    </div>
+    </Tag>
   );
 };
 
