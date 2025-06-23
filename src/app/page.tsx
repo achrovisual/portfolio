@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home - Eugenio Pastoral",
+};
+
 import Gallery from "../components/Gallery";
 import { fetchGalleryData, GalleryItem } from "../api/gallery";
 
