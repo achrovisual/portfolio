@@ -13,7 +13,6 @@ const Navbar: React.FC<NavbarProps> = () => {
         defaultExpanded={true}
       />
       <div className="flex flex-row gap-2">
-        <Button icon="mdi:instagram" />
         <Button icon="mdi:github" />
         <Button icon="mdi:linkedin" />
         <Button
