@@ -22,6 +22,11 @@ const helveticaNeue = localFont({
   variable: "--font-helvetica-neue",
 });
 
+export const metadata: Metadata = {
+  title: "Eugenio Pastoral",
+  description: "I'm Gino, a DevOps Engineer and UI Designer. Explore my portfolio for projects blending technical innovation with creative design.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
