@@ -1,6 +1,6 @@
 "use client"; // This directive marks the component as a Client Component, meaning it will be rendered on the client side.
 
-import React, { useState, useEffect } from "react"; // Imports React, the useState hook for managing component state, and the useEffect hook for side effects.
+import React, { useState, useEffect, useRef } from "react"; // Imports React, the useState hook for managing component state, the useEffect hook for side effects, and useRef for mutable references.
 import { Icon } from "@iconify/react"; // Imports the Icon component from the @iconify/react library for displaying various icons.
 
 // Defines the shape of the props that the Button component can accept.
@@ -16,6 +16,7 @@ interface ButtonProps {
   className?: string; // Optional additional CSS classes to apply to the button.
   alignment?: "left" | "center" | "right"; // Optional alignment for the text content within the button.
   defaultExpanded?: boolean; // Optional boolean to determine if the text should be visible by default on mount.
+  href?: string; // Optional URL to link to. If provided, the button will render as an <a> tag.
 }
 
 // Defines the Button functional component, destructuring its props.
@@ -30,20 +31,33 @@ const Button: React.FC<ButtonProps> = ({
   className = "", // Default empty string for className.
   alignment = "left", // Default alignment for text.
   defaultExpanded = false, // Default to not expanded.
+  href, // Destructure href from props
 }) => {
   // State variable to control the visibility of the title and subtitle text.
-  const [isTextVisible, setIsTextVisible] = useState(false);
+  const [isTextVisible, setIsTextVisible] = useState(defaultExpanded); // Initialize based on defaultExpanded
+
+  // Ref to store the timeout ID for auto-unexpand.
+  const autoUnexpandTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Clears any active auto-unexpand timeout.
+  const clearAutoUnexpandTimeout = () => {
+    if (autoUnexpandTimeoutRef.current) {
+      clearTimeout(autoUnexpandTimeoutRef.current);
+      autoUnexpandTimeoutRef.current = null;
+    }
+  };
 
   // useEffect hook to handle initial expansion of text if defaultExpanded is true.
+  // Also handles cleanup for timeouts.
   useEffect(() => {
     if (defaultExpanded) {
-      // Sets a small delay before making the text visible, allowing for initial rendering.
-      const timer = setTimeout(() => {
-        setIsTextVisible(true);
-      }, 50);
-      // Cleans up the timer if the component unmounts or defaultExpanded changes.
-      return () => clearTimeout(timer);
+      setIsTextVisible(true);
     }
+
+    // Cleanup function: clears any active timeout when the component unmounts.
+    return () => {
+      clearAutoUnexpandTimeout();
+    };
   }, [defaultExpanded]); // Dependency array ensures this effect runs only when defaultExpanded changes.
 
   // If no content (title, subtitle, image, or icon) is provided, the component renders nothing.
@@ -73,14 +87,31 @@ const Button: React.FC<ButtonProps> = ({
   // Determines the text alignment class based on the 'alignment' prop.
   const textAlignClass = `text-${alignment}`;
 
+  // Determine which element to render (div or a)
+  const Tag = href ? "a" : "div";
+
   return (
-    // The main container div for the button.
-    <div
+    // The main container for the button, now conditionally rendering as 'a' or 'div'.
+    <Tag
       className={baseClasses} // Applies the base CSS classes.
-      onClick={onClick} // Attaches the onClick event handler.
-      onMouseEnter={() => setIsTextVisible(true)} // Shows text on mouse enter.
+      // Apply href and target/rel props if Tag is 'a'
+      {...(href && { href, target: "_blank", rel: "noopener noreferrer" })}
+      // Only apply onClick if href is not provided. If href is provided, the browser handles navigation.
+      onClick={!href ? onClick : undefined}
+      onMouseEnter={() => {
+        // Only show text and set timeout if not defaultExpanded
+        if (!defaultExpanded) {
+          setIsTextVisible(true);
+          clearAutoUnexpandTimeout(); // Clear any previous timeout
+          autoUnexpandTimeoutRef.current = setTimeout(() => {
+            setIsTextVisible(false);
+          }, 5000); // Auto-unexpand after 5 seconds
+        }
+      }}
       onMouseLeave={() => {
-        // Hides text on mouse leave, but only if defaultExpanded is false.
+        // Clear the auto-unexpand timeout immediately on mouse leave
+        clearAutoUnexpandTimeout();
+        // If not defaultExpanded, hide text immediately on mouse leave
         if (!defaultExpanded) {
           setIsTextVisible(false);
         }
@@ -139,7 +170,7 @@ const Button: React.FC<ButtonProps> = ({
           )}
         </div>
       )}
-    </div>
+    </Tag>
   );
 };
 

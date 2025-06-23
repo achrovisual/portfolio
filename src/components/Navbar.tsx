@@ -13,13 +13,19 @@ const Navbar: React.FC<NavbarProps> = () => {
         defaultExpanded={true}
       />
       <div className="flex flex-row gap-2">
-        <Button icon="mdi:instagram" />
-        <Button icon="mdi:github" />
-        <Button icon="mdi:linkedin" />
+        <Button
+          icon="mdi:github"
+          href="https://github.com/achrovisual"
+        />
+        <Button
+          icon="mdi:linkedin"
+          href="https://www.linkedin.com/in/eugeniopastoral/"
+        />
         <Button
           title="Not available for work"
           subtitle="But feel free to say hi"
           icon="ic:baseline-work-off"
+          href="mailto:work@achrovisual.com"
         />
       </div>
     </div>
