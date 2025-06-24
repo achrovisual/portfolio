@@ -6,10 +6,10 @@ on:
       - develop
 
 jobs:
-  check_pr:
+  validate_pr_branches:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if PR target branch is ok
+      - name: Check branch and target for PR
         run: |
           branch_name=${GITHUB_HEAD_REF}
           echo "Pull Request Branch: $branch_name"
