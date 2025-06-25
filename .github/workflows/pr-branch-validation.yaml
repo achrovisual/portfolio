@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  validate_pr_branches:
+  validate-pr-branches:
     runs-on: ubuntu-latest
     steps:
       - name: Check branch and target for PR
