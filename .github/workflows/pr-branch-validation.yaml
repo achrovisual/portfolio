@@ -4,6 +4,11 @@ on:
     branches:
       - main
       - develop
+  push:
+    branches:
+      - main
+      - develop
+
 
 jobs:
   validate-pr-branches:
