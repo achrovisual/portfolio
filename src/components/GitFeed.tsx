@@ -76,10 +76,6 @@ const GitFeed: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 font-inter">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        GitHub Activity Feed
-      </h1>
-
       <div className="flex flex-col items-start space-y-2">
         <div className="grid grid-cols-[auto_1fr] gap-1">
           <div className="flex flex-col text-sm text-gray-600 pr-2 pt-2">
