@@ -78,7 +78,7 @@ const GitFeed: React.FC = () => {
   const dayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <div className="flex flex-col items-center justify-between h-full text-gray-900 dark:text-gray-100">
+    <div className="flex flex-col items-center  justify-center  gap-4 h-full text-gray-900 dark:text-gray-100">
       <div className="flex flex-col items-start space-y-2 w-full">
         <div className="grid grid-cols-[auto_1fr] gap-1 w-full">
           <div className="flex flex-col text-sm text-gray-600 dark:text-gray-400 pr-2 pt-2">
@@ -94,7 +94,7 @@ const GitFeed: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex overflow-x-auto pb-4 scrollbar-hide">
+          <div className="flex overflow-x-auto scrollbar-hide">
             {Array.from({ length: numColumns }).map((_, colIndex) => (
               <div key={`col-${colIndex}`} className="flex flex-col gap-1 mr-1">
                 {Array.from({ length: numRows }).map((_, rowIndex) => {
@@ -124,7 +124,7 @@ const GitFeed: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-8 flex items-center space-x-4 text-sm text-gray-700 dark:text-gray-300">
+      <div className="flex items-center space-x-4 text-sm text-gray-700 dark:text-gray-300">
         <span>Less</span>
         <div className="flex space-x-1">
           <div className="w-4 h-4 rounded-sm bg-gray-200 dark:bg-gray-700"></div>
