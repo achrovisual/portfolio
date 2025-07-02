@@ -47,7 +47,7 @@ const GitFeed: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen text-gray-700 dark:text-gray-300">
+      <div className="flex items-center justify-center h-full text-gray-700 dark:text-gray-300">
         <p className="text-lg">Loading activity data...</p>
       </div>
     );
@@ -78,9 +78,9 @@ const GitFeed: React.FC = () => {
   const dayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-gray-900 dark:text-gray-100">
-      <div className="flex flex-col items-start space-y-2">
-        <div className="grid grid-cols-[auto_1fr] gap-1">
+    <div className="flex flex-col items-center justify-between h-full text-gray-900 dark:text-gray-100">
+      <div className="flex flex-col items-start space-y-2 w-full">
+        <div className="grid grid-cols-[auto_1fr] gap-1 w-full">
           <div className="flex flex-col text-sm text-gray-600 dark:text-gray-400 pr-2 pt-2">
             {dayLabels.map((label, index) => (
               <div
