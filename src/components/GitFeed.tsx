@@ -75,7 +75,7 @@ const GitFeed: React.FC = () => {
   const dayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4 font-inter">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="flex flex-col items-start space-y-2">
         <div className="grid grid-cols-[auto_1fr] gap-1">
           <div className="flex flex-col text-sm text-gray-600 pr-2 pt-2">
