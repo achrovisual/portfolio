@@ -20,7 +20,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex flex-grow flex-col">
+    <div className="flex flex-grow flex-col text-gray-900 dark:text-gray-100">
       <div className="flex flex-grow flex-col min-h-screen items-center justify-center">
         {errorFetchingData ? (
           <p className="text-center text-red-500 mt-8">
@@ -36,11 +36,11 @@ export default async function Home() {
       </div>
       <div className="mx-auto px-4 pb-4 flex-grow-0 h-[300px] flex flex-col">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow overflow-hidden">
-          <div className="bg-white p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto">
+          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto">
             <GitFeed />
           </div>
-          <div className="bg-white p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto">
-            <p className="text-gray-600 text-center">placeholder</p>
+          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto">
+            <p className="text-gray-600 dark:text-gray-400 text-center">placeholder</p>
           </div>
         </div>
       </div>
