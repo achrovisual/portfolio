@@ -20,7 +20,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex flex-grow flex-col text-gray-900 dark:text-gray-100">
+    <div className="flex flex-grow flex-col text-neutral-900 dark:text-neutral-100">
       <div className="flex flex-grow flex-col min-h-screen items-center justify-center">
         {errorFetchingData ? (
           <p className="text-center text-red-500 mt-8">
@@ -29,7 +29,7 @@ export default async function Home() {
         ) : myGalleryData.length > 0 ? (
           <Gallery galleryItemsData={myGalleryData} />
         ) : (
-          <p className="text-center text-gray-500 mt-8">
+          <p className="text-center text-neutral-500 mt-8">
             No gallery items found.
           </p>
         )}
@@ -40,7 +40,7 @@ export default async function Home() {
             <GitFeed />
           </div>
           <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto">
-            <p className="text-gray-600 dark:text-gray-400 text-center">placeholder</p>
+            <p className="text-neutral-600 dark:text-neutral-400 text-center">placeholder</p>
           </div>
         </div>
       </div>
