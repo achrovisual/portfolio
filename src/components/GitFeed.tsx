@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface DailyActivity {
   date: string;
@@ -22,6 +22,12 @@ const getColorClass = (commitCount: number): string => {
 const GitFeed: React.FC = () => {
   const [activityData, setActivityData] = useState<DailyActivity[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [visibleColumns, setVisibleColumns] = useState(0);
+  const mainContainerRef = useRef<HTMLDivElement>(null);
+  const dayLabelsRef = useRef<HTMLDivElement>(null);
+
+  const cellWidth = 16;
+  const columnSpacing = 4;
 
   useEffect(() => {
     const generateActivityData = (): DailyActivity[] => {
@@ -30,13 +36,8 @@ const GitFeed: React.FC = () => {
       for (let i = 364; i >= 0; i--) {
         const date = new Date(today);
         date.setDate(today.getDate() - i);
-
         const commitCount = Math.floor(Math.random() * 15);
-
-        data.push({
-          date: date.toISOString().split("T")[0],
-          commitCount,
-        });
+        data.push({ date: date.toISOString().split("T")[0], commitCount });
       }
       return data;
     };
@@ -44,6 +45,52 @@ const GitFeed: React.FC = () => {
     setActivityData(generateActivityData());
     setLoading(false);
   }, []);
+
+  useEffect(() => {
+    const updateVisibleColumns = () => {
+      if (mainContainerRef.current && dayLabelsRef.current) {
+        const totalContainerWidth = mainContainerRef.current.offsetWidth;
+        const dayLabelsWidth = dayLabelsRef.current.offsetWidth;
+        const widthAvailableForGridCells =
+          totalContainerWidth - dayLabelsWidth - columnSpacing;
+        const maxColumnsThatFit = Math.floor(
+          (widthAvailableForGridCells + columnSpacing) /
+            (cellWidth + columnSpacing)
+        );
+        setVisibleColumns(Math.min(maxColumnsThatFit, 53));
+
+        console.log("--- GitFeed Debug ---");
+        console.log(
+          "Total GitFeed container width (mainContainerRef):",
+          totalContainerWidth
+        );
+        console.log("Day Labels Column Width:", dayLabelsWidth);
+        console.log(
+          "Available width for grid cells (calculated):",
+          widthAvailableForGridCells
+        );
+        console.log("Calculated Max Columns That Fit:", maxColumnsThatFit);
+        console.log(
+          "Final Visible Columns (clamped):",
+          Math.min(maxColumnsThatFit, 53)
+        );
+        console.log("--- End GitFeed Debug ---");
+      }
+    };
+
+    updateVisibleColumns();
+    const resizeObserver = new ResizeObserver(() => {
+      updateVisibleColumns();
+    });
+    if (mainContainerRef.current) {
+      resizeObserver.observe(mainContainerRef.current);
+    }
+    return () => {
+      if (mainContainerRef.current) {
+        resizeObserver.unobserve(mainContainerRef.current);
+      }
+    };
+  }, [loading]);
 
   if (loading) {
     return (
@@ -53,24 +100,15 @@ const GitFeed: React.FC = () => {
     );
   }
 
-  const numColumns = 53;
   const numRows = 7;
-
   const grid: (DailyActivity | null)[][] = Array.from({ length: numRows }, () =>
-    Array.from({ length: numColumns }, () => null)
+    Array.from({ length: 53 }, () => null)
   );
 
-  activityData.forEach((activity) => {
-    const date = new Date(activity.date);
-    const dayOfWeek = date.getDay();
-    const startOfYear = new Date(date.getFullYear(), 0, 1);
-    const diffTime = Math.abs(date.getTime() - startOfYear.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    const dayIndex = activityData.indexOf(activity);
-    const colIndex = Math.floor(dayIndex / numRows);
-    const rowIndex = dayIndex % numRows;
-
-    if (colIndex < numColumns && rowIndex < numRows) {
+  activityData.forEach((activity, index) => {
+    const colIndex = Math.floor(index / numRows);
+    const rowIndex = index % numRows;
+    if (colIndex < 53 && rowIndex < numRows) {
       grid[rowIndex][colIndex] = activity;
     }
   });
@@ -78,10 +116,16 @@ const GitFeed: React.FC = () => {
   const dayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <div className="flex flex-col items-center  justify-center  gap-4 h-full text-neutral-900 dark:text-neutral-100">
-      <div className="flex flex-col items-start space-y-2 w-full">
-        <div className="grid grid-cols-[auto_1fr] gap-1 w-full">
-          <div className="flex flex-col text-sm text-neutral-600 dark:text-neutral-400 pr-2 pt-2">
+    <div className="w-full h-full text-neutral-900 dark:text-neutral-100 p-4 flex flex-col items-center justify-between">
+      <div
+        className="flex flex-col items-start space-y-2 w-full"
+        ref={mainContainerRef}
+      >
+        <div className="grid grid-cols-[auto_1fr] gap-1 w-full justify-center">
+          <div
+            className="flex flex-col text-sm text-neutral-600 dark:text-neutral-400 pr-2 pt-2"
+            ref={dayLabelsRef}
+          >
             {dayLabels.map((label, index) => (
               <div
                 key={label}
@@ -94,9 +138,12 @@ const GitFeed: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex overflow-x-auto scrollbar-hide">
-            {Array.from({ length: numColumns }).map((_, colIndex) => (
-              <div key={`col-${colIndex}`} className="flex flex-col gap-1 mr-1">
+          <div className="flex overflow-x-hidden flex-grow justify-center">
+            {Array.from({ length: visibleColumns }).map((_, colIndex) => (
+              <div
+                key={`col-${colIndex}`}
+                className="flex flex-col gap-1 mr-1 flex-grow flex-shrink-0"
+              >
                 {Array.from({ length: numRows }).map((_, rowIndex) => {
                   const day = grid[rowIndex][colIndex];
                   const tooltipText = day
@@ -124,7 +171,7 @@ const GitFeed: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex items-center space-x-4 text-sm text-neutral-700 dark:text-neutral-300">
+      <div className="flex items-center space-x-4 text-sm text-neutral-700 dark:text-neutral-300 mt-4">
         <span>Less</span>
         <div className="flex space-x-1">
           <div className="w-4 h-4 rounded-sm bg-neutral-200 dark:bg-neutral-700"></div>

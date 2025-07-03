@@ -34,13 +34,17 @@ export default async function Home() {
           </p>
         )}
       </div>
-      <div className="mx-auto px-4 pb-4 flex-grow-0 h-[300px] flex flex-col">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow overflow-hidden">
-          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto">
+
+      <div className="mx-auto px-4 pb-4 flex-grow-0 h-[300px] flex flex-col w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full flex-grow overflow-hidden grid-rows-[1fr]">
+          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col overflow-y-auto h-full min-h-0">
             <GitFeed />
           </div>
-          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto">
-            <p className="text-neutral-600 dark:text-neutral-400 text-center">placeholder</p>
+
+          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto h-full min-h-0">
+            <p className="text-neutral-600 dark:text-neutral-400 text-center">
+              placeholder
+            </p>
           </div>
         </div>
       </div>
