@@ -40,7 +40,7 @@ const Gallery: React.FC<GalleryProps> = ({ galleryItemsData }) => {
 
   return (
     // Outer container: Defines gallery area and applies padding.
-    <div className="flex flex-grow flex-col w-full h-full px-4 pb-4">
+    <div className="flex flex-col w-full h-full px-4 pb-4">
       {/* Inner container: Acts as the relative positioning context for GalleryItems. */}
       <div className="relative flex-grow w-full h-full overflow-hidden rounded-4xl">
         {/* Map over data to render each GalleryItem.

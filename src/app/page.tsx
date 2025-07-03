@@ -20,8 +20,8 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex flex-grow flex-col text-neutral-900 dark:text-neutral-100">
-      <div className="flex flex-grow flex-col min-h-screen items-center justify-center">
+    <div className="flex flex-grow flex-col text-neutral-900 dark:text-neutral-100 min-h-0">
+      <div className="flex flex-col w-full items-center justify-center min-h-[calc(100vh-5.5rem)]">
         {errorFetchingData ? (
           <p className="text-center text-red-500 mt-8">
             Failed to load gallery images. Please try again later.
@@ -34,13 +34,11 @@ export default async function Home() {
           </p>
         )}
       </div>
-
-      <div className="mx-auto px-4 pb-4 flex-grow-0 h-[300px] flex flex-col w-full">
+      <div className="mx-auto px-4 pb-4 h-[300px] flex flex-col w-full flex-shrink-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full flex-grow overflow-hidden grid-rows-[1fr]">
           <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col overflow-y-auto h-full min-h-0">
             <GitFeed />
           </div>
-
           <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto h-full min-h-0">
             <p className="text-neutral-600 dark:text-neutral-400 text-center">
               placeholder

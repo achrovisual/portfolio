@@ -24,7 +24,8 @@ const helveticaNeue = localFont({
 
 export const metadata: Metadata = {
   title: "Eugenio Pastoral",
-  description: "I'm Gino, a DevOps Engineer and UI Designer. Explore my portfolio for projects blending technical innovation with creative design.",
+  description:
+    "I'm Gino, a DevOps Engineer and UI Designer. Explore my portfolio for projects blending technical innovation with creative design.",
 };
 
 export default function RootLayout({
@@ -33,10 +34,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${helveticaNeue.variable}`}>
+    <html lang="en" className={`${helveticaNeue.variable} h-full`}>
       <body className="antialiased flex flex-col min-h-screen min-w-[1024px]">
         <Navbar />
-        {children}
+
+        <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden">
+          {children}
+        </main>
       </body>
     </html>
   );
