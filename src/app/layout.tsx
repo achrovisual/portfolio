@@ -38,7 +38,7 @@ export default function RootLayout({
       <body className="antialiased flex flex-col min-h-screen min-w-[1024px]">
         <Navbar />
 
-        <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden">
+        <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden pt-[5.5rem]">
           {children}
         </main>
       </body>
