@@ -1,6 +1,22 @@
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_USERNAME = process.env.NEXT_PUBLIC_GITHUB_USERNAME;
 
+export interface DailyActivity {
+  date: string;
+  commitCount: number;
+}
+
+interface GitHubEvent {
+  type: string;
+  created_at: string;
+  payload: {
+    commits?: Array<{ sha: string }>;
+  };
+  repo?: {
+    name: string;
+  };
+}
+
 export async function fetchGitHubActivity(): Promise<DailyActivity[]> {
   console.log("--- Inside fetchGitHubActivity ---");
   console.log("Value of GITHUB_USERNAME:", GITHUB_USERNAME);
