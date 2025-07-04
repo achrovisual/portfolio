@@ -11,6 +11,12 @@ interface GitHubEvent {
   created_at: string;
   payload: {
     commits?: Array<{ sha: string }>;
+    action?: string;
+    pull_request?: {
+      merged?: boolean;
+      opened?: boolean;
+      closed?: boolean;
+    };
   };
   repo?: {
     name: string;
