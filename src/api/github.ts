@@ -1,4 +1,4 @@
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = process.env.GH_API_TOKEN;
 const GITHUB_USERNAME = process.env.NEXT_PUBLIC_GITHUB_USERNAME;
 
 export interface DailyActivity {
