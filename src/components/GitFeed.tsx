@@ -211,9 +211,10 @@ const GitFeed: React.FC<GitFeedProps> = ({ activityData }) => {
                       <div
                         key={`cell-${rowIndex}-${actualColIndex}`}
                         className={`relative w-4 h-4 rounded-sm ${colorClass} ${visibilityClass} ${pointerEventsClass} transition-opacity duration-200 group`}
-                        title={tooltipText}
                       >
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-neutral-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-10 dark:bg-neutral-200 dark:text-neutral-900">
+                        <div
+                          className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full -translate-y-2 px-2 py-1 bg-neutral-800 text-white text-xs rounded opacity-0 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-10 dark:bg-neutral-200 dark:text-neutral-900`}
+                        >
                           {tooltipText}
                         </div>
                       </div>
