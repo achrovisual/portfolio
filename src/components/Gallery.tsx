@@ -1,4 +1,3 @@
-// This is a Client Component, necessary for Hooks like useState and useEffect.
 "use client";
 
 import React, { useState, useEffect } from "react";
