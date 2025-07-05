@@ -5,7 +5,7 @@ interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = () => {
   return (
-    <div className="p-4 flex justify-between">
+    <div className="p-4 flex justify-between fixed top-0 left-0 w-full z-50">
       <Button
         title="Eugenio Pastoral"
         subtitle="DevOps Engineer & UI Designer"
@@ -13,10 +13,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         defaultExpanded={true}
       />
       <div className="flex flex-row gap-2">
-        <Button
-          icon="mdi:github"
-          href="https://github.com/achrovisual"
-        />
+        <Button icon="mdi:github" href="https://github.com/achrovisual" />
         <Button
           icon="mdi:linkedin"
           href="https://www.linkedin.com/in/eugeniopastoral/"

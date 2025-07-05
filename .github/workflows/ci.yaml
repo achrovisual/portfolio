@@ -23,6 +23,9 @@ jobs:
         run: npm install
       - name: Build Next.js app
         run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_API_TOKEN }}
+          NEXT_PUBLIC_GITHUB_USERNAME: ${{ secrets.NEXT_PUBLIC_GITHUB_USERNAME }}
       - name: Run tests (if applicable)
         run: npm test
         continue-on-error: true
