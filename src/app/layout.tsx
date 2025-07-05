@@ -37,9 +37,8 @@ export default function RootLayout({
     <html lang="en" className={`${helveticaNeue.variable} h-full`}>
       <body className="antialiased flex flex-col min-h-screen min-w-[1024px]">
         <Navbar />
-
         <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden pt-[5.5rem]">
-          {children}
+          <div className="mx-auto max-w-[1440px] w-full">{children}</div>
         </main>
       </body>
     </html>
