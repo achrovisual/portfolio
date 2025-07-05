@@ -24,10 +24,10 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --button-background: #292524;
+    --button-background: rgba(41, 37, 36, 0.65);
     --button-text-title: #ffffff;
     --button-text-subtitle: #a0a0a0;
-    --gallery-info-background: rgba(41, 37, 36, 0.5);
+    --gallery-info-background: rgba(41, 37, 36, 0.65);
     --gallery-info-text-title: #ffffff;
     --gallery-info-text-subtitle: #a0a0a0;
   }
@@ -37,10 +37,10 @@
 html.dark {
   --background: #0a0a0a;
   --foreground: #ededed;
-  --button-background: #292524;
+  --button-background: rgba(41, 37, 36, 0.65);
   --button-text-title: #ffffff;
   --button-text-subtitle: #a0a0a0;
-  --gallery-info-background: rgba(41, 37, 36, 0.5);
+  --gallery-info-background: rgba(41, 37, 36, 0.65);
   --gallery-info-text-title: #ffffff;
   --gallery-info-text-subtitle: #a0a0a0;
 }
@@ -49,10 +49,10 @@ html.dark {
 html.light {
   --background: #ffffff;
   --foreground: #171717;
-  --button-background: #e7e5e4;
+  --button-background: rgba(245, 245, 244, 0.65);
   --button-text-title: #000000;
   --button-text-subtitle: #6b7280;
-  --gallery-info-background: rgba(245, 245, 244, 0.5);
+  --gallery-info-background: rgba(245, 245, 244, 0.65);
   --gallery-info-text-title: #000000;
   --gallery-info-text-subtitle: #6b7280;
 }

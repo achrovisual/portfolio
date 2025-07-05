@@ -76,6 +76,7 @@ const Button: React.FC<ButtonProps> = ({
     "duration-300", // Sets transition duration to 300ms.
     "ease-out", // Sets ease-out timing function for transitions.
     "cursor-pointer", // Changes cursor to pointer on hover.
+    "backdrop-blur-sm",
     className, // Includes any additional classes passed via props.
   ].join(" "); // Joins the array elements into a single string of classes.
 
