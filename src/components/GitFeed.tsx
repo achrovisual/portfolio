@@ -33,6 +33,9 @@ const GitFeed: React.FC<GitFeedProps> = ({ activityData }) => {
 
   const numRows = 7;
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   useEffect(() => {
     const updateVisibleColumns = () => {
       if (mainContainerRef.current && dayLabelsRef.current) {
@@ -93,7 +96,7 @@ const GitFeed: React.FC<GitFeedProps> = ({ activityData }) => {
     return (
       <div className="flex items-center justify-center h-full text-neutral-700 dark:text-neutral-300">
         <p className="text-lg">
-          No GitHub activity data available for the last 30 days.
+          No GitHub activity data available for the last year.
         </p>{" "}
       </div>
     );
@@ -113,7 +116,7 @@ const GitFeed: React.FC<GitFeedProps> = ({ activityData }) => {
       const colIndex = Math.floor(effectiveIndex / numRows);
       const rowIndex = effectiveIndex % numRows;
 
-      if (colIndex < grid[0].length && rowIndex < numRows) {
+      if (grid[rowIndex] && colIndex < grid[rowIndex].length) {
         grid[rowIndex][colIndex] = activity;
       }
     });
@@ -161,17 +164,53 @@ const GitFeed: React.FC<GitFeedProps> = ({ activityData }) => {
                         ? grid[rowIndex][actualColIndex]
                         : null;
 
+                    let conceptualDate: Date | null = null;
+                    if (day) {
+                      conceptualDate = new Date(day.date);
+                    } else {
+                      const firstDateOfData =
+                        activityData.length > 0
+                          ? new Date(activityData[0].date)
+                          : null;
+                      if (firstDateOfData) {
+                        const firstDayOfWeekOfData =
+                          firstDateOfData.getUTCDay();
+                        const daysFromGridStart =
+                          actualColIndex * numRows + rowIndex;
+                        const daysSinceFirstActualDataDay =
+                          daysFromGridStart - firstDayOfWeekOfData;
+
+                        conceptualDate = new Date(firstDateOfData);
+                        conceptualDate.setUTCDate(
+                          firstDateOfData.getUTCDate() +
+                            daysSinceFirstActualDataDay
+                        );
+                        conceptualDate.setUTCHours(0, 0, 0, 0);
+                      }
+                    }
+
+                    const isFutureDay = conceptualDate
+                      ? conceptualDate.getTime() > today.getTime()
+                      : false;
+
                     const tooltipText = day
                       ? `${day.commitCount} commits on ${day.date}`
+                      : isFutureDay
+                      ? "Future"
                       : "No activity";
                     const colorClass = day
                       ? getColorClass(day.commitCount)
                       : "bg-neutral-200 dark:bg-neutral-700";
 
+                    const visibilityClass = isFutureDay ? "opacity-0" : "";
+                    const pointerEventsClass = isFutureDay
+                      ? "pointer-events-none"
+                      : "";
+
                     return (
                       <div
                         key={`cell-${rowIndex}-${actualColIndex}`}
-                        className={`relative w-4 h-4 rounded-sm ${colorClass} transition-colors duration-200 group`}
+                        className={`relative w-4 h-4 rounded-sm ${colorClass} ${visibilityClass} ${pointerEventsClass} transition-opacity duration-200 group`}
                         title={tooltipText}
                       >
                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-neutral-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none z-10 dark:bg-neutral-200 dark:text-neutral-900">
