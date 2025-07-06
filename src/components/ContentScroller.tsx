@@ -7,6 +7,7 @@ interface ScrollerItem {
   title: string;
   icon?: string;
   imageUrl?: string;
+  iconColor?: string;
 }
 
 interface ContentScrollerProps {
@@ -74,16 +75,8 @@ const ContentScroller: React.FC<ContentScrollerProps> = ({
               imageUrl={item.imageUrl}
               iconSize={24}
               className="flex-shrink-0 !p-1 !rounded-full !bg-neutral-200 dark:!bg-neutral-700 hover:!bg-neutral-300 dark:hover:!bg-neutral-600 transition-colors duration-200"
-              iconColor="var(--button-text-title)"
+              iconColor={item.iconColor || "currentColor"}
               defaultExpanded={false}
-              style={
-                {
-                  "--button-background":
-                    "var(--tw-bg-opacity, 1) var(--tw-bg-neutral-200)",
-                  "--button-text-title": "currentColor",
-                  "--button-text-subtitle": "currentColor",
-                } as React.CSSProperties
-              }
             />
           ))}
         </div>
