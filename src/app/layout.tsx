@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "../components/Navbar";
+import ClientIntroHandler from "./ClientIntroHandler";
 
 const helveticaNeue = localFont({
-  // https://typography.fandom.com/wiki/Helvetica_Neue
-  // https://www.cdnfonts.com/helvetica-neue-5.font
   src: [
     {
       path: "../../public/fonts/HelveticaNeueRoman.otf",
@@ -23,9 +21,27 @@ const helveticaNeue = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Eugenio Pastoral",
+  title: {
+    default: "Eugenio Pastoral",
+    template: "%s | Eugenio Pastoral",
+  },
   description:
     "I'm Gino, a DevOps Engineer and UI Designer. Explore my portfolio for projects blending technical innovation with creative design.",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  keywords: ["DevOps Engineer", "UI Designer", "Portfolio", "Gino", "Eugenio Pastoral", "achrovisual"],
+  authors: [{ name: "Eugenio Pastoral" }],
 };
 
 export default function RootLayout({
@@ -35,11 +51,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${helveticaNeue.variable} h-full`}>
-      <body className="antialiased flex flex-col min-h-screen min-w-[1024px]">
-        <Navbar />
-        <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden pt-[5.5rem]">
-          <div className="mx-auto max-w-[1440px] w-full">{children}</div>
-        </main>
+      <body>
+        <ClientIntroHandler>{children}</ClientIntroHandler>
       </body>
     </html>
   );
