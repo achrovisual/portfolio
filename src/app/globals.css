@@ -70,3 +70,35 @@ body {
   color: var(--foreground);
   transition: background 0.3s ease, color 0.3s ease; /* Smooth transitions */
 }
+
+/* styles/globals.css */
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(
+      -25%
+    ); /* Moves one full set of duplicated content to the left */
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left var(--animation-duration, 30s) linear infinite;
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(
+      -25%
+    ); /* Start from the end of one set of duplicated content */
+  }
+  100% {
+    transform: translateX(0%); /* Move back to the start of the next set */
+  }
+}
+
+.animate-scroll-right {
+  animation: scroll-right var(--animation-duration, 30s) linear infinite;
+}
