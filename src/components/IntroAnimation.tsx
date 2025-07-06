@@ -32,6 +32,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
     setIntroBgColor(getCssVariableValue("--background"));
     setIntroTextColor(getCssVariableValue("--foreground"));
 
+    if (typeof window === "undefined") return;
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleMediaQueryChange = () => {
       setIntroBgColor(getCssVariableValue("--background"));
