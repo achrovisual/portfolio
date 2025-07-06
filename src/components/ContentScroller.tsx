@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Button from "./Button";
 
@@ -47,6 +49,14 @@ const ContentScroller: React.FC<ContentScrollerProps> = ({
         <div
           className={`flex flex-nowrap justify-start gap-4 ${itemAnimationClass}`}
           style={{ animationDuration: itemAnimationDuration }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.animationPlayState =
+              "paused";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.animationPlayState =
+              "running";
+          }}
         >
           {duplicatedItems.map((item, index) => (
             <Button
@@ -84,6 +94,14 @@ const ContentScroller: React.FC<ContentScrollerProps> = ({
         <div
           className={`flex flex-nowrap justify-start gap-2 ${tagAnimationClass}`}
           style={{ animationDuration: tagAnimationDuration }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.animationPlayState =
+              "paused";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.animationPlayState =
+              "running";
+          }}
         >
           {duplicatedTags.map((tag, index) => (
             <span

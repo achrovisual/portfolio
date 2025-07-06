@@ -71,16 +71,14 @@ body {
   transition: background 0.3s ease, color 0.3s ease; /* Smooth transitions */
 }
 
-/* styles/globals.css */
-
 @keyframes scroll-left {
   0% {
-    transform: translateX(0%);
+    /* Start shifted right by half of one segment's width relative to the track */
+    transform: translateX(12.5%);
   }
   100% {
-    transform: translateX(
-      -25%
-    ); /* Moves one full set of duplicated content to the left */
+    /* Move left by one full segment's width from the starting point */
+    transform: translateX(-12.5%);
   }
 }
 
@@ -90,12 +88,12 @@ body {
 
 @keyframes scroll-right {
   0% {
-    transform: translateX(
-      -25%
-    ); /* Start from the end of one set of duplicated content */
+    /* Start shifted left by half of one segment's width relative to the track */
+    transform: translateX(-12.5%);
   }
   100% {
-    transform: translateX(0%); /* Move back to the start of the next set */
+    /* Move right by one full segment's width from the starting point */
+    transform: translateX(12.5%);
   }
 }
 
