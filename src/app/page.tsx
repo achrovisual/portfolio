@@ -96,8 +96,8 @@ export default async function Home() {
           <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-hidden h-full min-h-0">
             <ContentScroller
               items={skillsData}
-              mainTitle="Skills & tools"
-              mainSubtitle="Don't worry, I can work with every eco-system"
+              mainTitle="Skills & Stack Mastery"
+              mainSubtitle="No tech stack is a stranger – I jump in and deliver."
               tags={skillTags}
               itemAnimationDuration="30s"
               tagAnimationDuration="30s"
