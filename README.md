@@ -1,4 +1,4 @@
-# My Portfolio Project
+# Portfolio
 
 ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/achrovisual/portfolio?utm_source=oss&utm_medium=github&utm_campaign=achrovisual%2Fportfolio&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
