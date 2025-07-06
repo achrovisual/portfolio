@@ -1,4 +1,4 @@
-"use client"; // This is a Client Component
+"use client";
 
 import React, { useState, useEffect } from "react";
 import IntroAnimation from "../components/IntroAnimation";
@@ -13,6 +13,9 @@ export default function ClientIntroHandler({
   const [contentPrep, setContentPrep] = useState(false);
 
   useEffect(() => {
+    if (typeof document === "undefined") return;
+
+    const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const prepareTimer = setTimeout(() => {
@@ -21,8 +24,7 @@ export default function ClientIntroHandler({
 
     return () => {
       clearTimeout(prepareTimer);
-
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalOverflow;
     };
   }, []);
 
