@@ -35,7 +35,11 @@ export default function ClientIntroHandler({
   return (
     <>
       {showIntro && (
-        <IntroAnimation onAnimationComplete={handleAnimationComplete} />
+        <IntroAnimation
+          onAnimationComplete={handleAnimationComplete}
+          text="designed and developed by Gino"
+          displayDuration={2500}
+        />
       )}
 
       <div
@@ -47,7 +51,7 @@ export default function ClientIntroHandler({
               ? "translate-y-full opacity-0 pointer-events-none"
               : "translate-y-0 opacity-100"
           }
-          ${!showIntro ? "delay-300" : ""}
+          ${!showIntro ? "delay-100" : ""}
         `}
       >
         <Navbar />
