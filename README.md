@@ -43,8 +43,8 @@ Follow these instructions to set up the project locally.
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repo-url>
-    cd <your-repo-name>
+    git clone https://github.com/achrovisual/portfolio.git
+    cd portfolio
     ```
 2.  **Install dependencies:**
     ```bash
@@ -54,7 +54,7 @@ Follow these instructions to set up the project locally.
     ```
 3.  **Set up environment variables:**
     Create a `.env.local` file in the root directory and add any necessary environment variables (e.g., API keys for GitHub or gallery data if applicable).
-    ```
+    ```ini
     # Example .env.local
     # GITHUB_TOKEN=your_github_personal_access_token
     ```
@@ -67,7 +67,7 @@ npm run dev
 yarn dev
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+Open <http://localhost:3000> in your browser to see the result.
 
 You can start editing the page by modifying src/app/page.tsx. The page auto-updates as you edit the file.
 
