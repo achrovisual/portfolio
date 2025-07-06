@@ -92,7 +92,7 @@ export default async function Home() {
               <GitFeed activityData={gitActivityData} />
             )}
           </div>
-          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto h-full min-h-0">
+          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-hidden h-full min-h-0">
             <ContentScroller
               items={skillsData}
               mainTitle="Skills & tools"
