@@ -27,6 +27,21 @@ export const metadata: Metadata = {
   },
   description:
     "I'm Gino, a DevOps Engineer and UI Designer. Explore my portfolio for projects blending technical innovation with creative design.",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  keywords: ["DevOps Engineer", "UI Designer", "Portfolio", "Gino", "Eugenio Pastoral", "achrovisual"],
+  authors: [{ name: "Eugenio Pastoral" }],
 };
 
 export default function RootLayout({
