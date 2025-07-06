@@ -103,6 +103,7 @@ export default async function Home() {
               tagAnimationDuration="30s"
               itemAnimationDirection="left"
               tagAnimationDirection="right"
+              pauseOnHover={false}
             />
           </div>
         </div>

@@ -18,6 +18,7 @@ interface ContentScrollerProps {
   tagAnimationDuration?: string;
   itemAnimationDirection?: "left" | "right";
   tagAnimationDirection?: "left" | "right";
+  pauseOnHover?: boolean;
 }
 
 const ContentScroller: React.FC<ContentScrollerProps> = ({
@@ -29,6 +30,7 @@ const ContentScroller: React.FC<ContentScrollerProps> = ({
   tagAnimationDuration = "30s",
   itemAnimationDirection = "left",
   tagAnimationDirection = "right",
+  pauseOnHover = true,
 }) => {
   const duplicatedItems = [...items, ...items, ...items, ...items];
 
@@ -43,20 +45,26 @@ const ContentScroller: React.FC<ContentScrollerProps> = ({
       ? "animate-scroll-left"
       : "animate-scroll-right";
 
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (pauseOnHover) {
+      (e.currentTarget as HTMLElement).style.animationPlayState = "paused";
+    }
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (pauseOnHover) {
+      (e.currentTarget as HTMLElement).style.animationPlayState = "running";
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-between p-4">
       <div className="relative w-full overflow-hidden mb-6 py-2">
         <div
           className={`flex flex-nowrap justify-start gap-4 ${itemAnimationClass}`}
           style={{ animationDuration: itemAnimationDuration }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.animationPlayState =
-              "paused";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.animationPlayState =
-              "running";
-          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           {duplicatedItems.map((item, index) => (
             <Button
@@ -94,14 +102,8 @@ const ContentScroller: React.FC<ContentScrollerProps> = ({
         <div
           className={`flex flex-nowrap justify-start gap-2 ${tagAnimationClass}`}
           style={{ animationDuration: tagAnimationDuration }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.animationPlayState =
-              "paused";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.animationPlayState =
-              "running";
-          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           {duplicatedTags.map((tag, index) => (
             <span
