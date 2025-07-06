@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Gallery from "../components/Gallery";
 import { fetchGalleryData, GalleryItem } from "../api/gallery";
 import GitFeed from "../components/GitFeed";
+import ContentScroller from "../components/ContentScroller";
 
 import { fetchGitHubActivity, DailyActivity } from "../api/github";
 
@@ -33,6 +34,37 @@ export default async function Home() {
     errorFetchingGitActivity = true;
   }
 
+  const skillsData = [
+    { title: "Amazon Web Services", icon: "simple-icons:amazon" },
+    { title: "Proxmox", icon: "simple-icons:proxmox" },
+    { title: "K3s", icon: "simple-icons:k3s" },
+    { title: "Helm", icon: "simple-icons:helm" },
+    { title: "Argo CD", icon: "simple-icons:argo" },
+    { title: "Docker", icon: "simple-icons:docker" },
+    { title: "Terraform", icon: "simple-icons:terraform" },
+    { title: "Tailscale", icon: "simple-icons:tailscale" },
+    { title: "Next.js", icon: "simple-icons:nextdotjs" },
+    { title: "Tailwind CSS", icon: "simple-icons:tailwindcss" },
+    { title: "Figma", icon: "simple-icons:figma" },
+    { title: "Sketch", icon: "simple-icons:sketch" },
+    { title: "VS Code", icon: "simple-icons:visualstudiocode" },
+    { title: "Git", icon: "simple-icons:git" },
+    { title: "Jira", icon: "simple-icons:jira" },
+    { title: "Confluence", icon: "simple-icons:confluence" },
+    { title: "Notion", icon: "simple-icons:notion" },
+  ];
+
+  const skillTags = [
+    "Software Development",
+    "System Architecture",
+    "DevOps",
+    "Cloud Computing",
+    "Network Engineering",
+    "Infrastructure Management",
+    "UI/UX",
+    "Cybersecurity",
+  ];
+
   return (
     <div className="flex flex-grow flex-col text-neutral-900 dark:text-neutral-100 min-h-0">
       <div className="flex flex-col w-full items-center justify-center min-h-[calc(100vh-5.5rem)]">
@@ -61,10 +93,18 @@ export default async function Home() {
               <GitFeed activityData={gitActivityData} />
             )}
           </div>
-          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-y-auto h-full min-h-0">
-            <p className="text-neutral-600 dark:text-neutral-400 text-center">
-              placeholder
-            </p>
+          <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col items-center justify-center overflow-hidden h-full min-h-0">
+            <ContentScroller
+              items={skillsData}
+              mainTitle="Skills & Stack Mastery"
+              mainSubtitle="No tech stack is a stranger – I jump in and deliver."
+              tags={skillTags}
+              itemAnimationDuration="90s"
+              tagAnimationDuration="90s"
+              itemAnimationDirection="left"
+              tagAnimationDirection="right"
+              pauseOnHover={false}
+            />
           </div>
         </div>
       </div>

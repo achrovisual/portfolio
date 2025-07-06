@@ -70,3 +70,33 @@ body {
   color: var(--foreground);
   transition: background 0.3s ease, color 0.3s ease; /* Smooth transitions */
 }
+
+@keyframes scroll-left {
+  0% {
+    /* Start shifted right by half of one segment's width relative to the track */
+    transform: translateX(12.5%);
+  }
+  100% {
+    /* Move left by one full segment's width from the starting point */
+    transform: translateX(-12.5%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left var(--animation-duration, 30s) linear infinite;
+}
+
+@keyframes scroll-right {
+  0% {
+    /* Start shifted left by half of one segment's width relative to the track */
+    transform: translateX(-12.5%);
+  }
+  100% {
+    /* Move right by one full segment's width from the starting point */
+    transform: translateX(12.5%);
+  }
+}
+
+.animate-scroll-right {
+  animation: scroll-right var(--animation-duration, 30s) linear infinite;
+}
