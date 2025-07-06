@@ -63,10 +63,9 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
       setFadeActive(false);
       setSlideOut(true);
 
-      const completionTimer = setTimeout(() => {
+      setTimeout(() => {
         onAnimationComplete();
       }, 500);
-      return () => clearTimeout(completionTimer);
     }, displayDuration);
 
     return () => {
