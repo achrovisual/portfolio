@@ -55,13 +55,14 @@ export default async function Home() {
   ];
 
   const skillTags = [
-    "ci/cd",
-    "web development",
-    "ui/ux",
-    "iac",
-    "infrastructure",
-    "networking",
-    "security",
+    "Software Development",
+    "System Architecture",
+    "DevOps",
+    "Cloud Computing",
+    "Network Engineering",
+    "Infrastructure Management",
+    "UI/UX",
+    "Cybersecurity",
   ];
 
   return (
