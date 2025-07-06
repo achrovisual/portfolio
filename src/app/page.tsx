@@ -99,8 +99,8 @@ export default async function Home() {
               mainTitle="Skills & Stack Mastery"
               mainSubtitle="No tech stack is a stranger – I jump in and deliver."
               tags={skillTags}
-              itemAnimationDuration="30s"
-              tagAnimationDuration="30s"
+              itemAnimationDuration="90s"
+              tagAnimationDuration="90s"
               itemAnimationDirection="left"
               tagAnimationDirection="right"
               pauseOnHover={false}
