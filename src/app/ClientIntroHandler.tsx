@@ -42,9 +42,11 @@ export default function ClientIntroHandler({
 
     setIsMobile(checkIsMobile());
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       setIsMobile(checkIsMobile());
-    });
+    };
+
+    window.addEventListener("resize", handleResize);
 
     const prepareTimer = setTimeout(() => {
       setContentPrep(true);
@@ -53,9 +55,7 @@ export default function ClientIntroHandler({
     return () => {
       clearTimeout(prepareTimer);
       document.body.style.overflow = originalOverflow;
-      window.removeEventListener("resize", () => {
-        setIsMobile(checkIsMobile());
-      });
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
