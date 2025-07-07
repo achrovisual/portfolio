@@ -15,9 +15,12 @@ export default function MobileComingSoon() {
         hour12: false,
         timeZone: "Asia/Manila",
       };
-      const phtHour = parseInt(
-        now.toLocaleString("en-US", { ...phtOptions, hour: "numeric" })
-      );
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        hour: "numeric",
+        hour12: false,
+        timeZone: "Asia/Manila",
+      });
+      const phtHour = parseInt(formatter.format(now));
 
       const startHour = 8;
       const endHour = 17;
