@@ -92,7 +92,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
       style={{ backgroundColor: introBgColor }}
     >
       <p
-        className={`text-2xl font-medium
+        className={`text-md font-medium
           ${
             fadeActive
               ? "transition-opacity duration-500 ease-in-out opacity-100"
