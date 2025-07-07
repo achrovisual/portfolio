@@ -4,12 +4,10 @@ import React, { useState, useEffect } from "react";
 import IntroAnimation from "../components/IntroAnimation";
 import Navbar from "../components/Navbar";
 import MobileComingSoon from "../components/MobileComingSoon";
-
-declare global {
-  interface Window {
-    opera?: string;
-  }
-}
+import {
+  isMobile as deviceIsMobile,
+  isTablet as deviceIsTablet,
+} from "react-device-detect";
 
 export default function ClientIntroHandler({
   children,
@@ -18,32 +16,22 @@ export default function ClientIntroHandler({
 }>) {
   const [showIntro, setShowIntro] = useState(true);
   const [contentPrep, setContentPrep] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [shouldShowMobileUI, setShouldShowMobileUI] = useState(false);
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
+    if (typeof window === "undefined") return;
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    const checkIsMobile = () => {
-      const mobileRegex =
-        /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|rim)|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i;
-      const tabletRegex = /android|ipad|playbook|silk/i;
-
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      return (
-        mobileRegex.test(userAgent) ||
-        tabletRegex.test(userAgent) ||
-        window.innerWidth < 768
-      );
+    const checkIsMobileView = () => {
+      return deviceIsMobile || deviceIsTablet || window.innerWidth < 768;
     };
 
-    setIsMobile(checkIsMobile());
+    setShouldShowMobileUI(checkIsMobileView());
 
     const handleResize = () => {
-      setIsMobile(checkIsMobile());
+      setShouldShowMobileUI(checkIsMobileView());
     };
 
     window.addEventListener("resize", handleResize);
@@ -61,7 +49,8 @@ export default function ClientIntroHandler({
 
   const handleAnimationComplete = () => {
     setShowIntro(false);
-    if (!isMobile) {
+
+    if (!shouldShowMobileUI) {
       document.body.style.overflow = "";
     }
   };
@@ -76,7 +65,7 @@ export default function ClientIntroHandler({
         />
       )}
 
-      {isMobile ? (
+      {shouldShowMobileUI ? (
         <div
           className={`
             transition-opacity duration-500 ease-in-out
