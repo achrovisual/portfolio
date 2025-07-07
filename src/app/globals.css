@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Base (light mode) variables */
+/* Base (light mode) variables and default status colors */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -10,6 +10,9 @@
   --gallery-info-background: rgba(245, 245, 244, 0.5); /* stone-100/50 */
   --gallery-info-text-title: #000000; /* black */
   --gallery-info-text-subtitle: #6b7280; /* gray-600 */
+
+  --color-green-status: #34c759; /* Green color for 'online' status */
+  --color-orange-status: #ff9500; /* Orange color for 'away' status */
 }
 
 /* @theme inline allows direct CSS variable use in Tailwind */
@@ -22,6 +25,7 @@
 /* Dark mode based on system preference */
 @media (prefers-color-scheme: dark) {
   :root {
+    /* These values will apply if no 'html.dark' or 'html.light' class is present */
     --background: #0a0a0a;
     --foreground: #ededed;
     --button-background: rgba(41, 37, 36, 0.65);
@@ -30,6 +34,9 @@
     --gallery-info-background: rgba(41, 37, 36, 0.65);
     --gallery-info-text-title: #ffffff;
     --gallery-info-text-subtitle: #a0a0a0;
+
+    --color-green-status: #34c759; /* Consistent green for dark mode */
+    --color-orange-status: #ff9500; /* Consistent orange for dark mode */
   }
 }
 
@@ -43,9 +50,12 @@ html.dark {
   --gallery-info-background: rgba(41, 37, 36, 0.65);
   --gallery-info-text-title: #ffffff;
   --gallery-info-text-subtitle: #a0a0a0;
+
+  --color-green-status: #34c759;
+  --color-orange-status: #ff9500;
 }
 
-/* Optional: Manual light mode toggle */
+/* Manual light mode toggle (overrides system preference and default :root if applied later) */
 html.light {
   --background: #ffffff;
   --foreground: #171717;
@@ -55,6 +65,9 @@ html.light {
   --gallery-info-background: rgba(245, 245, 244, 0.65);
   --gallery-info-text-title: #000000;
   --gallery-info-text-subtitle: #6b7280;
+
+  --color-green-status: #34c759;
+  --color-orange-status: #ff9500;
 }
 
 html,

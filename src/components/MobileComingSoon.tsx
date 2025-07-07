@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
 
 export default function MobileComingSoon() {
   const profileImageSrc = "/avatar.png";
+
+  const [statusColor, setStatusColor] = useState("var(--color-orange-status)");
+
+  useEffect(() => {
+    const updateStatus = () => {
+      const now = new Date();
+      const phtOptions: Intl.DateTimeFormatOptions = {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: false,
+        timeZone: "Asia/Manila",
+      };
+      const phtHour = parseInt(
+        now.toLocaleString("en-US", { ...phtOptions, hour: "numeric" })
+      );
+
+      const startHour = 8;
+      const endHour = 17;
+
+      if (phtHour >= startHour && phtHour < endHour) {
+        setStatusColor("var(--color-green-status)");
+      } else {
+        setStatusColor("var(--color-orange-status)");
+      }
+    };
+
+    updateStatus();
+
+    const intervalId = setInterval(updateStatus, 60 * 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const baseClasses = [
     "flex",
@@ -29,14 +61,21 @@ export default function MobileComingSoon() {
           className={baseClasses}
           style={{ backgroundColor: "var(--button-background)" }}
         >
-          <div
-            className="flex-shrink-0 w-28 h-28 rounded-full bg-cover bg-center flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-110"
-            style={
-              profileImageSrc
-                ? { backgroundImage: `url('${profileImageSrc}')` }
-                : {}
-            }
-          ></div>
+          <div className="relative">
+            <div
+              className="flex-shrink-0 w-28 h-28 rounded-full bg-cover bg-center flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-110"
+              style={
+                profileImageSrc
+                  ? { backgroundImage: `url('${profileImageSrc}')` }
+                  : {}
+              }
+            ></div>
+
+            <div
+              className="absolute bottom-1 right-1 w-6 h-6 rounded-full border-2 border-background"
+              style={{ backgroundColor: statusColor }}
+            ></div>
+          </div>
         </div>
 
         <div>
