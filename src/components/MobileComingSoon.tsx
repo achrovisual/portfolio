@@ -79,11 +79,11 @@ export default function MobileComingSoon() {
         </div>
 
         <div>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-wide">
+          <h1 className="text-2xl md:text-2xl font-extrabold mb-4 tracking-wide">
             Hey there!
           </h1>
 
-          <p className="text-md md:text-xl text-center mb-8 max-w-xs">
+          <p className="text-md md:text-md text-center mb-8 max-w-xs">
             I'm pouring my heart into crafting the perfect mobile experience for
             you. For now, please pop over to the desktop version – it's all
             ready and waiting!
