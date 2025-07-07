@@ -91,10 +91,10 @@ export default function MobileComingSoon() {
         </div>
 
         <div className="flex gap-4">
-          <Button icon="mdi:github" href="https://github.com/yourusername" />
+          <Button icon="mdi:github" href="https://github.com/achrovisual" />
           <Button
             icon="mdi:linkedin"
-            href="https://www.linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/eugeniopastoral"
           />
         </div>
       </div>
