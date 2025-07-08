@@ -36,10 +36,10 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,format=long # Always tag with the full commit SHA
-            type=raw,value=beta,enable=${{ github.ref_name == 'develop' }} # Tag with 'beta' on develop branch
-            type=raw,value=stable,enable=${{ github.ref_name == 'main' }} # Tag with 'stable' on main branch
-            type=raw,value=latest,enable={{is_default_branch}} # Tag with 'latest' only on the default branch
+            type=sha,format=long
+            type=raw,value=beta,enable=${{ github.ref_name == 'develop' }}
+            type=raw,value=stable,enable=${{ github.ref_name == 'main' }}
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
