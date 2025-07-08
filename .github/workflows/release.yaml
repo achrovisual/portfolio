@@ -12,6 +12,9 @@ env:
 
 jobs:
   publish-docker-image:
+    concurrency:
+      group: release-${{ github.ref }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     permissions:
       contents: read
