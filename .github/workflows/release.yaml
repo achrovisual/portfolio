@@ -16,7 +16,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,8 +33,10 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,format=long # Tag with the full commit SHA
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,format=long # Always tag with the full commit SHA
+            type=raw,value=beta,enable=${{ github.ref_name == 'develop' }} # Tag with 'beta' on develop branch
+            type=raw,value=stable,enable=${{ github.ref_name == 'main' }} # Tag with 'stable' on main branch
+            type=raw,value=latest,enable={{is_default_branch}} # Tag with 'latest' only on the default branch
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
