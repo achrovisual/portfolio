@@ -36,7 +36,7 @@ COPY --from=builder --chown=appuser:appgroup /app/.next ./.next
 COPY --from=builder --chown=appuser:appgroup /app/node_modules ./node_modules
 COPY --from=builder --chown=appuser:appgroup /app/public ./public
 COPY --from=builder --chown=appuser:appgroup /app/package.json ./package.json
-COPY --from=builder --chown=appuser:appgroup /app/next.config.js ./next.config.js
+COPY --from=builder --chown=appuser:appgroup /app/next.config.ts ./next.config.ts
 
 # Expose application port
 EXPOSE 3000
