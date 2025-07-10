@@ -1,20 +1,45 @@
-# Use the latest LTS version of Node.js
-FROM node:18-alpine
- 
-# Set the working directory inside the container
+# Stage 1: Builder
+FROM node:18-alpine AS builder
+
 WORKDIR /app
- 
-# Copy package.json and package-lock.json
+
+# Copy package.json and lock files
 COPY package*.json ./
- 
+
 # Install dependencies
-RUN npm install
- 
-# Copy the rest of your application files
+RUN npm ci
+
+# Copy application files
 COPY . .
- 
-# Expose the port your app runs on
+
+# Build Next.js application
+RUN npm run build
+
+
+# Stage 2: Runner
+FROM node:18-alpine AS runner
+
+WORKDIR /app
+
+# Set production environment
+ENV NODE_ENV production
+
+# Set application port
+ENV PORT 3000
+
+# Create non-root user
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+USER appuser
+
+# Copy build artifacts and dependencies
+COPY --from=builder --chown=appuser:appgroup /app/.next ./.next
+COPY --from=builder --chown=appuser:appgroup /app/node_modules ./node_modules
+COPY --from=builder --chown=appuser:appgroup /app/public ./public
+COPY --from=builder --chown=appuser:appgroup /app/package.json ./package.json
+COPY --from=builder --chown=appuser:appgroup /app/next.config.js ./next.config.js
+
+# Expose application port
 EXPOSE 3000
- 
-# Define the command to run your app
+
+# Start Next.js production server
 CMD ["npm", "start"]
