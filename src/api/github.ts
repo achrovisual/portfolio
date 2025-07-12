@@ -1,5 +1,5 @@
 const GH_API_TOKEN = process.env.GH_API_TOKEN;
-const GITHUB_USERNAME = process.env.NEXT_PUBLIC_GITHUB_USERNAME;
+const GH_USERNAME = process.env.GH_USERNAME;
 
 export interface DailyActivity {
   date: string;
@@ -8,15 +8,15 @@ export interface DailyActivity {
 
 export async function fetchGitHubActivity(): Promise<DailyActivity[]> {
   console.log("--- Inside fetchGitHubActivity (GraphQL) ---");
-  console.log("Value of GITHUB_USERNAME:", GITHUB_USERNAME);
+  console.log("Value of GH_USERNAME:", GH_USERNAME);
   console.log(
     "Value of GH_API_TOKEN (first 5 chars):",
     GH_API_TOKEN ? GH_API_TOKEN.substring(0, 5) : "Not set"
   );
 
-  if (!GITHUB_USERNAME) {
+  if (!GH_USERNAME) {
     console.error(
-      "ERROR: NEXT_PUBLIC_GITHUB_USERNAME environment variable is missing or empty. Cannot fetch GitHub data."
+      "ERROR: GH_USERNAME environment variable is missing or empty. Cannot fetch GitHub data."
     );
     return [];
   }
@@ -67,7 +67,7 @@ export async function fetchGitHubActivity(): Promise<DailyActivity[]> {
       body: JSON.stringify({
         query: query,
         variables: {
-          username: GITHUB_USERNAME,
+          username: GH_USERNAME,
           from: fromDate,
           to: toDate,
         },
@@ -80,7 +80,7 @@ export async function fetchGitHubActivity(): Promise<DailyActivity[]> {
     if (!response.ok) {
       const errorBody = await response.text();
       console.error(
-        `GitHub GraphQL API error for user ${GITHUB_USERNAME}: ${response.status} - ${errorBody}`
+        `GitHub GraphQL API error for user ${GH_USERNAME}: ${response.status} - ${errorBody}`
       );
       throw new Error(
         `Failed to fetch GitHub GraphQL contributions: ${
