@@ -2,7 +2,6 @@
 FROM node:18-alpine AS builder
 
 ARG GH_USERNAME
-ARG GH_API_TOKEN
 
 WORKDIR /app
 
@@ -16,7 +15,10 @@ RUN npm ci
 COPY . .
 
 # Build Next.js application
-RUN npm run build
+RUN --mount=type=secret,id=GH_API_TOKEN \
+    export GH_USERNAME="${GH_USERNAME}" && \
+    export GH_API_TOKEN=$(cat /run/secrets/GH_API_TOKEN) && \
+    npm run build
 
 
 # Stage 2: Runner
