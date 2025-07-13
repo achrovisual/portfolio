@@ -1,6 +1,8 @@
 # Stage 1: Builder
 FROM node:18-alpine AS builder
 
+ARG GH_USERNAME
+
 WORKDIR /app
 
 # Copy package.json and lock files
@@ -13,7 +15,10 @@ RUN npm ci
 COPY . .
 
 # Build Next.js application
-RUN npm run build
+RUN --mount=type=secret,id=GH_API_TOKEN \
+    GH_USERNAME="${GH_USERNAME}" \
+    GH_API_TOKEN="$(cat /run/secrets/GH_API_TOKEN)" \
+    npm run build
 
 
 # Stage 2: Runner
