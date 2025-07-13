@@ -16,8 +16,8 @@ COPY . .
 
 # Build Next.js application
 RUN --mount=type=secret,id=GH_API_TOKEN \
-    export GH_USERNAME="${GH_USERNAME}" && \
-    export GH_API_TOKEN=$(cat /run/secrets/GH_API_TOKEN) && \
+    GH_USERNAME="${GH_USERNAME}" \
+    GH_API_TOKEN="$(cat /run/secrets/GH_API_TOKEN)" \
     npm run build
 
 
