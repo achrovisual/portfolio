@@ -15,9 +15,6 @@ RUN npm ci
 # Copy application files
 COPY . .
 
-ENV GH_USERNAME=${GH_USERNAME}
-ENV GH_API_TOKEN=${GH_API_TOKEN}
-
 # Build Next.js application
 RUN npm run build
 
