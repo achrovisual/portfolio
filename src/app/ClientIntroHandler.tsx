@@ -80,8 +80,10 @@ export default function ClientIntroHandler({
           <MobileComingSoon />
         </div>
       ) : (
-        <div
-          className={`
+        <>
+          <Navbar />
+          <div
+            className={`
             antialiased flex flex-col min-h-screen min-w-[1024px]
             transition-transform duration-500 ease-in-out
             ${
@@ -91,12 +93,12 @@ export default function ClientIntroHandler({
             }
             ${!showIntro ? "delay-100" : ""}
           `}
-        >
-          <Navbar />
-          <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden pt-[5.5rem]">
-            <div className="mx-auto max-w-[1440px] w-full">{children}</div>
-          </main>
-        </div>
+          >
+            <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden pt-[5.5rem]">
+              <div className="mx-auto max-w-[1440px] w-full">{children}</div>
+            </main>
+          </div>
+        </>
       )}
     </>
   );
