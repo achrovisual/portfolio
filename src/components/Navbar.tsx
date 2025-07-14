@@ -1,11 +1,12 @@
 import React from "react";
 import Button from "./Button";
+interface NavbarProps {
+  className?: string;
+}
 
-interface NavbarProps {}
-
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC<NavbarProps> = ({ className }) => {
   return (
-    <div className="p-4 flex justify-between fixed top-0 left-0 w-full z-50">
+    <div className={`p-4 flex justify-between ${className}`}>
       <Button
         title="Eugenio Pastoral"
         subtitle="DevOps Engineer & UI Designer"
