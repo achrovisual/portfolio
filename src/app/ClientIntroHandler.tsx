@@ -17,6 +17,7 @@ export default function ClientIntroHandler({
   const [showIntro, setShowIntro] = useState(true);
   const [contentPrep, setContentPrep] = useState(false);
   const [shouldShowMobileUI, setShouldShowMobileUI] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -49,6 +50,7 @@ export default function ClientIntroHandler({
 
   const handleAnimationComplete = () => {
     setShowIntro(false);
+    setShowNavbar(true);
 
     if (!shouldShowMobileUI) {
       document.body.style.overflow = "";
@@ -80,23 +82,32 @@ export default function ClientIntroHandler({
           <MobileComingSoon />
         </div>
       ) : (
-        <div
-          className={`
-            antialiased flex flex-col min-h-screen min-w-[1024px]
-            transition-transform duration-500 ease-in-out
-            ${
-              showIntro && contentPrep
-                ? "translate-y-full opacity-0 pointer-events-none"
-                : "translate-y-0 opacity-100"
-            }
-            ${!showIntro ? "delay-100" : ""}
-          `}
-        >
-          <Navbar />
-          <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden pt-[5.5rem]">
-            <div className="mx-auto max-w-[1440px] w-full">{children}</div>
-          </main>
-        </div>
+        <>
+          <Navbar
+            className={`
+              fixed top-0 left-0 w-full z-50
+              transition-transform duration-700 ease-in-out
+              ${showNavbar ? "translate-y-0" : "-translate-y-full"}
+            `}
+          />
+
+          <div
+            className={`
+              antialiased flex flex-col min-h-screen min-w-[1024px]
+              transition-opacity duration-500 ease-in-out
+              ${
+                showIntro && contentPrep
+                  ? "opacity-0 pointer-events-none"
+                  : "opacity-100"
+              }
+              ${!showIntro ? "delay-100" : ""}
+            `}
+          >
+            <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden pt-[5.5rem]">
+              <div className="mx-auto max-w-[1440px] w-full">{children}</div>
+            </main>
+          </div>
+        </>
       )}
     </>
   );
