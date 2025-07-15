@@ -83,6 +83,13 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Debug - Show received tags from previous job
+        run: |
+          echo "Received tags from publish-docker-image: '${{ needs.publish-docker-image.outputs.tags }}'"
+          if [ -z "${{ needs.publish-docker-image.outputs.tags }}" ]; then
+            echo "Error: Tags received from previous job are empty! This is the root cause."
+          fi
+
       - name: Checkout Helm Charts repository
         uses: actions/checkout@v4
         with:
@@ -99,8 +106,13 @@ jobs:
       - name: Extract Image Tag
         id: get_image_tag
         run: |
-          IMAGE_TAG=$(printf '%s\n' "${{ needs.publish-docker-image.outputs.tags }}" \
-            | head -n 1 | awk -F':' '{print $NF}')
+          IMAGE_TAG=$(echo "${{ needs.publish-docker-image.outputs.tags }}" | grep -oP 'sha-[a-f0-9]+' | head -n 1)
+
+          if [ -z "$IMAGE_TAG" ]; then
+            echo "Warning: SHA tag not found, attempting general extraction."
+            IMAGE_TAG=$(echo "${{ needs.publish-docker-image.outputs.tags }}" | head -n 1 | awk -F':' '{print $NF}')
+          fi
+
           echo "Extracted Image Tag: $IMAGE_TAG"
           echo "IMAGE_TAG=$IMAGE_TAG" >> "$GITHUB_ENV"
 
