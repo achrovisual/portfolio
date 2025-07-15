@@ -115,7 +115,7 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git add .
+          git add charts/private/portfolio/values.yaml
           git diff --staged --exit-code || (git commit -m "Update portfolio image to ${{ env.IMAGE_TAG }}" && git push)
         env:
           GITHUB_TOKEN: ${{ secrets.HELM_REPO_PAT }}
