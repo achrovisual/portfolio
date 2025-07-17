@@ -72,9 +72,7 @@ export async function fetchGitHubActivity(): Promise<DailyActivity[]> {
           to: toDate,
         },
       }),
-      next: {
-        revalidate: 3600,
-      },
+      cache: 'no-store', 
     });
 
     if (!response.ok) {
