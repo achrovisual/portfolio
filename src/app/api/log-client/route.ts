@@ -39,10 +39,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ status: "Log received" }, { status: 200 });
   } catch (error: any) {
+    const isJsonParsingError =
+      error instanceof SyntaxError || error.name === "SyntaxError";
+
     logger.error("Failed to process client log:", {
       error: error.message,
       stack: error.stack,
-      requestBody: error.message.includes("JSON") ? "Invalid JSON" : undefined,
+      requestBody: isJsonParsingError ? "Invalid JSON" : undefined,
     });
     return NextResponse.json(
       { error: "Failed to process log" },
