@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ClientIntroHandler from "./ClientIntroHandler";
-
+import logger from "@/lib/logger";
+import { getCorrelationId } from "@/lib/correlation";
 const helveticaNeue = localFont({
   src: [
     {
@@ -40,17 +41,32 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  keywords: ["DevOps Engineer", "UI Designer", "Portfolio", "Gino", "Eugenio Pastoral", "achrovisual"],
+  keywords: [
+    "DevOps Engineer",
+    "UI Designer",
+    "Portfolio",
+    "Gino",
+    "Eugenio Pastoral",
+    "achrovisual",
+  ],
   authors: [{ name: "Eugenio Pastoral" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const correlationId = await getCorrelationId();
+
+  const layoutLogger = logger.child({ correlationId, module: "RootLayout" });
+  layoutLogger.info("RootLayout rendering started.");
+
   return (
     <html lang="en" className={`${helveticaNeue.variable} h-full`}>
+      <head>
+        <meta name="x-correlation-id" content={correlationId} />
+      </head>
       <body>
         <ClientIntroHandler>{children}</ClientIntroHandler>
       </body>

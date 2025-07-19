@@ -1,16 +1,24 @@
 import { Metadata } from "next";
 import Gallery from "../components/Gallery";
-import { fetchGalleryData, GalleryItem } from "../api/gallery";
+import { fetchGalleryData, GalleryItem } from "../api/gallery/route";
+import { fetchGitHubActivity, DailyActivity } from "../api/github/route";
+
 import GitFeed from "../components/GitFeed";
 import ContentScroller from "../components/ContentScroller";
 
-import { fetchGitHubActivity, DailyActivity } from "../api/github";
+import logger from "@/lib/logger";
+import { getCorrelationId } from "@/lib/correlation";
 
 export const metadata: Metadata = {
   title: "Home - Eugenio Pastoral",
 };
 
 export default async function Home() {
+  const correlationId = await getCorrelationId();
+  const pageLogger = logger.child({ correlationId, module: "HomePage" });
+
+  pageLogger.info("Home page rendering started.");
+
   let myGalleryData: GalleryItem[] = [];
   let errorFetchingGalleryData: boolean = false;
 
@@ -18,20 +26,27 @@ export default async function Home() {
   let errorFetchingGitActivity: boolean = false;
 
   try {
-    myGalleryData = await fetchGalleryData();
-  } catch (error) {
-    console.error("Failed to load gallery data in Home component:", error);
+    myGalleryData = await fetchGalleryData(correlationId);
+    pageLogger.info("Gallery data fetched successfully for Home component.");
+  } catch (error: any) {
     errorFetchingGalleryData = true;
+    pageLogger.error("Failed to load gallery data in Home component", {
+      error: error.message,
+      stack: error.stack,
+    });
   }
 
   try {
-    gitActivityData = await fetchGitHubActivity();
-  } catch (error) {
-    console.error(
-      "Failed to load GitHub activity data in Home component:",
-      error
+    gitActivityData = await fetchGitHubActivity(correlationId);
+    pageLogger.info(
+      "GitHub activity data fetched successfully for Home component."
     );
+  } catch (error: any) {
     errorFetchingGitActivity = true;
+    pageLogger.error("Failed to load GitHub activity data in Home component", {
+      error: error.message,
+      stack: error.stack,
+    });
   }
 
   const skillsData = [

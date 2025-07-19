@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import IntroAnimation from "../components/IntroAnimation";
 import Navbar from "../components/Navbar";
 import MobileComingSoon from "../components/MobileComingSoon";
@@ -8,6 +8,8 @@ import {
   isMobile as deviceIsMobile,
   isTablet as deviceIsTablet,
 } from "react-device-detect";
+
+import clientLogger from "@/lib/clientLogger";
 
 export default function ClientIntroHandler({
   children,
@@ -19,41 +21,84 @@ export default function ClientIntroHandler({
   const [shouldShowMobileUI, setShouldShowMobileUI] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
 
+  const shouldShowMobileUIRef = useRef(shouldShowMobileUI);
+
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    shouldShowMobileUIRef.current = shouldShowMobileUI;
+  }, [shouldShowMobileUI]);
+
+  useEffect(() => {
+    clientLogger.info("ClientIntroHandler mounted.");
+
+    if (typeof window === "undefined") {
+      clientLogger.warn(
+        "ClientIntroHandler useEffect running in non-browser environment.",
+        { typeofWindow: typeof window }
+      );
+      return;
+    }
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    clientLogger.debug("Body overflow set to hidden.");
 
     const checkIsMobileView = () => {
-      return deviceIsMobile || deviceIsTablet || window.innerWidth < 768;
+      const isMobileView =
+        deviceIsMobile || deviceIsTablet || window.innerWidth < 768;
+      clientLogger.debug("Checking mobile view status.", {
+        deviceIsMobile,
+        deviceIsTablet,
+        windowWidth: window.innerWidth,
+        isMobileViewCalculated: isMobileView,
+      });
+      return isMobileView;
     };
 
     setShouldShowMobileUI(checkIsMobileView());
 
     const handleResize = () => {
-      setShouldShowMobileUI(checkIsMobileView());
+      const newMobileUIState = checkIsMobileView();
+      if (newMobileUIState !== shouldShowMobileUIRef.current) {
+        clientLogger.info("Viewport resized, mobile UI state changed.", {
+          oldState: shouldShowMobileUIRef.current,
+          newState: newMobileUIState,
+          currentWidth: window.innerWidth,
+        });
+        setShouldShowMobileUI(newMobileUIState);
+      }
     };
 
     window.addEventListener("resize", handleResize);
+    clientLogger.debug("Resize event listener added.");
 
     const prepareTimer = setTimeout(() => {
       setContentPrep(true);
+      clientLogger.info("Content preparation delay complete.");
     }, 50);
 
     return () => {
       clearTimeout(prepareTimer);
       document.body.style.overflow = originalOverflow;
+      clientLogger.debug("Body overflow restored to original value.");
       window.removeEventListener("resize", handleResize);
+      clientLogger.debug("Resize event listener removed.");
+      clientLogger.info("ClientIntroHandler unmounted.");
     };
   }, []);
 
   const handleAnimationComplete = () => {
     setShowIntro(false);
     setShowNavbar(true);
+    clientLogger.info("Intro animation complete.", {
+      showIntro: false,
+      showNavbar: true,
+    });
 
     if (!shouldShowMobileUI) {
       document.body.style.overflow = "";
+      clientLogger.debug("Body overflow restored for desktop view.");
+    } else {
+      clientLogger.debug("Body overflow remains hidden for mobile view.");
     }
   };
 
