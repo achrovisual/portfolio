@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import logger from "@/lib/logger";
+import { v4 as uuidv4 } from "uuid";
 
 export interface GalleryItem {
   id: number;
@@ -111,8 +112,8 @@ export async function fetchGalleryData(
 }
 
 export async function GET(request: Request) {
-  const requestHeaders = headers();
-  const correlationId = requestHeaders.get("x-correlation-id") || "N/A";
+  const requestHeaders = await headers();
+  const correlationId = requestHeaders.get("x-correlation-id") || uuidv4();
   const apiRouteLogger = logger.child({ correlationId, apiRoute: "Gallery" });
 
   apiRouteLogger.info("Gallery API route accessed");

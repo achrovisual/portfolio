@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import logger from "@/lib/logger";
+import { v4 as uuidv4 } from "uuid";
 
 const GH_API_TOKEN = process.env.GH_API_TOKEN;
 const GH_USERNAME = process.env.GH_USERNAME;
@@ -172,8 +173,8 @@ export async function fetchGitHubActivity(
 }
 
 export async function GET(request: Request) {
-  const requestHeaders = headers();
-  const correlationId = requestHeaders.get("x-correlation-id") || "N/A";
+  const requestHeaders = await headers();
+  const correlationId = requestHeaders.get("x-correlation-id") || uuidv4();
   const apiRouteLogger = logger.child({ correlationId, apiRoute: "GitHub" });
 
   apiRouteLogger.info("GitHub API route accessed");
