@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ClientIntroHandler from "./ClientIntroHandler";
-import { headers } from "next/headers";
 import logger from "@/lib/logger";
-import { v4 as uuidv4 } from "uuid";
-
+import { getCorrelationId } from "@/lib/correlation";
 const helveticaNeue = localFont({
   src: [
     {
@@ -59,8 +57,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const requestHeaders = await headers();
-  const correlationId = requestHeaders.get("x-correlation-id") || uuidv4();
+  const correlationId = await getCorrelationId();
 
   const layoutLogger = logger.child({ correlationId, module: "RootLayout" });
   layoutLogger.info("RootLayout rendering started.");

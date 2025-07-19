@@ -6,17 +6,15 @@ import { fetchGitHubActivity, DailyActivity } from "../api/github/route";
 import GitFeed from "../components/GitFeed";
 import ContentScroller from "../components/ContentScroller";
 
-import { headers } from "next/headers";
 import logger from "@/lib/logger";
-import { v4 as uuidv4 } from "uuid";
+import { getCorrelationId } from "@/lib/correlation";
 
 export const metadata: Metadata = {
   title: "Home - Eugenio Pastoral",
 };
 
 export default async function Home() {
-  const requestHeaders = await headers();
-  const correlationId = requestHeaders.get("x-correlation-id") || uuidv4();
+  const correlationId = await getCorrelationId();
   const pageLogger = logger.child({ correlationId, module: "HomePage" });
 
   pageLogger.info("Home page rendering started.");
