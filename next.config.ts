@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: [
+    "uuid",
+    "pino",
+    "pino-pretty",
+    "react-device-detect",
+  ],
 };
 
 export default nextConfig;
