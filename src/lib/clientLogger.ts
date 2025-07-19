@@ -18,6 +18,14 @@ interface LogOptions {
   [key: string]: any;
 }
 
+const getCorrelationId = (): string => {
+  if (typeof document === "undefined") {
+    return "N/A";
+  }
+  const metaTag = document.head.querySelector('meta[name="x-correlation-id"]');
+  return metaTag?.getAttribute("content") || "N/A";
+};
+
 const sendLogToServer = async (message: string, options: LogOptions) => {
   if (process.env.NODE_ENV === "development") {
     const method = options.level || "log";
@@ -56,13 +64,7 @@ const sendLogToServer = async (message: string, options: LogOptions) => {
           typeof window !== "undefined"
             ? window.location.pathname + window.location.search
             : "N/A",
-        correlationId:
-          typeof document !== "undefined" &&
-          document.head.querySelector('meta[name="x-correlation-id"]')
-            ? document.head
-                .querySelector('meta[name="x-correlation-id"]')
-                ?.getAttribute("content") || "N/A"
-            : "N/A",
+        correlationId: getCorrelationId(),
         ...options,
         device: deviceDetails,
       }),
