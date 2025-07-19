@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import IntroAnimation from "../components/IntroAnimation";
 import Navbar from "../components/Navbar";
 import MobileComingSoon from "../components/MobileComingSoon";
@@ -20,6 +20,12 @@ export default function ClientIntroHandler({
   const [contentPrep, setContentPrep] = useState(false);
   const [shouldShowMobileUI, setShouldShowMobileUI] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
+
+  const shouldShowMobileUIRef = useRef(shouldShowMobileUI);
+
+  useEffect(() => {
+    shouldShowMobileUIRef.current = shouldShowMobileUI;
+  }, [shouldShowMobileUI]);
 
   useEffect(() => {
     clientLogger.info("ClientIntroHandler mounted.");
@@ -52,9 +58,9 @@ export default function ClientIntroHandler({
 
     const handleResize = () => {
       const newMobileUIState = checkIsMobileView();
-      if (newMobileUIState !== shouldShowMobileUI) {
+      if (newMobileUIState !== shouldShowMobileUIRef.current) {
         clientLogger.info("Viewport resized, mobile UI state changed.", {
-          oldState: shouldShowMobileUI,
+          oldState: shouldShowMobileUIRef.current,
           newState: newMobileUIState,
           currentWidth: window.innerWidth,
         });
@@ -78,7 +84,7 @@ export default function ClientIntroHandler({
       clientLogger.debug("Resize event listener removed.");
       clientLogger.info("ClientIntroHandler unmounted.");
     };
-  }, [shouldShowMobileUI]);
+  }, []);
 
   const handleAnimationComplete = () => {
     setShowIntro(false);
