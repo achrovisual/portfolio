@@ -12,8 +12,24 @@ const transport =
       }
     : undefined;
 
+const supportedLogLevels = [
+  "fatal",
+  "error",
+  "warn",
+  "info",
+  "debug",
+  "trace",
+  "silent",
+];
+
+const envLogLevel = process.env.NEXT_PUBLIC_LOG_LEVEL;
+
+const logLevel = supportedLogLevels.includes(envLogLevel as string)
+  ? envLogLevel
+  : "info";
+
 const logger = pino({
-  level: process.env.NEXT_PUBLIC_LOG_LEVEL || "info",
+  level: logLevel,
   base: {
     env: process.env.NODE_ENV,
     service: "portfolio-app",
