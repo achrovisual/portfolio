@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import IntroAnimation from "../components/IntroAnimation";
-import Navbar from "../components/Navbar";
+import HeaderNavbar from "../components/HeaderNavbar";
 import MobileComingSoon from "../components/MobileComingSoon";
 import {
   isMobile as deviceIsMobile,
@@ -19,7 +19,7 @@ export default function ClientIntroHandler({
   const [showIntro, setShowIntro] = useState(true);
   const [contentPrep, setContentPrep] = useState(false);
   const [shouldShowMobileUI, setShouldShowMobileUI] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(false);
+  const [showHeaderNavbar, setShowHeaderNavbar] = useState(false);
 
   const shouldShowMobileUIRef = useRef(shouldShowMobileUI);
 
@@ -88,10 +88,10 @@ export default function ClientIntroHandler({
 
   const handleAnimationComplete = () => {
     setShowIntro(false);
-    setShowNavbar(true);
+    setShowHeaderNavbar(true);
     clientLogger.info("Intro animation complete.", {
       showIntro: false,
-      showNavbar: true,
+      showHeaderNavbar: true,
     });
 
     if (!shouldShowMobileUI) {
@@ -128,11 +128,11 @@ export default function ClientIntroHandler({
         </div>
       ) : (
         <>
-          <Navbar
+          <HeaderNavbar
             className={`
               fixed top-0 left-0 w-full z-50
               transition-transform duration-700 ease-in-out
-              ${showNavbar ? "translate-y-0" : "-translate-y-full"}
+              ${showHeaderNavbar ? "translate-y-0" : "-translate-y-full"}
             `}
           />
 

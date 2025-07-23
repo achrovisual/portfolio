@@ -1,10 +1,10 @@
 import React from "react";
 import Button from "./Button";
-interface NavbarProps {
+interface HeaderNavbarProps {
   className?: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ className }) => {
+const HeaderNavbar: React.FC<HeaderNavbarProps> = ({ className }) => {
   return (
     <div className={`p-4 flex justify-between ${className}`}>
       <Button
@@ -30,4 +30,4 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
   );
 };
 
-export default Navbar;
+export default HeaderNavbar;
