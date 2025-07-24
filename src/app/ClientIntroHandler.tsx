@@ -138,7 +138,7 @@ export default function ClientIntroHandler({
 
           <div
             className={`
-              antialiased flex flex-col min-h-screen min-w-[1024px]
+              antialiased flex flex-col h-screen min-w-[1024px]
               transition-opacity duration-500 ease-in-out
               ${
                 showIntro && contentPrep
@@ -148,8 +148,10 @@ export default function ClientIntroHandler({
               ${!showIntro ? "delay-100" : ""}
             `}
           >
-            <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden pt-[5.5rem]">
-              <div className="mx-auto max-w-[1440px] w-full">{children}</div>
+            <main className="flex flex-col flex-grow overflow-x-hidden pt-[5.5rem]">
+              <div className="mx-auto max-w-[1440px] w-full h-full flex flex-col">
+                {children}
+              </div>
             </main>
           </div>
         </>

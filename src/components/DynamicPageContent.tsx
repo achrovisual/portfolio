@@ -28,17 +28,24 @@ const DynamicPageContent: React.FC<DynamicPageContentProps> = ({
 }) => {
   const [activePage, setActivePage] = useState("photos");
 
+  const contentMinHeightCalc = "calc(100vh - 10rem)";
+
   const renderContent = () => {
     switch (activePage) {
       case "photos":
         return (
-          <div className="flex flex-col w-full items-center justify-center min-h-[calc(100vh-5.5rem-5rem)]">
+          <div
+            className={`flex flex-col w-full h-full items-center justify-center ${contentMinHeightCalc}`}
+          >
             {errorFetchingGalleryData ? (
               <p className="text-center text-red-500 mt-8">
                 Failed to load gallery images. Please try again later.
               </p>
             ) : galleryItemsData.length > 0 ? (
-              <Gallery galleryItemsData={galleryItemsData} />
+              <Gallery
+                galleryItemsData={galleryItemsData}
+                className="w-full h-full"
+              />
             ) : (
               <p className="text-center text-neutral-500 mt-8">
                 No gallery items found.
@@ -48,7 +55,9 @@ const DynamicPageContent: React.FC<DynamicPageContentProps> = ({
         );
       case "info":
         return (
-          <div className="mx-auto px-4 pb-4 h-[calc(100vh-5.5rem-5rem)] flex flex-col w-full flex-shrink-0">
+          <div
+            className={`mx-auto px-4 pb-4 ${contentMinHeightCalc} flex flex-col w-full flex-shrink-0`}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full flex-grow overflow-hidden grid-rows-[1fr]">
               <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-4xl shadow-md flex flex-col overflow-y-auto h-[300px] min-h-0">
                 {errorFetchingGitActivity ? (
@@ -79,7 +88,9 @@ const DynamicPageContent: React.FC<DynamicPageContentProps> = ({
         );
       case "works":
         return (
-          <div className="flex flex-grow flex-col items-center justify-center min-h-[calc(100vh-5.5rem-5rem)]">
+          <div
+            className={`flex flex-grow flex-col items-center justify-center ${contentMinHeightCalc}`}
+          >
             <p className="text-2xl font-bold">Works content coming soon!</p>
           </div>
         );
