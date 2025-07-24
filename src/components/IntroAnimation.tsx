@@ -87,7 +87,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
         }
         ${
           slideOut ? "pointer-events-none" : ""
-        } /* Disable clicks on the intro after it starts sliding */
+        }
       `}
       style={{ backgroundColor: introBgColor }}
     >
