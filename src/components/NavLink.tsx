@@ -25,7 +25,9 @@ const NavLink: React.FC<NavLinkProps> = ({ label, isActive, onClick }) => {
       style={isActive ? activeStyle : inactiveStyle}
       onClick={onClick}
     >
-      <span className={`uppercase font-semibold text-sm`}>{label}</span>
+      <span className={`uppercase font-semibold text-sm leading-none`}>
+        {label}
+      </span>
     </button>
   );
 };
