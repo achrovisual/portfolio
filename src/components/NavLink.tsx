@@ -21,7 +21,7 @@ const NavLink: React.FC<NavLinkProps> = ({ label, isActive, onClick }) => {
 
   return (
     <button
-      className={`w-[128px] px-8 py-2 flex rounded-full justify-center focus:outline-none transition-colors duration-200 ease-in-out`}
+      className={`w-[128px] h-[40px] flex rounded-full justify-center items-center focus:outline-none transition-colors duration-200 ease-in-out`}
       style={isActive ? activeStyle : inactiveStyle}
       onClick={onClick}
     >
