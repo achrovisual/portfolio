@@ -101,7 +101,7 @@ const ContentScroller: React.FC<ContentScrollerProps> = ({
           {duplicatedTags.map((tag, index) => (
             <span
               key={index}
-              className="flex-shrink-0 px-4 py-2 rounded-full text-sm bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 whitespace-nowrap flex items-center justify-center"
+              className="flex-shrink-0 px-4 py-2 rounded-full text-sm bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 whitespace-nowrap leading-none flex items-center justify-center"
             >
               {tag}
             </span>
