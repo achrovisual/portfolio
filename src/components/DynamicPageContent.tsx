@@ -9,12 +9,17 @@ import ContentScroller from "./ContentScroller";
 import { GalleryItem } from "../api/gallery/route";
 import { DailyActivity } from "../api/github/route";
 
+interface SkillItem {
+  title: string;
+  icon: string;
+}
+
 interface DynamicPageContentProps {
   galleryItemsData: GalleryItem[];
   errorFetchingGalleryData: boolean;
   gitActivityData: DailyActivity[];
   errorFetchingGitActivity: boolean;
-  skillsData: any[];
+  skillsData: SkillItem[];
   skillTags: string[];
 }
 
