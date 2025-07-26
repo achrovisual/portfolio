@@ -44,7 +44,8 @@ export default function ClientIntroHandler({
 
     const checkIsMobileView = () => {
       const isMobileView =
-        deviceIsMobile || deviceIsTablet || window.innerWidth < 768;
+        (deviceIsMobile && !deviceIsTablet) || window.innerWidth < 768;
+
       clientLogger.debug("Checking mobile view status.", {
         deviceIsMobile,
         deviceIsTablet,
