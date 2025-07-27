@@ -72,13 +72,7 @@ export default function ClientIntroHandler({
     window.addEventListener("resize", handleResize);
     clientLogger.debug("Resize event listener added.");
 
-    const prepareTimer = setTimeout(() => {
-      setContentPrep(true);
-      clientLogger.info("Content preparation delay complete.");
-    }, 50);
-
     return () => {
-      clearTimeout(prepareTimer);
       document.body.style.overflow = originalOverflow;
       clientLogger.debug("Body overflow restored to original value.");
       window.removeEventListener("resize", handleResize);
@@ -90,9 +84,11 @@ export default function ClientIntroHandler({
   const handleAnimationComplete = () => {
     setShowIntro(false);
     setShowHeaderNavbar(true);
+    setContentPrep(true);
     clientLogger.info("Intro animation complete.", {
       showIntro: false,
       showHeaderNavbar: true,
+      contentPrep: true,
     });
 
     if (!shouldShowMobileUI) {
@@ -142,7 +138,7 @@ export default function ClientIntroHandler({
               antialiased flex flex-col h-screen min-w-[1024px]
               transition-opacity duration-500 ease-in-out
               ${
-                showIntro && contentPrep
+                showIntro || !contentPrep
                   ? "opacity-0 pointer-events-none"
                   : "opacity-100"
               }
