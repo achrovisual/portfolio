@@ -12,9 +12,10 @@ interface GalleryItemData {
 
 interface GalleryProps {
   galleryItemsData: GalleryItemData[];
+  className?: string;
 }
 
-const Gallery: React.FC<GalleryProps> = ({ galleryItemsData }) => {
+const Gallery: React.FC<GalleryProps> = ({ galleryItemsData, className }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -29,10 +30,18 @@ const Gallery: React.FC<GalleryProps> = ({ galleryItemsData }) => {
   }, [galleryItemsData.length]);
 
   return (
-    <div className="flex flex-col w-full px-4 pb-4">
-      <div className="relative w-full overflow-hidden rounded-4xl aspect-16/10 md:aspect-w-16 md:aspect-h-10">
-        {galleryItemsData.length > 0 ? (
-          galleryItemsData.map((item, index) => (
+    <div className={`flex items-center justify-center p-4 ${className}`}>
+      {galleryItemsData.length > 0 ? (
+        <div
+          className="relative overflow-hidden rounded-4xl w-full h-full"
+          style={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+            aspectRatio: "16 / 10",
+            flexShrink: 0,
+          }}
+        >
+          {galleryItemsData.map((item, index) => (
             <GalleryItem
               key={item.id}
               imageUrl={item.imageUrl}
@@ -40,13 +49,13 @@ const Gallery: React.FC<GalleryProps> = ({ galleryItemsData }) => {
               secondaryInfo={item.secondaryInfo}
               isActive={index === currentImageIndex}
             />
-          ))
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-neutral-500">
-            No images to display.
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center text-neutral-500 w-full h-full">
+          No images to display.
+        </div>
+      )}
     </div>
   );
 };

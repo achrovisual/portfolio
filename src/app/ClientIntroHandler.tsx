@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import IntroAnimation from "../components/IntroAnimation";
-import Navbar from "../components/Navbar";
+import HeaderNavbar from "../components/HeaderNavbar";
 import MobileComingSoon from "../components/MobileComingSoon";
 import {
   isMobile as deviceIsMobile,
@@ -19,7 +19,7 @@ export default function ClientIntroHandler({
   const [showIntro, setShowIntro] = useState(true);
   const [contentPrep, setContentPrep] = useState(false);
   const [shouldShowMobileUI, setShouldShowMobileUI] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(false);
+  const [showHeaderNavbar, setShowHeaderNavbar] = useState(false);
 
   const shouldShowMobileUIRef = useRef(shouldShowMobileUI);
 
@@ -44,7 +44,8 @@ export default function ClientIntroHandler({
 
     const checkIsMobileView = () => {
       const isMobileView =
-        deviceIsMobile || deviceIsTablet || window.innerWidth < 768;
+        (deviceIsMobile && !deviceIsTablet) || window.innerWidth < 768;
+
       clientLogger.debug("Checking mobile view status.", {
         deviceIsMobile,
         deviceIsTablet,
@@ -71,13 +72,7 @@ export default function ClientIntroHandler({
     window.addEventListener("resize", handleResize);
     clientLogger.debug("Resize event listener added.");
 
-    const prepareTimer = setTimeout(() => {
-      setContentPrep(true);
-      clientLogger.info("Content preparation delay complete.");
-    }, 50);
-
     return () => {
-      clearTimeout(prepareTimer);
       document.body.style.overflow = originalOverflow;
       clientLogger.debug("Body overflow restored to original value.");
       window.removeEventListener("resize", handleResize);
@@ -88,10 +83,12 @@ export default function ClientIntroHandler({
 
   const handleAnimationComplete = () => {
     setShowIntro(false);
-    setShowNavbar(true);
+    setShowHeaderNavbar(true);
+    setContentPrep(true);
     clientLogger.info("Intro animation complete.", {
       showIntro: false,
-      showNavbar: true,
+      showHeaderNavbar: true,
+      contentPrep: true,
     });
 
     if (!shouldShowMobileUI) {
@@ -128,28 +125,30 @@ export default function ClientIntroHandler({
         </div>
       ) : (
         <>
-          <Navbar
+          <HeaderNavbar
             className={`
               fixed top-0 left-0 w-full z-50
               transition-transform duration-700 ease-in-out
-              ${showNavbar ? "translate-y-0" : "-translate-y-full"}
+              ${showHeaderNavbar ? "translate-y-0" : "-translate-y-full"}
             `}
           />
 
           <div
             className={`
-              antialiased flex flex-col min-h-screen min-w-[1024px]
+              antialiased flex flex-col h-screen min-w-[1024px]
               transition-opacity duration-500 ease-in-out
               ${
-                showIntro && contentPrep
+                showIntro || !contentPrep
                   ? "opacity-0 pointer-events-none"
                   : "opacity-100"
               }
               ${!showIntro ? "delay-100" : ""}
             `}
           >
-            <main className="flex flex-grow flex-col overflow-y-auto overflow-x-hidden pt-[5.5rem]">
-              <div className="mx-auto max-w-[1440px] w-full">{children}</div>
+            <main className="flex flex-col flex-grow overflow-x-hidden pt-[5.5rem]">
+              <div className="mx-auto max-w-[1440px] w-full h-full flex flex-col">
+                {children}
+              </div>
             </main>
           </div>
         </>
