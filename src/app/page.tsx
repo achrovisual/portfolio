@@ -53,6 +53,7 @@ export default async function Home() {
     { title: "Helm", icon: "simple-icons:helm" },
     { title: "Argo CD", icon: "simple-icons:argo" },
     { title: "Docker", icon: "simple-icons:docker" },
+    { title: "NGINX", icon: "simple-icons:nginx" },
     { title: "Terraform", icon: "simple-icons:terraform" },
     { title: "Tailscale", icon: "simple-icons:tailscale" },
     { title: "Next.js", icon: "simple-icons:nextdotjs" },
