@@ -56,8 +56,9 @@ export default async function Home() {
     { title: "NGINX", icon: "simple-icons:nginx" },
     { title: "Terraform", icon: "simple-icons:terraform" },
     { title: "Tailscale", icon: "simple-icons:tailscale" },
-    { title: "Next.js", icon: "simple-icons:nextdotjs" },
+    { title: "Next.js", icon: "simple-icons:nextdotjs" },.
     { title: "Tailwind CSS", icon: "simple-icons:tailwindcss" },
+    { title: "Django", icon: "simple-icons:django" },
     { title: "Figma", icon: "simple-icons:figma" },
     { title: "Sketch", icon: "simple-icons:sketch" },
     { title: "VS Code", icon: "simple-icons:visualstudiocode" },
