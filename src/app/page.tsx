@@ -59,6 +59,8 @@ export default async function Home() {
     { title: "Next.js", icon: "simple-icons:nextdotjs" },
     { title: "Tailwind CSS", icon: "simple-icons:tailwindcss" },
     { title: "Django", icon: "simple-icons:django" },
+    { title: "UniFi", icon: "simple-icons:ubiquiti" },
+    { title: "MikroTik", icon: "simple-icons:mikrotik" },
     { title: "Figma", icon: "simple-icons:figma" },
     { title: "Sketch", icon: "simple-icons:sketch" },
     { title: "VS Code", icon: "simple-icons:visualstudiocode" },
