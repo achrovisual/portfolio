@@ -61,6 +61,7 @@ export default async function Home() {
     { title: "Django", icon: "simple-icons:django" },
     { title: "UniFi", icon: "simple-icons:ubiquiti" },
     { title: "MikroTik", icon: "simple-icons:mikrotik" },
+    { title: "Omada", icon: "simple-icons:omadacloud" },
     { title: "Figma", icon: "simple-icons:figma" },
     { title: "Sketch", icon: "simple-icons:sketch" },
     { title: "VS Code", icon: "simple-icons:visualstudiocode" },
