@@ -47,7 +47,7 @@ export default async function Home() {
   }
 
   const skillsData = [
-    { title: "Amazon Web Services", icon: "simple-icons:amazon" },
+    { title: "Amazon Web Services", icon: "simple-icons:amazonwebservices" },
     { title: "Proxmox", icon: "simple-icons:proxmox" },
     { title: "K3s", icon: "simple-icons:k3s" },
     { title: "Helm", icon: "simple-icons:helm" },
