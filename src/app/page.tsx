@@ -57,6 +57,7 @@ export default async function Home() {
     { title: "Terraform", icon: "simple-icons:terraform" },
     { title: "GitHub Actions", icon: "simple-icons:githubactions" },
     { title: "Tailscale", icon: "simple-icons:tailscale" },
+    { title: "Bash", icon: "simple-icons:gnubash" },
     { title: "Next.js", icon: "simple-icons:nextdotjs" },
     { title: "Tailwind CSS", icon: "simple-icons:tailwindcss" },
     { title: "Django", icon: "simple-icons:django" },
