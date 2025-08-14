@@ -16,6 +16,7 @@ const FooterNavbar: React.FC<FooterNavbarProps> = ({
     { key: "photos", label: "Photos" },
     { key: "info", label: "Info" },
     { key: "works", label: "Works" },
+    { key: "notes", label: "Notes" },
   ],
 }) => {
   return (
