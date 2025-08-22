@@ -47,23 +47,38 @@ export default async function Home() {
   }
 
   const skillsData = [
-    { title: "Amazon Web Services", icon: "simple-icons:amazon" },
-    { title: "Proxmox", icon: "simple-icons:proxmox" },
+    // Cloud & DevOps
+    { title: "Amazon Web Services", icon: "simple-icons:amazonwebservices" },
+    { title: "Docker", icon: "simple-icons:docker" },
     { title: "K3s", icon: "simple-icons:k3s" },
     { title: "Helm", icon: "simple-icons:helm" },
     { title: "Argo CD", icon: "simple-icons:argo" },
-    { title: "Docker", icon: "simple-icons:docker" },
     { title: "Terraform", icon: "simple-icons:terraform" },
-    { title: "Tailscale", icon: "simple-icons:tailscale" },
+    { title: "GitHub Actions", icon: "simple-icons:githubactions" },
+    { title: "Proxmox", icon: "simple-icons:proxmox" },
+
+    // Development & Scripting
     { title: "Next.js", icon: "simple-icons:nextdotjs" },
+    { title: "Django", icon: "simple-icons:django" },
     { title: "Tailwind CSS", icon: "simple-icons:tailwindcss" },
-    { title: "Figma", icon: "simple-icons:figma" },
-    { title: "Sketch", icon: "simple-icons:sketch" },
-    { title: "VS Code", icon: "simple-icons:visualstudiocode" },
+    { title: "Bash", icon: "simple-icons:gnubash" },
+
+    // Networking
+    { title: "NGINX", icon: "simple-icons:nginx" },
+    { title: "Cloudflare", icon: "simple-icons:cloudflare" },
+    { title: "Tailscale", icon: "simple-icons:tailscale" },
+    { title: "UniFi", icon: "simple-icons:ubiquiti" },
+    { title: "MikroTik", icon: "simple-icons:mikrotik" },
+    { title: "Omada", icon: "simple-icons:omadacloud" },
+
+    // Tools & Collaboration
     { title: "Git", icon: "simple-icons:git" },
+    { title: "VS Code", icon: "simple-icons:visualstudiocode" },
     { title: "Jira", icon: "simple-icons:jira" },
     { title: "Confluence", icon: "simple-icons:confluence" },
     { title: "Notion", icon: "simple-icons:notion" },
+    { title: "Figma", icon: "simple-icons:figma" },
+    { title: "Sketch", icon: "simple-icons:sketch" },
   ];
 
   const skillTags = [
