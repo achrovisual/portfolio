@@ -5,6 +5,7 @@ import FooterNavbar from "./FooterNavbar";
 import Gallery from "./Gallery";
 import GitFeed from "./GitFeed";
 import ContentScroller from "./ContentScroller";
+import Notes from "./Notes"; // Import the new Notes component
 
 import { GalleryItem } from "../api/gallery/route";
 import { DailyActivity } from "../api/github/route";
@@ -14,6 +15,14 @@ interface SkillItem {
   icon: string;
 }
 
+interface Note {
+  id: string;
+  title: string;
+  date: string;
+  summary: string;
+  content: string;
+}
+
 interface DynamicPageContentProps {
   galleryItemsData: GalleryItem[];
   errorFetchingGalleryData: boolean;
@@ -21,6 +30,7 @@ interface DynamicPageContentProps {
   errorFetchingGitActivity: boolean;
   skillsData: SkillItem[];
   skillTags: string[];
+  notesData: Note[];
 }
 
 const DynamicPageContent: React.FC<DynamicPageContentProps> = ({
@@ -30,6 +40,7 @@ const DynamicPageContent: React.FC<DynamicPageContentProps> = ({
   errorFetchingGitActivity,
   skillsData,
   skillTags,
+  notesData,
 }) => {
   const [activePage, setActivePage] = useState("photos");
 
@@ -100,6 +111,15 @@ const DynamicPageContent: React.FC<DynamicPageContentProps> = ({
             style={{ minHeight: contentMinHeightCalc }}
           >
             <p className="text-2xl font-bold">Works content coming soon!</p>
+          </div>
+        );
+      case "notes":
+        return (
+          <div
+            className="flex flex-grow flex-col w-full"
+            style={{ minHeight: contentMinHeightCalc }}
+          >
+            <Notes notesData={notesData} />
           </div>
         );
       default:
