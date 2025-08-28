@@ -7,6 +7,7 @@ interface Note {
   date: string;
   summary: string;
   content: string;
+  tags: string[];
 }
 
 interface NotesProps {
@@ -24,6 +25,19 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
     setSelectedNote(null);
   };
 
+  const renderTags = (tags: string[]) => (
+    <div className="flex flex-wrap gap-2 mt-2">
+      {tags.map((tag, index) => (
+        <span
+          key={index}
+          className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 text-xs px-2 py-1 rounded-full font-medium"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+
   if (selectedNote) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-8">
@@ -36,14 +50,15 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
         </button>
         <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-2xl shadow-md">
           <h2 className="text-3xl font-bold mb-2">{selectedNote.title}</h2>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
             {new Date(selectedNote.date).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
               day: "numeric",
             })}
           </p>
-          <div className="prose dark:prose-invert text-neutral-700 dark:text-neutral-300">
+          {renderTags(selectedNote.tags)}
+          <div className="prose dark:prose-invert text-neutral-700 dark:text-neutral-300 mt-4">
             <p>{selectedNote.content}</p>
           </div>
         </div>
@@ -73,6 +88,7 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
               <p className="text-neutral-700 dark:text-neutral-300">
                 {note.summary}
               </p>
+              {renderTags(note.tags)}
             </div>
           ))}
         </div>
