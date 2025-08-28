@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Icon } from "@iconify/react";
 
 interface Note {
   id: string;
@@ -13,6 +14,43 @@ interface NotesProps {
 }
 
 const Notes: React.FC<NotesProps> = ({ notesData }) => {
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+
+  const handleNoteClick = (note: Note) => {
+    setSelectedNote(note);
+  };
+
+  const handleBackClick = () => {
+    setSelectedNote(null);
+  };
+
+  if (selectedNote) {
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-8">
+        <button
+          onClick={handleBackClick}
+          className="mb-6 flex items-center text-sm font-semibold text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors"
+        >
+          <Icon icon="lucide:chevron-left" className="w-4 h-4 mr-1" />
+          Back to Notes
+        </button>
+        <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-2xl shadow-md">
+          <h2 className="text-3xl font-bold mb-2">{selectedNote.title}</h2>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+            {new Date(selectedNote.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
+          <div className="prose dark:prose-invert text-neutral-700 dark:text-neutral-300">
+            <p>{selectedNote.content}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
       <h2 className="text-3xl font-bold mb-6">Notes</h2>
@@ -21,7 +59,8 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
           {notesData.map((note) => (
             <div
               key={note.id}
-              className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-2xl shadow-md"
+              className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-2xl shadow-md cursor-pointer transition-transform transform hover:scale-[1.01] hover:shadow-lg"
+              onClick={() => handleNoteClick(note)}
             >
               <h3 className="text-xl font-semibold mb-2">{note.title}</h3>
               <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
