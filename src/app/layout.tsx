@@ -67,7 +67,7 @@ export default async function RootLayout({
       <head>
         <meta name="x-correlation-id" content={correlationId} />
       </head>
-      <body>
+      <body className="flex flex-col h-full">
         <ClientIntroHandler>{children}</ClientIntroHandler>
       </body>
     </html>
