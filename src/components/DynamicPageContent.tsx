@@ -21,6 +21,7 @@ interface Note {
   date: string;
   summary: string;
   content: string;
+  tags: string[];
 }
 
 interface DynamicPageContentProps {
