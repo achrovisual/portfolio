@@ -11,18 +11,14 @@ import { DailyActivity } from "../api/github/route";
 
 import { GalleryItem } from "../types/gallery";
 import { Note } from "../types/note";
-
-interface SkillItem {
-  title: string;
-  icon: string;
-}
+import { ScrollerItem } from "../types/scroller";
 
 interface DynamicPageContentProps {
   galleryItemsData: GalleryItem[];
   errorFetchingGalleryData: boolean;
   gitActivityData: DailyActivity[];
   errorFetchingGitActivity: boolean;
-  skillsData: SkillItem[];
+  skillsData: ScrollerItem[];
   skillTags: string[];
   notesData: Note[];
 }
