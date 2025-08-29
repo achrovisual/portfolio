@@ -63,11 +63,11 @@ export default async function RootLayout({
   layoutLogger.info("RootLayout rendering started.");
 
   return (
-    <html lang="en" className={`${helveticaNeue.variable} h-full`}>
+    <html lang="en" className={`${helveticaNeue.variable} h-full min-h-screen`}>
       <head>
         <meta name="x-correlation-id" content={correlationId} />
       </head>
-      <body className="flex flex-col h-full">
+      <body className="flex flex-col min-h-screen overflow-hidden">
         <ClientIntroHandler>{children}</ClientIntroHandler>
       </body>
     </html>
