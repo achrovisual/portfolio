@@ -44,11 +44,13 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
         <div className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-2xl shadow-md">
           <h2 className="text-3xl font-bold mb-2">{selectedNote.title}</h2>
           <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
-            {new Date(selectedNote.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+            <time dateTime={selectedNote.date}>
+              {new Date(selectedNote.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
           </p>
           {renderTags(selectedNote.tags)}
           <div className="prose dark:prose-invert text-neutral-700 dark:text-neutral-300 mt-4">
@@ -73,11 +75,13 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
             >
               <h3 className="text-xl font-semibold mb-2">{note.title}</h3>
               <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
-                {new Date(note.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                <time dateTime={note.date}>
+                  {new Date(note.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
               </p>
               <p className="text-neutral-700 dark:text-neutral-300">
                 {note.summary}
