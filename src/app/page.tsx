@@ -7,6 +7,7 @@ import logger from "@/lib/logger";
 import { getCorrelationId } from "@/lib/correlation";
 
 import { Note } from "../types/note";
+import { ScrollerItem } from "../types/scroller";
 
 export const metadata: Metadata = {
   title: "Home - Eugenio Pastoral",
@@ -131,7 +132,7 @@ export default async function Home() {
     },
   ];
 
-  const skillsData = [
+  const skillsData: ScrollerItem[] = [
     // Cloud & DevOps
     { title: "Amazon Web Services", icon: "simple-icons:amazonwebservices" },
     { title: "Docker", icon: "simple-icons:docker" },
