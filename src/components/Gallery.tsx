@@ -6,7 +6,7 @@ import GalleryItem from "./GalleryItem";
 import { GalleryItem as GalleryItemType } from "../types/gallery";
 
 interface GalleryProps {
-  galleryItemsData: GalleryItem[];
+  galleryItemsData: GalleryItemType[];
   className?: string;
 }
 
