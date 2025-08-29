@@ -3,15 +3,10 @@
 import React, { useState, useEffect } from "react";
 import GalleryItem from "./GalleryItem";
 
-interface GalleryItemData {
-  id: number;
-  imageUrl: string;
-  primaryInfo: { title: string; subtitle: string };
-  secondaryInfo: { title: string; subtitle: string };
-}
+import { GalleryItem as GalleryItemType } from "../types/gallery";
 
 interface GalleryProps {
-  galleryItemsData: GalleryItemData[];
+  galleryItemsData: GalleryItem[];
   className?: string;
 }
 

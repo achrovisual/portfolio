@@ -7,9 +7,9 @@ import GitFeed from "./GitFeed";
 import ContentScroller from "./ContentScroller";
 import Notes from "./Notes";
 
-import { GalleryItem } from "../api/gallery/route";
 import { DailyActivity } from "../api/github/route";
 
+import { GalleryItem } from "../types/gallery";
 import { Note } from "../types/note";
 
 interface SkillItem {
