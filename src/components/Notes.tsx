@@ -22,7 +22,7 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
     <div className="flex flex-wrap gap-2 mt-2">
       {tags.map((tag, index) => (
         <span
-          key={index}
+          key={`${tag}-${index}`}
           className="bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 text-xs px-2 py-1 rounded-full font-medium"
         >
           {tag}
