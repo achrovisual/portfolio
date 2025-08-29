@@ -6,6 +6,8 @@ import DynamicPageContent from "../components/DynamicPageContent";
 import logger from "@/lib/logger";
 import { getCorrelationId } from "@/lib/correlation";
 
+import { Note } from "../types/note";
+
 export const metadata: Metadata = {
   title: "Home - Eugenio Pastoral",
 };
@@ -46,7 +48,7 @@ export default async function Home() {
     });
   }
 
-  const notesData = [
+  const notesData: Note[] = [
     {
       id: "intro-to-devops",
       title: "An Intro to DevOps",
