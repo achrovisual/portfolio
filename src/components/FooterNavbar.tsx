@@ -20,7 +20,10 @@ const FooterNavbar: React.FC<FooterNavbarProps> = ({
   ],
 }) => {
   return (
-    <div className={`gap-2 ${className} flex justify-center py-4`}>
+    <nav
+      className={`gap-2 ${className ? className : ""} flex justify-center py-4`}
+      aria-label="Main navigation"
+    >
       {options.map(({ key, label }) => (
         <NavLink
           key={key}
@@ -29,7 +32,7 @@ const FooterNavbar: React.FC<FooterNavbarProps> = ({
           onClick={() => setActivePage(key)}
         />
       ))}
-    </div>
+    </nav>
   );
 };
 
