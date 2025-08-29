@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 
-interface Note {
-  id: string;
-  title: string;
-  date: string;
-  summary: string;
-  content: string;
-  tags: string[];
-}
+import { Note } from "../types/note";
 
 interface NotesProps {
   notesData: Note[];

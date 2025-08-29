@@ -10,18 +10,11 @@ import Notes from "./Notes";
 import { GalleryItem } from "../api/gallery/route";
 import { DailyActivity } from "../api/github/route";
 
+import { Note } from "../types/note";
+
 interface SkillItem {
   title: string;
   icon: string;
-}
-
-interface Note {
-  id: string;
-  title: string;
-  date: string;
-  summary: string;
-  content: string;
-  tags: string[];
 }
 
 interface DynamicPageContentProps {
