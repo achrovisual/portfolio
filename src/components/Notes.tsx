@@ -72,10 +72,11 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
       {notesData.length > 0 ? (
         <div className="space-y-6">
           {notesData.map((note) => (
-            <div
+            <button
               key={note.id}
-              className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-2xl shadow-md cursor-pointer transition-transform transform hover:scale-[1.01] hover:shadow-lg"
               onClick={() => handleNoteClick(note)}
+              className="bg-neutral-100 dark:bg-neutral-800 p-6 rounded-2xl shadow-md transition-transform transform hover:scale-[1.01] hover:shadow-lg w-full text-left"
+              aria-label={`Open note titled ${note.title}`}
             >
               <h3 className="text-xl font-semibold mb-2">{note.title}</h3>
               <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
@@ -89,7 +90,7 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
                 {note.summary}
               </p>
               {renderTags(note.tags)}
-            </div>
+            </button>
           ))}
         </div>
       ) : (
