@@ -110,11 +110,13 @@ const DynamicPageContent: React.FC<DynamicPageContentProps> = ({
       <div className="absolute inset-0 overflow-y-auto pt-[5.5rem] pb-[4.5rem]">
         {renderContent()}
       </div>
-      <FooterNavbar
-        activePage={activePage}
-        setActivePage={setActivePage}
-        className="absolute bottom-0 w-full z-10"
-      />
+      <div className="absolute bottom-0 w-full flex justify-center p-2">
+        <FooterNavbar
+          activePage={activePage}
+          setActivePage={setActivePage}
+          className="z-10"
+        />
+      </div>
     </div>
   );
 };

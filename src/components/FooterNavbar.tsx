@@ -21,7 +21,14 @@ const FooterNavbar: React.FC<FooterNavbarProps> = ({
 }) => {
   return (
     <nav
-      className={`gap-2 ${className ? className : ""} flex justify-center py-4`}
+      className={`
+        bg-[var(--nav-background)]
+        backdrop-blur-sm
+        rounded-full
+        gap-2
+        ${className ? className : ""}
+        flex justify-center p-2
+      `}
       aria-label="Main navigation"
     >
       {options.map(({ key, label }) => (
