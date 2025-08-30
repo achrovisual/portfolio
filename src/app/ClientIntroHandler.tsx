@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import IntroAnimation from "../components/IntroAnimation";
-import HeaderNavbar from "../components/HeaderNavbar";
 import MobileComingSoon from "../components/MobileComingSoon";
 import {
   isMobile as deviceIsMobile,
@@ -19,8 +18,6 @@ export default function ClientIntroHandler({
   const [showIntro, setShowIntro] = useState(true);
   const [contentPrep, setContentPrep] = useState(false);
   const [shouldShowMobileUI, setShouldShowMobileUI] = useState(false);
-  const [showHeaderNavbar, setShowHeaderNavbar] = useState(false);
-
   const shouldShowMobileUIRef = useRef(shouldShowMobileUI);
 
   useEffect(() => {
@@ -45,7 +42,6 @@ export default function ClientIntroHandler({
     const checkIsMobileView = () => {
       const isMobileView =
         (deviceIsMobile && !deviceIsTablet) || window.innerWidth < 768;
-
       clientLogger.debug("Checking mobile view status.", {
         deviceIsMobile,
         deviceIsTablet,
@@ -83,11 +79,9 @@ export default function ClientIntroHandler({
 
   const handleAnimationComplete = () => {
     setShowIntro(false);
-    setShowHeaderNavbar(true);
     setContentPrep(true);
     clientLogger.info("Intro animation complete.", {
       showIntro: false,
-      showHeaderNavbar: true,
       contentPrep: true,
     });
 
@@ -124,34 +118,24 @@ export default function ClientIntroHandler({
           <MobileComingSoon />
         </div>
       ) : (
-        <>
-          <HeaderNavbar
-            className={`
-              fixed top-0 left-0 w-full z-50
-              transition-transform duration-700 ease-in-out
-              ${showHeaderNavbar ? "translate-y-0" : "-translate-y-full"}
-            `}
-          />
-
-          <div
-            className={`
-              antialiased flex flex-col h-screen min-w-[1024px]
-              transition-opacity duration-500 ease-in-out
-              ${
-                showIntro || !contentPrep
-                  ? "opacity-0 pointer-events-none"
-                  : "opacity-100"
-              }
-              ${!showIntro ? "delay-100" : ""}
-            `}
-          >
-            <main className="flex flex-col flex-grow overflow-x-hidden pt-[5.5rem]">
-              <div className="mx-auto max-w-[1440px] w-full h-full flex flex-col">
-                {children}
-              </div>
-            </main>
-          </div>
-        </>
+        <div
+          className={`
+            antialiased flex flex-col h-screen min-w-[1024px]
+            transition-opacity duration-500 ease-in-out
+            ${
+              showIntro || !contentPrep
+                ? "opacity-0 pointer-events-none"
+                : "opacity-100"
+            }
+            ${!showIntro ? "delay-100" : ""}
+          `}
+        >
+          <main className="flex flex-col flex-grow overflow-x-hidden">
+            <div className="mx-auto max-w-[1440px] w-full h-full flex flex-col">
+              {children}
+            </div>
+          </main>
+        </div>
       )}
     </>
   );

@@ -6,6 +6,7 @@ import Gallery from "./Gallery";
 import GitFeed from "./GitFeed";
 import ContentScroller from "./ContentScroller";
 import Notes from "./Notes";
+import HeaderNavbar from "./HeaderNavbar";
 
 import { DailyActivity } from "../api/github/route";
 
@@ -104,12 +105,15 @@ const DynamicPageContent: React.FC<DynamicPageContentProps> = ({
   };
 
   return (
-    <div className="relative h-full text-neutral-900 dark:text-neutral-100">
-      <div className="absolute inset-0 overflow-y-auto">{renderContent()}</div>
+    <div className="relative h-full w-full text-neutral-900 dark:text-neutral-100">
+      <HeaderNavbar className="absolute top-0 left-0 w-full z-10" />
+      <div className="absolute inset-0 overflow-y-auto pt-[5.5rem] pb-[5rem]">
+        {renderContent()}
+      </div>
       <FooterNavbar
         activePage={activePage}
         setActivePage={setActivePage}
-        className="absolute bottom-0 w-full"
+        className="absolute bottom-0 w-full z-10"
       />
     </div>
   );
