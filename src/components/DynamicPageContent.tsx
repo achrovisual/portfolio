@@ -107,7 +107,7 @@ const DynamicPageContent: React.FC<DynamicPageContentProps> = ({
   return (
     <div className="relative h-full w-full text-neutral-900 dark:text-neutral-100">
       <HeaderNavbar className="absolute top-0 left-0 w-full z-10" />
-      <div className="absolute inset-0 overflow-y-auto pt-[5.5rem] pb-[5rem]">
+      <div className="absolute inset-0 overflow-y-auto pt-[5.5rem] pb-[4.5rem]">
         {renderContent()}
       </div>
       <FooterNavbar

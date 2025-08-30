@@ -25,7 +25,7 @@ const Gallery: React.FC<GalleryProps> = ({ galleryItemsData, className }) => {
   }, [galleryItemsData.length]);
 
   return (
-    <div className={`flex items-center justify-center p-4 ${className}`}>
+    <div className={`flex items-center justify-center px-4 ${className}`}>
       {galleryItemsData.length > 0 ? (
         <div
           className="relative overflow-hidden rounded-4xl w-full h-full"
