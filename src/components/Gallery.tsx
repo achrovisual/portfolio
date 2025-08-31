@@ -3,15 +3,10 @@
 import React, { useState, useEffect } from "react";
 import GalleryItem from "./GalleryItem";
 
-interface GalleryItemData {
-  id: number;
-  imageUrl: string;
-  primaryInfo: { title: string; subtitle: string };
-  secondaryInfo: { title: string; subtitle: string };
-}
+import { GalleryItem as GalleryItemType } from "../types/gallery";
 
 interface GalleryProps {
-  galleryItemsData: GalleryItemData[];
+  galleryItemsData: GalleryItemType[];
   className?: string;
 }
 
@@ -30,7 +25,7 @@ const Gallery: React.FC<GalleryProps> = ({ galleryItemsData, className }) => {
   }, [galleryItemsData.length]);
 
   return (
-    <div className={`flex items-center justify-center p-4 ${className}`}>
+    <div className={`flex items-center justify-center px-4 ${className}`}>
       {galleryItemsData.length > 0 ? (
         <div
           className="relative overflow-hidden rounded-4xl w-full h-full"

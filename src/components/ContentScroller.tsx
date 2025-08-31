@@ -3,12 +3,7 @@
 import React from "react";
 import Button from "./Button";
 
-interface ScrollerItem {
-  title: string;
-  icon?: string;
-  imageUrl?: string;
-  iconColor?: string;
-}
+import { ScrollerItem } from "../types/scroller";
 
 interface ContentScrollerProps {
   items: ScrollerItem[];

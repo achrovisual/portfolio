@@ -6,6 +6,9 @@ import DynamicPageContent from "../components/DynamicPageContent";
 import logger from "@/lib/logger";
 import { getCorrelationId } from "@/lib/correlation";
 
+import { Note } from "../types/note";
+import { ScrollerItem } from "../types/scroller";
+
 export const metadata: Metadata = {
   title: "Home - Eugenio Pastoral",
 };
@@ -46,7 +49,90 @@ export default async function Home() {
     });
   }
 
-  const skillsData = [
+  const notesData: Note[] = [
+    {
+      id: "intro-to-devops",
+      title: "An Intro to DevOps",
+      date: "2024-07-25",
+      summary:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      tags: ["DevOps", "Software Engineering", "Introduction"],
+    },
+    {
+      id: "my-first-docker-container",
+      title: "My First Docker Container",
+      date: "2024-08-01",
+      summary:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      content:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      tags: ["Docker", "Containerization", "DevOps"],
+    },
+    {
+      id: "getting-started-with-nextjs",
+      title: "Getting Started with Next.js",
+      date: "2024-08-10",
+      summary:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      content:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      tags: ["Next.js", "Web Development", "React"],
+    },
+    {
+      id: "principles-of-sre",
+      title: "The Core Principles of SRE",
+      date: "2024-08-15",
+      summary:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+      content:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+      tags: ["SRE", "Reliability", "Operations", "Principles"],
+    },
+    {
+      id: "platform-engineering-for-scale",
+      title: "Platform Engineering for Scalability",
+      date: "2024-08-20",
+      summary:
+        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      content:
+        "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+      tags: ["Platform Engineering", "Scalability", "Infrastructure"],
+    },
+    {
+      id: "ci-cd-pipelines-with-github-actions",
+      title: "Building CI/CD Pipelines with GitHub Actions",
+      date: "2024-08-22",
+      summary:
+        "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+      content:
+        "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.",
+      tags: ["CI/CD", "GitHub Actions", "Automation", "DevOps"],
+    },
+    {
+      id: "monitoring-and-observability",
+      title: "Monitoring and Observability in Modern Systems",
+      date: "2024-08-25",
+      summary:
+        "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+      content:
+        "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      tags: ["SRE", "Observability", "Monitoring", "Systems"],
+    },
+    {
+      id: "terraform-best-practices",
+      title: "Terraform Best Practices for Infrastructure as Code",
+      date: "2024-08-27",
+      summary:
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+      content:
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+      tags: ["Terraform", "IaC", "DevOps", "Infrastructure"],
+    },
+  ];
+
+  const skillsData: ScrollerItem[] = [
     // Cloud & DevOps
     { title: "Amazon Web Services", icon: "simple-icons:amazonwebservices" },
     { title: "Docker", icon: "simple-icons:docker" },
@@ -100,6 +186,7 @@ export default async function Home() {
       errorFetchingGitActivity={errorFetchingGitActivity}
       skillsData={skillsData}
       skillTags={skillTags}
+      notesData={notesData}
     />
   );
 }

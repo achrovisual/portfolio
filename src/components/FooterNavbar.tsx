@@ -16,10 +16,21 @@ const FooterNavbar: React.FC<FooterNavbarProps> = ({
     { key: "photos", label: "Photos" },
     { key: "info", label: "Info" },
     { key: "works", label: "Works" },
+    { key: "notes", label: "Notes" },
   ],
 }) => {
   return (
-    <div className={`gap-2 ${className} flex justify-center py-4`}>
+    <nav
+      className={`
+        bg-[var(--nav-background)]
+        backdrop-blur-sm
+        rounded-full
+        gap-2
+        ${className ? className : ""}
+        flex justify-center p-2
+      `}
+      aria-label="Main navigation"
+    >
       {options.map(({ key, label }) => (
         <NavLink
           key={key}
@@ -28,7 +39,7 @@ const FooterNavbar: React.FC<FooterNavbarProps> = ({
           onClick={() => setActivePage(key)}
         />
       ))}
-    </div>
+    </nav>
   );
 };
 

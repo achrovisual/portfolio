@@ -4,10 +4,16 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --button-background: #e7e5e4; /* stone-200/80 */
+  --button-background: #f5f5f5; /* neutral-100 */
+  --nav-background: #a3a3a3; /* neutral-400 */
   --button-text-title: #000000; /* black */
   --button-text-subtitle: #6b7280; /* gray-600 */
-  --gallery-info-background: rgba(245, 245, 244, 0.5); /* stone-100/50 */
+  --gallery-info-background: rgba(
+    245,
+    245,
+    244,
+    0.5
+  ); /* neutral-100 with 50% opacity */
   --gallery-info-text-title: #000000; /* black */
   --gallery-info-text-subtitle: #6b7280; /* gray-600 */
 
@@ -28,12 +34,23 @@
     /* These values will apply if no 'html.dark' or 'html.light' class is present */
     --background: #0a0a0a;
     --foreground: #ededed;
-    --button-background: rgba(41, 37, 36, 0.65);
+    --button-background: rgba(
+      41,
+      37,
+      36,
+      0.65
+    ); /* stone-900 with 65% opacity */
+    --nav-background: rgba(41, 37, 36, 0.65); /* stone-900 with 65% opacity */
     --button-text-title: #ffffff;
-    --button-text-subtitle: #a0a0a0;
-    --gallery-info-background: rgba(41, 37, 36, 0.65);
+    --button-text-subtitle: #a0a0a0; /* neutral-400 */
+    --gallery-info-background: rgba(
+      41,
+      37,
+      36,
+      0.65
+    ); /* stone-900 with 65% opacity */
     --gallery-info-text-title: #ffffff;
-    --gallery-info-text-subtitle: #a0a0a0;
+    --gallery-info-text-subtitle: #a0a0a0; /* neutral-400 */
 
     --color-green-status: #34c759; /* Consistent green for dark mode */
     --color-orange-status: #ff9500; /* Consistent orange for dark mode */
@@ -44,12 +61,18 @@
 html.dark {
   --background: #0a0a0a;
   --foreground: #ededed;
-  --button-background: rgba(41, 37, 36, 0.65);
+  --button-background: rgba(41, 37, 36, 0.65); /* stone-900 with 65% opacity */
+  --nav-background: rgba(41, 37, 36, 0.65); /* stone-900 with 65% opacity */
   --button-text-title: #ffffff;
-  --button-text-subtitle: #a0a0a0;
-  --gallery-info-background: rgba(41, 37, 36, 0.65);
+  --button-text-subtitle: #a0a0a0; /* neutral-400 */
+  --gallery-info-background: rgba(
+    41,
+    37,
+    36,
+    0.65
+  ); /* stone-900 with 65% opacity */
   --gallery-info-text-title: #ffffff;
-  --gallery-info-text-subtitle: #a0a0a0;
+  --gallery-info-text-subtitle: #a0a0a0; /* neutral-400 */
 
   --color-green-status: #34c759;
   --color-orange-status: #ff9500;
@@ -59,12 +82,28 @@ html.dark {
 html.light {
   --background: #ffffff;
   --foreground: #171717;
-  --button-background: rgba(245, 245, 244, 0.65);
+  --button-background: rgba(
+    245,
+    245,
+    244,
+    0.65
+  ); /* neutral-100 with 65% opacity */
+  --nav-background: rgba(
+    212,
+    212,
+    212,
+    0.65
+  ); /* neutral-300 with 65% opacity */
   --button-text-title: #000000;
-  --button-text-subtitle: #6b7280;
-  --gallery-info-background: rgba(245, 245, 244, 0.65);
+  --button-text-subtitle: #6b7280; /* gray-600 */
+  --gallery-info-background: rgba(
+    245,
+    245,
+    244,
+    0.65
+  ); /* neutral-100 with 65% opacity */
   --gallery-info-text-title: #000000;
-  --gallery-info-text-subtitle: #6b7280;
+  --gallery-info-text-subtitle: #6b7280; /* gray-600 */
 
   --color-green-status: #34c759;
   --color-orange-status: #ff9500;
