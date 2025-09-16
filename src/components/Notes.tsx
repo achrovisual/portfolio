@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 import { Note } from "../types/note";
 
@@ -54,7 +57,12 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
           </p>
           {renderTags(selectedNote.tags)}
           <div className="prose dark:prose-invert text-neutral-700 dark:text-neutral-300 mt-4">
-            <p>{selectedNote.content}</p>
+            <ReactMarkdown
+              children={selectedNote.content}
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+              className="markdown-content"
+            />
           </div>
         </div>
       </div>
