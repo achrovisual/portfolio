@@ -55,9 +55,41 @@ export default async function Home() {
       title: "An Intro to DevOps",
       date: "2024-07-25",
       summary:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "An overview of the core philosophy, culture, and key tools in the DevOps world.",
+      content: `
+# DevOps: Bridging Development and Operations
+
+**DevOps** is a set of practices that combines software development (Dev) and IT operations (Ops). The goal is to shorten the systems development life cycle and provide continuous delivery with high software quality.
+
+## Key Principles
+
+1.  **Culture**: Focus on collaboration and communication.
+2.  **Automation**: Automate repetitive tasks.
+3.  **Lean**: Deliver fast and small changes.
+
+### Code Example
+
+We often use a \`Dockerfile\` to package applications:
+
+\`\`\`dockerfile
+# Use a lightweight Node.js image
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
+\`\`\`
+
+## Task List
+
+- [x] Install Docker
+- [ ] Write a CI/CD pipeline
+- [ ] Monitor production logs
+
+For more details, check out the [DevOps Handbook](https://www.oreilly.com/library/view/the-devops-handbook/9781491919171/).
+      `,
       tags: ["DevOps", "Software Engineering", "Introduction"],
     },
     {
