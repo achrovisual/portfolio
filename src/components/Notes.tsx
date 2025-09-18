@@ -61,7 +61,6 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
               children={selectedNote.content}
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]}
-              className="markdown-content"
             />
           </div>
         </div>
