@@ -59,6 +59,8 @@ export default async function Home() {
       content: `
 # DevOps: Bridging Development and Operations
 
+![sample](/images/001.jpg)
+
 **DevOps** is a set of practices that combines software development (Dev) and IT operations (Ops). The goal is to shorten the systems development life cycle and provide continuous delivery with high software quality.
 
 ## Key Principles
