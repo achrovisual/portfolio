@@ -61,6 +61,14 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
               children={selectedNote.content}
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]}
+              components={{
+                img: ({ node, ...props }) => (
+                  <img
+                    {...props}
+                    className="rounded-lg"
+                  />
+                ),
+              }}
             />
           </div>
         </div>
