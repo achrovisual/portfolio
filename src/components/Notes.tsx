@@ -3,12 +3,33 @@ import { Icon } from "@iconify/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
 
 import { Note } from "../types/note";
 
 interface NotesProps {
   notesData: Note[];
 }
+
+const safeSchema = {
+  ...rehypeSanitize.defaultSchema,
+  tagNames: [...(rehypeSanitize.defaultSchema.tagNames || []), "iframe"],
+  attributes: {
+    ...(rehypeSanitize.defaultSchema.attributes || {}),
+    iframe: [
+      "src",
+      "title",
+      "width",
+      "height",
+      "frameborder",
+      [
+        "allow",
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+      ],
+      "allowfullscreen",
+    ],
+  },
+};
 
 const Notes: React.FC<NotesProps> = ({ notesData }) => {
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
@@ -60,13 +81,10 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
             <ReactMarkdown
               children={selectedNote.content}
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw]}
+              rehypePlugins={[rehypeRaw, [rehypeSanitize, safeSchema]]}
               components={{
                 img: ({ node, ...props }) => (
-                  <img
-                    {...props}
-                    className="rounded-lg"
-                  />
+                  <img {...props} className="rounded-lg my-4" />
                 ),
               }}
             />
