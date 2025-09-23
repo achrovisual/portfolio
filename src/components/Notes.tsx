@@ -79,7 +79,6 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
           {renderTags(selectedNote.tags)}
           <div className="prose dark:prose-invert text-neutral-700 dark:text-neutral-300 mt-4">
             <ReactMarkdown
-              children={selectedNote.content}
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw, [rehypeSanitize, safeSchema]]}
               components={{
@@ -87,7 +86,9 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
                   <img {...props} className="rounded-lg my-4" />
                 ),
               }}
-            />
+            >
+              {selectedNote.content}
+            </ReactMarkdown>
           </div>
         </div>
       </div>
