@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 
 import { Note } from "../types/note";
 
@@ -11,11 +11,13 @@ interface NotesProps {
   notesData: Note[];
 }
 
+const baseSchema = defaultSchema || {};
+
 const safeSchema = {
-  ...rehypeSanitize.defaultSchema,
-  tagNames: [...(rehypeSanitize.defaultSchema.tagNames || []), "iframe"],
+  ...baseSchema,
+  tagNames: [...(baseSchema.tagNames || []), "iframe"],
   attributes: {
-    ...(rehypeSanitize.defaultSchema.attributes || {}),
+    ...(baseSchema.attributes || {}),
     iframe: [
       "src",
       "title",
