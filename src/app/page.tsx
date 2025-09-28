@@ -13,6 +13,16 @@ export const metadata: Metadata = {
   title: "Home - Eugenio Pastoral",
 };
 
+/**
+ * Render the Home page, composing gallery, GitHub activity, skills, and notes content.
+ *
+ * Renders a page component populated with fetched gallery and GitHub activity data
+ * alongside predefined skills, skill tags, and notes. Fetch error flags are exposed
+ * to the rendered component so the UI can display fallback states.
+ *
+ * @returns The JSX element for the Home page populated with dynamic and static content,
+ *          including flags that indicate whether data fetching for gallery or GitHub activity failed.
+ */
 export default async function Home() {
   const correlationId = await getCorrelationId();
   const pageLogger = logger.child({ correlationId, module: "HomePage" });
