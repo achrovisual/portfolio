@@ -1,11 +1,37 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 
 import { Note } from "../types/note";
 
 interface NotesProps {
   notesData: Note[];
 }
+
+const baseSchema = defaultSchema || {};
+
+const safeSchema = {
+  ...baseSchema,
+  tagNames: [...(baseSchema.tagNames || []), "iframe"],
+  attributes: {
+    ...(baseSchema.attributes || {}),
+    iframe: [
+      "src",
+      "title",
+      "width",
+      "height",
+      "frameborder",
+      [
+        "allow",
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+      ],
+      "allowfullscreen",
+    ],
+  },
+};
 
 const Notes: React.FC<NotesProps> = ({ notesData }) => {
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
@@ -54,7 +80,17 @@ const Notes: React.FC<NotesProps> = ({ notesData }) => {
           </p>
           {renderTags(selectedNote.tags)}
           <div className="prose dark:prose-invert text-neutral-700 dark:text-neutral-300 mt-4">
-            <p>{selectedNote.content}</p>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw, [rehypeSanitize, safeSchema]]}
+              components={{
+                img: ({ node, ...props }) => (
+                  <img {...props} className="rounded-lg my-4" />
+                ),
+              }}
+            >
+              {selectedNote.content}
+            </ReactMarkdown>
           </div>
         </div>
       </div>
