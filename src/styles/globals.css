@@ -13,6 +13,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-lexend), sans-serif;
+  --font-serif: var(--font-source-serif), serif;
   --color-pill: var(--pill);
   --color-pill-hover: var(--pill-hover);
   --color-pill-text: var(--pill-text);
