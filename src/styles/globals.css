@@ -22,7 +22,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--color-neutral-950);
-    --foreground: var(--color-neutral-100);
+    --foreground: var(--color-neutral-50);
     --pill: var(--color-neutral-700);
     --pill-hover: var(--color-neutral-900);
     --pill-text: var(--color-neutral-50);

@@ -1,5 +1,6 @@
 import "boxicons/css/boxicons.min.css";
 import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import "../styles/globals.css";
@@ -19,7 +20,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${lexend.variable} h-full antialiased`}>
       <Header />
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col">{children}</body>
+      <Footer />
     </html>
   );
 }
