@@ -1,15 +1,13 @@
+import "boxicons/css/boxicons.min.css";
+import Header from "@/components/layout/header";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lexend } from "next/font/google";
 import "../styles/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const lexend = Lexend({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-lexend",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,11 +17,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${lexend.variable} h-full antialiased`}>
+      <Header />
+      <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
 }
