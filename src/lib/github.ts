@@ -1,11 +1,4 @@
-interface CommitInfo {
-  sha: string;
-  message: string;
-  date: string;
-  additions: number;
-  deletions: number;
-  relativeTime: string;
-}
+import type { CommitInfo } from "@/types/github";
 
 const FALLBACK: CommitInfo = {
   sha: "unknown",
@@ -29,7 +22,7 @@ export async function getLastCommit(): Promise<CommitInfo> {
 
   const headers: HeadersInit = {
     Accept: "application/vnd.github+json",
-    "User-Agent": "achrovisual-portfolio",
+    "User-Agent": "${repo}-portfolio",
   };
   if (process.env.GITHUB_TOKEN) {
     headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
