@@ -1,32 +1,46 @@
-name: Check Pull Request
+name: PR Validation
+
 on:
   pull_request:
-    branches:
-      - main
-      - develop
+    branches: [main, develop]
 
 jobs:
-  validate-pr-branches:
+  validate-branch-name:
     runs-on: ubuntu-latest
     steps:
-      - name: Check branch and target for PR
+      - name: Check branch naming convention
         run: |
           branch_name=${GITHUB_HEAD_REF}
           echo "Pull Request Branch: $branch_name"
 
-          target_branch=${GITHUB_BASE_REF}
-          echo "Target Branch: $target_branch"
-
-          regex="^(feature|fix|chore)/+.*$"
+          regex="^(feature|fix|chore)/.+$"
 
           if [[ "$branch_name" =~ $regex ]]; then
-            echo "Pull request branch passes the branch name requirement."
-            if [[ "$target_branch" != "main" && "$target_branch" != "develop" ]]; then
-              echo "Error: Pull requests with 'feature/', 'fix/', or 'chore/' prefixes must target 'main' or 'develop'."
-              exit 1
-            fi
+            echo "Branch name passes the naming requirement."
           else
-            echo "Error: Pull request branch name must be prefixed with 'feature/', 'fix/', or 'chore/'."
+            echo "::error::Branch name must be prefixed with 'feature/', 'fix/', or 'chore/'."
             exit 1
           fi
         shell: bash
+
+  check-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify CHANGELOG.md was updated
+        run: |
+          git fetch origin ${{ github.base_ref }} --depth=1
+          if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "^CHANGELOG.md$"; then
+            echo "CHANGELOG.md was updated — check passed."
+          else
+            if [ "${{ github.base_ref }}" = "main" ]; then
+              echo "::error::CHANGELOG.md was not updated in this PR. Add an entry under [Unreleased] before merging to main."
+              exit 1
+            else
+              echo "::warning::CHANGELOG.md wasn't touched in this PR. Consider adding a line under [Unreleased] if this change is user-facing."
+            fi
+          fi
