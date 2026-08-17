@@ -136,6 +136,7 @@ export default function Hero() {
   const animatedRemaining = { current: displayed.length };
 
   const [hoveredText, setHoveredText] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const loopItems = [
     ...TECH_ITEMS,
     ...TECH_ITEMS,
@@ -210,19 +211,28 @@ export default function Hero() {
             <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
               {loopItems.map((item, i) => {
                 const IconComponent = item.icon;
+                const isActive = activeIndex === i;
                 return (
                   <button
                     key={i}
                     type="button"
-                    onMouseEnter={() => setHoveredText(`${item.text}`)}
-                    onMouseLeave={() => setHoveredText(null)}
+                    onPointerEnter={() => {
+                      setHoveredText(item.text);
+                      setActiveIndex(i);
+                    }}
+                    onPointerLeave={() => {
+                      setHoveredText(null);
+                      setActiveIndex(null);
+                    }}
                     aria-label={item.name}
-                    className="group flex items-center justify-center w-28 h-28 mx-3 rounded-lg shrink-0
-                      border border-dashed border-neutral-300 dark:border-neutral-700
-                      hover:border-neutral-900 dark:hover:border-neutral-100
-                      transition-colors cursor-pointer"
+                    className={`flex items-center justify-center w-28 h-28 mx-3 rounded-lg shrink-0
+                      border border-dashed transition-colors cursor-pointer
+                      ${isActive ? "border-neutral-900 dark:border-neutral-100" : "border-neutral-300 dark:border-neutral-700"}`}
                   >
-                    <IconComponent className="w-10 h-10 fill-current text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-neutral-100 transition-colors" />
+                    <IconComponent
+                      className={`w-10 h-10 fill-current transition-colors
+                        ${isActive ? "text-neutral-900 dark:text-neutral-100" : "text-neutral-300 dark:text-neutral-700"}`}
+                    />
                   </button>
                 );
               })}
