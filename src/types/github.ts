@@ -1,4 +1,4 @@
-interface CommitInfo {
+export interface CommitInfo {
   sha: string;
   message: string;
   date: string;
