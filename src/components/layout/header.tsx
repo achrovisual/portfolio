@@ -5,6 +5,10 @@ import Image from "next/image";
 export default async function Header() {
   const commit = await getLastCommit();
 
+  const githubUrl = process.env.NEXT_PUBLIC_GITHUB_URL ?? "#";
+  const linkedinUrl = process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "#";
+  const email = process.env.NEXT_PUBLIC_EMAIL ?? "";
+
   return (
     <header className="flex items-center justify-between px-8 py-4 text-sm">
       <div className="flex flex-row items-start content-stretch justify-start gap-4">
@@ -26,13 +30,29 @@ export default async function Header() {
         <div className="flex flex-row items-center bg-pill p-1 rounded-full">
           <div className="flex flex-row items-center h-9 justify-start content-stretch">
             <a
-              href="https://github.com/achrovisual"
+              href={githubUrl}
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              className="flex items-center justify-center w-9 h-9 rounded-full text-pill-text hover:bg-pill-hover transition-colors"
+              className="flex items-center justify-center w-9 h-9 rounded-full text-pill-text hover:bg-pill-hover transition-colors text-lg"
             >
-              <SiGithub size={18} />
+              <i className="bx bxl-github" />
+            </a>
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="flex items-center justify-center w-9 h-9 rounded-full text-pill-text hover:bg-pill-hover transition-colors text-lg"
+            >
+              <i className="bx bxl-linkedin" />
+            </a>
+            <a
+              href={email ? `mailto:${email}` : "#"}
+              aria-label="Email"
+              className="flex items-center justify-center w-9 h-9 rounded-full text-pill-text hover:bg-pill-hover transition-colors text-lg"
+            >
+              <i className="bx bx-envelope" />
             </a>
           </div>
         </div>
