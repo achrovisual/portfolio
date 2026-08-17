@@ -38,66 +38,80 @@ function renderSegments(
 }
 
 const TECH_ITEMS: TechItem[] = [
-  { name: "AWS", text: "I can deploy infrastructure on AWS", icon: "bxl-aws" },
   {
-    name: "Django",
-    text: "I can build backends with Django",
-    icon: "bxl-django",
+    name: "AWS",
+    text: "Provision and manage high-availability cloud infrastructure",
+    icon: "bxl-aws",
   },
-  { name: "MySQL", text: "I can design schemas in MySQL", icon: "bxl-my-sql" },
+  {
+    name: "Kubernetes",
+    text: "Orchestrate containerized applications and workloads",
+    icon: "bxl-kubernetes",
+  },
+  {
+    name: "Terraform",
+    text: "Provision multi-tier cloud infrastructure using Infrastructure as Code",
+    icon: "bxl-terraform",
+  },
   {
     name: "GitHub",
-    text: "I can automate CI/CD with GitHub Actions",
+    text: "Automate CI/CD pipelines and deployment workflows",
     icon: "bxl-github",
   },
   {
     name: "Python",
-    text: "I can script and automate with Python",
+    text: "Develop backend services and infrastructure automation",
     icon: "bxl-python",
   },
   {
-    name: "FastAPI",
-    text: "I can build APIs with FastAPI",
-    icon: "bxl-fastapi",
-  },
-  {
     name: "Bash",
-    text: "I can automate workflows with Bash",
+    text: "Script operational workflows and system tasks",
     icon: "bxl-bash",
   },
   {
-    name: "Cloudflare",
-    text: "I can manage domains using Cloudflare",
-    icon: "bxl-cloudflare",
+    name: "Django",
+    text: "Architect secure, full-stack web applications",
+    icon: "bxl-django",
+  },
+  {
+    name: "FastAPI",
+    text: "Build high-performance, asynchronous REST APIs",
+    icon: "bxl-fastapi",
   },
   {
     name: "Next.js",
-    text: "I can build frontends with Next.js",
+    text: "Engineer modern, responsive web interfaces",
     icon: "bxl-next-js",
   },
   {
     name: "Tailwind",
-    text: "I can style interfaces with Tailwind",
+    text: "Design scalable, utility-first UI components",
     icon: "bxl-tailwind-css",
   },
   {
     name: "PostgreSQL",
-    text: "I can design schemas in PostgreSQL",
+    text: "Design relational database schemas and queries",
     icon: "bxl-postgresql",
   },
   {
-    name: "Kubernetes",
-    text: "I can orchestrate containers with Kubernetes",
-    icon: "bxl-kubernetes",
+    name: "MySQL",
+    text: "Manage relational data structures and storage",
+    icon: "bxl-my-sql",
+  },
+  {
+    name: "Cloudflare",
+    text: "Configure DNS, edge security, and performance routing",
+    icon: "bxl-cloudflare",
   },
   {
     name: "Figma",
-    text: "I can design interfaces in Figma",
+    text: "Prototype interactive user interfaces and design systems",
     icon: "bxl-figma",
   },
 ];
 
-const DEFAULT_MARQUEE_TEXT = "Hover an icon to see what I can do";
+const DEFAULT_MARQUEE_TEXT =
+  "Explore my skills and tech stack by hovering over a badge";
 
 export default function Hero() {
   const displayed = useTypewriter(FULL_TEXT, 30);
