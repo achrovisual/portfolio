@@ -6,7 +6,7 @@ interface SectionProps {
 export default function Section({ children, className = "" }: SectionProps) {
   return (
     <section
-      className={`h-full w-full snap-start flex items-start px-8 ${className}`}
+      className={`h-full w-full snap-start flex items-stretch px-8 ${className}`}
     >
       {children}
     </section>
