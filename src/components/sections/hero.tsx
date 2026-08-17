@@ -6,6 +6,23 @@ import HeroBadge from "@/components/sections/hero-badge";
 import { useTypewriter } from "@/components/hooks/use-typewriter";
 import type { Segment, TechItem } from "@/types/hero";
 
+import {
+  Aws,
+  Django,
+  MySql,
+  Github,
+  Python,
+  Fastapi,
+  Bash,
+  Cloudflare,
+  NextJs,
+  TailwindCss,
+  Postgresql,
+  Kubernetes,
+  Figma,
+  Terraform,
+} from "@boxicons/react";
+
 const SEGMENTS: Segment[] = [
   { text: "Gino is a DevOps engineer and UI designer who builds " },
   { text: "reliable platforms", underline: true },
@@ -40,78 +57,78 @@ function renderSegments(
 const TECH_ITEMS: TechItem[] = [
   {
     name: "AWS",
-    text: "Provision and manage high-availability cloud infrastructure",
-    icon: "bxl-aws",
+    text: "I can provision and manage high-availability cloud infrastructure with AWS",
+    icon: Aws,
   },
   {
     name: "Kubernetes",
-    text: "Orchestrate containerized applications and workloads",
-    icon: "bxl-kubernetes",
+    text: "I can orchestrate containerized applications and workloads using Kubernetes",
+    icon: Kubernetes,
   },
   {
     name: "Terraform",
-    text: "Provision multi-tier cloud infrastructure using Infrastructure as Code",
-    icon: "bxl-terraform",
+    text: "I can provision multi-tier cloud infrastructure using Terraform as Infrastructure as Code",
+    icon: Terraform,
   },
   {
     name: "GitHub",
-    text: "Automate CI/CD pipelines and deployment workflows",
-    icon: "bxl-github",
+    text: "I can automate CI/CD pipelines and deployment workflows with GitHub Actions",
+    icon: Github,
   },
   {
     name: "Python",
-    text: "Develop backend services and infrastructure automation",
-    icon: "bxl-python",
+    text: "I can develop backend services and infrastructure automation scripts with Python",
+    icon: Python,
   },
   {
     name: "Bash",
-    text: "Script operational workflows and system tasks",
-    icon: "bxl-bash",
+    text: "I can script operational workflows and system tasks using Bash",
+    icon: Bash,
   },
   {
     name: "Django",
-    text: "Architect secure, full-stack web applications",
-    icon: "bxl-django",
+    text: "I can architect secure, full-stack web applications with Django",
+    icon: Django,
   },
   {
     name: "FastAPI",
-    text: "Build high-performance, asynchronous REST APIs",
-    icon: "bxl-fastapi",
+    text: "I can build high-performance, asynchronous REST APIs using FastAPI",
+    icon: Fastapi,
   },
   {
     name: "Next.js",
-    text: "Engineer modern, responsive web interfaces",
-    icon: "bxl-next-js",
+    text: "I can engineer modern, responsive web interfaces with Next.js",
+    icon: NextJs,
   },
   {
     name: "Tailwind",
-    text: "Design scalable, utility-first UI components",
-    icon: "bxl-tailwind-css",
+    text: "I can design scalable, utility-first UI components using Tailwind CSS",
+    icon: TailwindCss,
   },
   {
     name: "PostgreSQL",
-    text: "Design relational database schemas and queries",
-    icon: "bxl-postgresql",
+    text: "I can design relational database schemas and complex queries using PostgreSQL",
+    icon: Postgresql,
   },
   {
     name: "MySQL",
-    text: "Manage relational data structures and storage",
-    icon: "bxl-my-sql",
+    text: "I can manage relational data structures and storage with MySQL",
+    icon: MySql,
   },
   {
     name: "Cloudflare",
-    text: "Configure DNS, edge security, and performance routing",
-    icon: "bxl-cloudflare",
+    text: "I can configure DNS, edge security, and performance routing with Cloudflare",
+    icon: Cloudflare,
   },
   {
     name: "Figma",
-    text: "Prototype interactive user interfaces and design systems",
-    icon: "bxl-figma",
+    text: "I can prototype interactive user interfaces and design systems using Figma",
+    icon: Figma,
   },
 ];
 
 const DEFAULT_MARQUEE_TEXT =
-  "Explore my skills and tech stack by hovering over a badge";
+  "Explore my skills and tech stack by hovering over an icon";
 
 export default function Hero() {
   const displayed = useTypewriter(FULL_TEXT, 30);
@@ -191,23 +208,24 @@ export default function Hero() {
 
           <div className="relative overflow-hidden">
             <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
-              {loopItems.map((item, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onMouseEnter={() => setHoveredText(item.text)}
-                  onMouseLeave={() => setHoveredText(null)}
-                  aria-label={item.name}
-                  className="group flex items-center justify-center w-28 h-28 mx-3 rounded-lg shrink-0
-                    border border-dashed border-neutral-300 dark:border-neutral-700
-                    hover:border-neutral-900 dark:hover:border-neutral-100
-                    transition-colors"
-                >
-                  <i
-                    className={`bx ${item.icon} text-4xl text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-neutral-100 transition-colors`}
-                  />
-                </button>
-              ))}
+              {loopItems.map((item, i) => {
+                const IconComponent = item.icon;
+                return (
+                  <button
+                    key={i}
+                    type="button"
+                    onMouseEnter={() => setHoveredText(`${item.text}`)}
+                    onMouseLeave={() => setHoveredText(null)}
+                    aria-label={item.name}
+                    className="group flex items-center justify-center w-28 h-28 mx-3 rounded-lg shrink-0
+                      border border-dashed border-neutral-300 dark:border-neutral-700
+                      hover:border-neutral-900 dark:hover:border-neutral-100
+                      transition-colors cursor-pointer"
+                  >
+                    <IconComponent className="w-10 h-10 fill-current text-neutral-300 dark:text-neutral-700 group-hover:text-neutral-900 dark:group-hover:text-neutral-100 transition-colors" />
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

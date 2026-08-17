@@ -1,5 +1,4 @@
 import { Lexend, Source_Serif_4 } from "next/font/google";
-import "boxicons/css/boxicons.min.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import "../styles/globals.css";
