@@ -22,7 +22,7 @@ export async function getLastCommit(): Promise<CommitInfo> {
 
   const headers: HeadersInit = {
     Accept: "application/vnd.github+json",
-    "User-Agent": "${repo}-portfolio",
+    "User-Agent": `${repo}-portfolio`,
   };
   if (process.env.GITHUB_TOKEN) {
     headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
@@ -45,10 +45,10 @@ export async function getLastCommit(): Promise<CommitInfo> {
     return {
       sha: data.sha.slice(0, 7),
       message: data.commit.message,
-      date: data.commit.author.date,
+      date: data.commit.committer.date,
       additions: data.stats?.additions ?? 0,
       deletions: data.stats?.deletions ?? 0,
-      relativeTime: formatRelativeTime(data.commit.author.date),
+      relativeTime: formatRelativeTime(data.commit.committer.date),
     };
   } catch (err) {
     console.warn("GitHub fetch failed — using fallback commit info", err);
