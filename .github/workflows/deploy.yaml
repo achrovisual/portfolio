@@ -35,8 +35,8 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          GITHUB_USERNAME: ${{ vars.GITHUB_USERNAME }}
-          GITHUB_REPO: ${{ vars.GITHUB_REPO }}
+          GITHUB_USERNAME: ${{ vars.GH_USERNAME }}
+          GITHUB_REPO: ${{ vars.GH_REPO }}
           GITHUB_TOKEN: ${{ secrets.GH_API_TOKEN }}
           NEXT_PUBLIC_GITHUB_URL: ${{ vars.NEXT_PUBLIC_GITHUB_URL }}
           NEXT_PUBLIC_LINKEDIN_URL: ${{ vars.NEXT_PUBLIC_LINKEDIN_URL }}
