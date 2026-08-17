@@ -32,30 +32,42 @@
 }
 
 html {
+  /* Modern size transition property with graceful fallback for WebKit */
   interpolate-size: allow-keywords;
+  -webkit-text-size-adjust: 100%; /* Prevents text scale orientation bugs on iOS */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased; /* Crisp text rendering in Safari/macOS */
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Marquee Keyframes & Animation */
 @keyframes marquee {
   from {
+    -webkit-transform: translateX(0);
     transform: translateX(0);
   }
   to {
+    -webkit-transform: translateX(-25%);
     transform: translateX(-25%);
   }
 }
 
 .animate-marquee {
+  -webkit-animation: marquee 45s linear infinite;
   animation: marquee 45s linear infinite;
+  -webkit-backface-visibility: hidden; /* Fixes subtle flickering during CSS keyframe loops in WebKit */
+  backface-visibility: hidden;
+  will-change: transform; /* Hardware acceleration boost on Mobile Safari */
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
+    -webkit-animation: none;
     animation: none;
   }
 }
