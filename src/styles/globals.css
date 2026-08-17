@@ -3,7 +3,7 @@
 :root {
   --background: var(--color-neutral-50);
   --foreground: var(--color-neutral-950);
-  --pill: var(--color-neutral-300);
+  --pill: var(--color-neutral-200);
   --pill-hover: var(--color-neutral-100);
   --pill-text: var(--color-neutral-950);
   --pill-text-hover: var(--color-neutral-700);
@@ -27,7 +27,7 @@
     --pill: var(--color-neutral-700);
     --pill-hover: var(--color-neutral-900);
     --pill-text: var(--color-neutral-50);
-    --pill-text-hover: var(--color-neutral-300);
+    --pill-text-hover: var(--color-neutral-200);
   }
 }
 
