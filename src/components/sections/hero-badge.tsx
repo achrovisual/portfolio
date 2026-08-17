@@ -15,7 +15,7 @@ export default function HeroBadge({
 }: HeroBadgeProps) {
   return (
     <div
-      className={`group flex flex-row items-center justify-center gap-0 hover:gap-2 w-14 h-14 hover:w-auto hover:justify-start hover:px-4 rounded-lg shrink-0 overflow-hidden
+      className={`group flex flex-row items-center justify-center gap-0 hover:gap-2 w-14 h-14 hover:w-auto hover:justify-start px-4 rounded-lg shrink-0 overflow-hidden
         transition-all duration-300 ease-out
         ${enabled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}
         ${className}`}
