@@ -45,18 +45,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* WebKit Marquee Keyframes & Animation */
-@-webkit-keyframes marquee {
-  from {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-  to {
-    -webkit-transform: translateX(-25%);
-    transform: translateX(-25%);
-  }
-}
-
+/* Marquee Keyframes & Animation */
 @keyframes marquee {
   from {
     -webkit-transform: translateX(0);
