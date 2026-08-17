@@ -1,6 +1,7 @@
 import { getLastCommit } from "@/lib/github";
 import Image from "next/image";
 import { Github, Linkedin, Envelope } from "@boxicons/react";
+import NavItem from "@/components/ui/nav-item";
 
 export default async function Header() {
   const commit = await getLastCommit();
@@ -29,31 +30,23 @@ export default async function Header() {
         {/* links */}
         <div className="flex flex-row items-center bg-pill p-1 rounded-full">
           <div className="flex flex-row items-center h-9 justify-start content-stretch">
-            <a
+            <NavItem
               href={githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="flex items-center justify-center w-9 h-9 rounded-full text-pill-text hover:bg-pill-hover transition-colors"
-            >
-              <Github className="w-5 h-5 fill-current" />
-            </a>
-            <a
+              ariaLabel="GitHub"
+              icon={<Github className="w-5 h-5 fill-current shrink-0" />}
+              external
+            />
+            <NavItem
               href={linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="flex items-center justify-center w-9 h-9 rounded-full text-pill-text hover:bg-pill-hover transition-colors"
-            >
-              <Linkedin className="w-5 h-5 fill-current" />
-            </a>
-            <a
+              ariaLabel="LinkedIn"
+              icon={<Linkedin className="w-5 h-5 fill-current shrink-0" />}
+              external
+            />
+            <NavItem
               href={email ? `mailto:${email}` : "#"}
-              aria-label="Email"
-              className="flex items-center justify-center w-9 h-9 rounded-full text-pill-text hover:bg-pill-hover transition-colors"
-            >
-              <Envelope className="w-5 h-5 fill-current" />
-            </a>
+              ariaLabel="Email"
+              icon={<Envelope className="w-5 h-5 fill-current shrink-0" />}
+            />
           </div>
         </div>
       </div>

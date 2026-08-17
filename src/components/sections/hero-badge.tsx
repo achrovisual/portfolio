@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 interface HeroBadgeProps {
   emoji: string;
   label: string;
@@ -13,17 +15,25 @@ export default function HeroBadge({
   className = "",
   enabled,
 }: HeroBadgeProps) {
+  const [isActive, setIsActive] = useState(false);
+
   return (
     <div
-      className={`group flex flex-row items-center justify-center gap-0 hover:gap-2 w-14 h-14 hover:w-auto hover:justify-start px-4 rounded-lg shrink-0 overflow-hidden
+      onPointerEnter={() => setIsActive(true)}
+      onPointerLeave={() => setIsActive(false)}
+      className={`flex flex-row items-center h-14 rounded-lg shrink-0 overflow-hidden
         transition-all duration-300 ease-out
+        ${isActive ? "w-auto justify-start px-4 gap-2" : "w-14 justify-center px-0 gap-0"}
         ${enabled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}
         ${className}`}
     >
       <span aria-hidden="true" className="shrink-0 text-2xl">
         {emoji}
       </span>
-      <span className="inline-block w-0 group-hover:w-auto font-medium text-2xl whitespace-nowrap opacity-0 group-hover:opacity-100 overflow-hidden transition-all duration-300">
+      <span
+        className={`inline-block font-medium text-2xl whitespace-nowrap overflow-hidden transition-all duration-300
+          ${isActive ? "w-auto opacity-100" : "w-0 opacity-0"}`}
+      >
         {label}
       </span>
     </div>
