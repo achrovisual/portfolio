@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Lexend, Source_Serif_4 } from "next/font/google";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -14,6 +15,50 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
   display: "swap",
 });
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://achrovisual.com";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "Gino",
+    template: "%s | Gino",
+  },
+  description:
+    "I'm Gino (@achrovisual) — a DevOps engineer and UI designer. I build reliable cloud platforms, bare-metal networks, and intuitive digital experiences.",
+  keywords: [
+    "Gino",
+    "achrovisual",
+    "DevOps",
+    "UI/UX Design",
+    "Platform Engineering",
+    "Kubernetes",
+    "AWS",
+    "Next.js",
+    "Portfolio",
+  ],
+  authors: [{ name: "Gino (@achrovisual)" }],
+  creator: "Gino",
+  openGraph: {
+    title: "Gino",
+    description:
+      "I'm Gino (@achrovisual) — a DevOps engineer and UI designer. I build reliable cloud platforms, bare-metal networks, and intuitive digital experiences.",
+    url: baseUrl,
+    siteName: "Gino Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gino",
+    description:
+      "I'm Gino (@achrovisual) — a DevOps engineer and UI designer. I build reliable cloud platforms, bare-metal networks, and intuitive digital experiences.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function RootLayout({
   children,
