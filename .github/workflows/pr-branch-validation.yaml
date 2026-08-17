@@ -15,18 +15,18 @@ jobs:
           echo "PR Head Branch: $head_ref"
           echo "PR Target Branch: $base_ref"
 
-          # Allow develop -> main PRs without requiring feature/fix/chore prefix
-          if [[ "$base_ref" == "main" && "$head_ref" == "develop" ]]; then
-            echo "Release PR from develop to main detected. Skipping prefix check."
+          # Allow release PRs (develop -> main or release/* -> main) without prefix constraints
+          if [[ "$base_ref" == "main" && ( "$head_ref" == "develop" || "$head_ref" =~ ^release/.+ ) ]]; then
+            echo "Release PR targeting main detected. Skipping prefix check."
             exit 0
           fi
 
-          regex="^(feature|fix|chore)/.+$"
+          regex="^(feature|fix|chore|release)/.+$"
 
           if [[ "$head_ref" =~ $regex ]]; then
             echo "Branch name passes the naming requirement."
           else
-            echo "::error::Branch name must be prefixed with 'feature/', 'fix/', or 'chore/'."
+            echo "::error::Branch name must be prefixed with 'feature/', 'fix/', 'chore/', or 'release/'."
             exit 1
           fi
         shell: bash
