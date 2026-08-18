@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0-beta] - 2026-08-18
+
+### Added
+
+- Locked Hero section headline into a 2D line segment structure to enforce exact 4-line breaks during scaling.
+- Implemented fluid `clamp()` text scaling for responsive headline typography without layout reflow.
+- Added dedicated cursor-blink animation and cursor alignment logic to the typewriter effect.
+- Updated project favicon assets.
+
+### Fixed
+
+- Fixed marquee full-bleed breakout alignment to eliminate right-side layout overflow offset.
+- Resolved text whitespace collapse inside flex line segment containers using `whitespace-pre`.
+
+### Removed
+
+- Removed stale image assets.
+
 ## [0.3.0-beta] - 2026-08-18
 
 ### Added
@@ -45,7 +63,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Footer with version badge (hover reveals build stack)
 - Static export deployment to GitHub Pages via GitHub Actions
 
-[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.3.0-beta...HEAD
+[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.4.0-beta...HEAD
+[0.4.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.3.0-beta...v0.4.0-beta
 [0.3.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.2.0-beta...v0.3.0-beta
 [0.2.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.1.0-beta...v0.2.0-beta
 [0.1.0-beta]: https://github.com/achrovisual/portfolio/releases/tag/v0.1.0-beta
