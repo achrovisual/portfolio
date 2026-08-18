@@ -186,12 +186,12 @@ export default function Hero() {
                 return (
                   <div
                     key={lineIndex}
-                    className="whitespace-nowrap flex shrink"
+                    className="whitespace-nowrap flex items-center shrink"
                   >
                     {renderLineSegments(line, animatedRemaining)}
                     {((isCurrentLine && !isDone) || (isLastLine && isDone)) && (
                       <span
-                        className={`inline-block w-[3px] h-[1em] bg-foreground ml-1 align-middle ${
+                        className={`inline-block w-[3px] h-[1em] bg-foreground ml-1 ${
                           isDone ? "animate-pulse" : ""
                         }`}
                         aria-hidden="true"
