@@ -11,8 +11,8 @@ export default async function Header() {
   const email = process.env.NEXT_PUBLIC_EMAIL ?? "";
 
   return (
-    <header className="flex items-center justify-between px-8 py-4 text-sm">
-      <div className="flex flex-row items-start content-stretch justify-start gap-4">
+    <header className="flex items-center justify-between px-4 md:px-8 py-4 text-sm">
+      <div className="flex flex-row items-start content-stretch justify-between grow md:justify-start gap-4">
         {/* avatar */}
         <div className="flex flex-row items-center bg-pill p-1 rounded-full">
           <div className="flex flex-row items-center h-9 pl-1 justify-start content-stretch">
@@ -52,7 +52,7 @@ export default async function Header() {
       </div>
 
       {/* github commit info */}
-      <div className="flex flex-row items-center bg-pill p-1 rounded-full">
+      <div className="hidden md:flex flex-row items-center bg-pill p-1 rounded-full">
         <div className="flex items-center h-9 gap-2 px-3 font-mono text-xs text-pill-text">
           <span>{commit.sha}</span>
           <span>·</span>
