@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0-beta] - 2026-08-18
+
+### Added
+
+- Responsive mobile layout support across core portfolio components.
+
+### Fixed
+
+- Updated Header and Footer padding (`px-4 md:px-8`) and hid GitHub commit info on mobile displays.
+- Made Hero section headline typography scaling responsive (`text-2xl md:text-6xl`) with adjusted element margins.
+- Scaled HeroBadge dimensions (`h-10 md:h-14`) and font sizes dynamically for small viewports and touch targets.
+- Resized tech stack marquee tile cards (`w-24 h-24 md:w-28 md:h-28`) and icons (`w-8 h-8 md:w-10 md:h-10`) for mobile screen bounds.
+- Replaced non-standard `text-md` utility with valid Tailwind `text-base` class in the Hero marquee text snippet.
+
 ## [0.2.0-beta] - 2026-08-17
 
 ### Added
@@ -31,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Footer with version badge (hover reveals build stack)
 - Static export deployment to GitHub Pages via GitHub Actions
 
-[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.2.0-beta...HEAD
+[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.3.0-beta...HEAD
+[0.3.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.2.0-beta...v0.3.0-beta
 [0.2.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.1.0-beta...v0.2.0-beta
 [0.1.0-beta]: https://github.com/achrovisual/portfolio/releases/tag/v0.1.0-beta
