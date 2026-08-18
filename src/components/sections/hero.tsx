@@ -192,7 +192,7 @@ export default function Hero() {
                     {((isCurrentLine && !isDone) || (isLastLine && isDone)) && (
                       <span
                         className={`inline-block w-[3px] h-[1em] bg-foreground ml-1 ${
-                          isDone ? "animate-pulse" : ""
+                          isDone ? "animate-cursor-blink" : ""
                         }`}
                         aria-hidden="true"
                       />
