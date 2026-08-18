@@ -160,19 +160,22 @@ export default function Hero() {
         <div className="flex flex-col gap-2">
           {/* Invisible full-text layer — reserves final height/line-wrapping upfront */}
           <div
-            className="font-serif text-2xl md:text-6xl leading-tight relative"
+            className="font-serif leading-tight relative"
+            style={{ fontSize: "clamp(1.1rem, 4vw, 3rem)" }}
             aria-hidden="true"
           >
             <div className="invisible">
               {SEGMENT_LINES.map((line, lineIndex) => (
-                <div key={lineIndex} className="whitespace-nowrap flex shrink">
+                <div key={lineIndex} className="whitespace-pre flex shrink">
                   {renderLineSegments(line, invisibleRemaining)}
                 </div>
               ))}
             </div>
 
-            {/* Animated layer — absolutely positioned over the reserved space */}
-            <h1 className="absolute inset-0 font-serif text-2xl md:text-6xl leading-tight">
+            <h1
+              className="absolute inset-0 font-serif leading-tight"
+              style={{ fontSize: "clamp(1.1rem, 4vw, 3rem)" }}
+            >
               {SEGMENT_LINES.map((line, lineIndex) => {
                 const lineTextLength = line.reduce(
                   (acc, s) => acc + s.text.length,
@@ -186,7 +189,7 @@ export default function Hero() {
                 return (
                   <div
                     key={lineIndex}
-                    className="whitespace-nowrap flex items-center shrink"
+                    className="whitespace-pre flex items-center shrink"
                   >
                     {renderLineSegments(line, animatedRemaining)}
                     {((isCurrentLine && !isDone) || (isLastLine && isDone)) && (
