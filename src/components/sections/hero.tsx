@@ -147,10 +147,10 @@ export default function Hero() {
   return (
     <Section>
       <div className="flex flex-col justify-between">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           {/* Invisible full-text layer — reserves final height/line-wrapping upfront */}
           <div
-            className="font-serif text-[64px] leading-tight relative"
+            className="font-serif text-2xl md:text-6xl leading-tight relative"
             aria-hidden="true"
           >
             <span className="invisible">
@@ -162,18 +162,16 @@ export default function Hero() {
             </span>
 
             {/* Animated layer — absolutely positioned over the reserved space */}
-            <h1 className="absolute inset-0 font-serif text-[64px] leading-tight">
+            <h1 className="absolute inset-0 font-serif text-2xl md:text-6xl leading-tight">
               {renderSegments(SEGMENTS, animatedRemaining)}
               <span
-                className={`inline-block w-[3px] h-[1em] bg-foreground ml-1 align-middle ${
-                  isDone ? "animate-pulse" : ""
-                }`}
+                className={`inline-block w-[3px] h-[1em] bg-foreground ml-1 align-middle ${isDone ? "animate-pulse" : ""}`}
                 aria-hidden="true"
               />
             </h1>
           </div>
 
-          <div className="flex flex-row flex-wrap items-center gap-3 mt-6 font-serif">
+          <div className="flex flex-row flex-wrap items-center gap-2 md:gap-3 mt-4 md:mt-6 font-serif">
             <HeroBadge
               emoji="☁️"
               label="DevOps & Platform"
@@ -203,7 +201,7 @@ export default function Hero() {
 
         {/* Tech marquee — breaks out of the max-w-6xl container to span the full viewport */}
         <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen">
-          <p className="max-w-7xl mx-auto mb-4 px-8 text-md text-foreground">
+          <p className="max-w-7xl mx-auto mb-4 px-4 px-8 text-sm md:text-base text-foreground">
             {hoveredText ?? DEFAULT_MARQUEE_TEXT}
           </p>
 
@@ -225,12 +223,12 @@ export default function Hero() {
                       setActiveIndex(null);
                     }}
                     aria-label={item.name}
-                    className={`flex items-center justify-center w-28 h-28 mx-3 rounded-lg shrink-0
+                    className={`flex items-center justify-center w-24 h-24 md:w-28 md:h-28 mx-2 md:mx-3 rounded-lg shrink-0
                       border border-dashed transition-colors cursor-pointer
                       ${isActive ? "border-neutral-900 dark:border-neutral-100" : "border-neutral-300 dark:border-neutral-700"}`}
                   >
                     <IconComponent
-                      className={`w-10 h-10 fill-current transition-colors
+                      className={`w-8 h-8 md:w-10 md:h-10 fill-current transition-colors
                         ${isActive ? "text-neutral-900 dark:text-neutral-100" : "text-neutral-300 dark:text-neutral-700"}`}
                     />
                   </button>
