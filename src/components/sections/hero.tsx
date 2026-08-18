@@ -23,23 +23,31 @@ import {
   Terraform,
 } from "@boxicons/react";
 
-const SEGMENTS: Segment[] = [
-  { text: "Gino is a DevOps engineer and UI designer who builds " },
-  { text: "reliable platforms", underline: true },
-  { text: ", " },
-  { text: "bare-metal networks", underline: true },
-  { text: ", and " },
-  { text: "intuitive digital experiences", underline: true },
-  { text: "." },
+// Structured into 4 strict lines
+const SEGMENT_LINES: Segment[][] = [
+  [{ text: "Gino is a DevOps engineer and UI" }],
+  [
+    { text: "designer who builds " },
+    { text: "reliable platforms", underline: true },
+    { text: "," },
+  ],
+  [
+    { text: "bare-metal networks", underline: true },
+    { text: ", and " },
+    { text: "intuitive digital", underline: true },
+  ],
+  [{ text: "experiences", underline: true }, { text: "." }],
 ];
 
-const FULL_TEXT = SEGMENTS.map((s) => s.text).join("");
+const FULL_TEXT = SEGMENT_LINES.flatMap((line) => line)
+  .map((s) => s.text)
+  .join("");
 
-function renderSegments(
-  segments: Segment[],
+function renderLineSegments(
+  line: Segment[],
   remainingRef: { current: number },
 ) {
-  return segments.map((segment, i) => {
+  return line.map((segment, i) => {
     const visibleChars = Math.max(
       0,
       Math.min(segment.text.length, remainingRef.current),
@@ -133,6 +141,8 @@ const DEFAULT_MARQUEE_TEXT =
 export default function Hero() {
   const displayed = useTypewriter(FULL_TEXT, 30);
   const isDone = displayed.length === FULL_TEXT.length;
+
+  const invisibleRemaining = { current: FULL_TEXT.length };
   const animatedRemaining = { current: displayed.length };
 
   const [hoveredText, setHoveredText] = useState<string | null>(null);
@@ -146,28 +156,50 @@ export default function Hero() {
 
   return (
     <Section>
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between w-full h-full">
         <div className="flex flex-col gap-2">
           {/* Invisible full-text layer — reserves final height/line-wrapping upfront */}
           <div
             className="font-serif text-2xl md:text-6xl leading-tight relative"
             aria-hidden="true"
           >
-            <span className="invisible">
-              {SEGMENTS.map((s, i) => (
-                <span key={i} className={s.underline ? "underline" : undefined}>
-                  {s.text}
-                </span>
+            <div className="invisible">
+              {SEGMENT_LINES.map((line, lineIndex) => (
+                <div key={lineIndex} className="whitespace-nowrap flex shrink">
+                  {renderLineSegments(line, invisibleRemaining)}
+                </div>
               ))}
-            </span>
+            </div>
 
             {/* Animated layer — absolutely positioned over the reserved space */}
             <h1 className="absolute inset-0 font-serif text-2xl md:text-6xl leading-tight">
-              {renderSegments(SEGMENTS, animatedRemaining)}
-              <span
-                className={`inline-block w-[3px] h-[1em] bg-foreground ml-1 align-middle ${isDone ? "animate-pulse" : ""}`}
-                aria-hidden="true"
-              />
+              {SEGMENT_LINES.map((line, lineIndex) => {
+                const lineTextLength = line.reduce(
+                  (acc, s) => acc + s.text.length,
+                  0,
+                );
+                const isCurrentLine =
+                  animatedRemaining.current > 0 &&
+                  animatedRemaining.current <= lineTextLength;
+                const isLastLine = lineIndex === SEGMENT_LINES.length - 1;
+
+                return (
+                  <div
+                    key={lineIndex}
+                    className="whitespace-nowrap flex shrink"
+                  >
+                    {renderLineSegments(line, animatedRemaining)}
+                    {((isCurrentLine && !isDone) || (isLastLine && isDone)) && (
+                      <span
+                        className={`inline-block w-[3px] h-[1em] bg-foreground ml-1 align-middle ${
+                          isDone ? "animate-pulse" : ""
+                        }`}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </div>
+                );
+              })}
             </h1>
           </div>
 
@@ -201,7 +233,7 @@ export default function Hero() {
 
         {/* Tech marquee — breaks out of the max-w-6xl container to span the full viewport */}
         <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen">
-          <p className="max-w-7xl mx-auto mb-4 px-4 px-8 text-sm md:text-base text-foreground">
+          <p className="max-w-7xl mx-auto mb-4 px-4 md:px-8 text-sm md:text-base text-foreground">
             {hoveredText ?? DEFAULT_MARQUEE_TEXT}
           </p>
 
