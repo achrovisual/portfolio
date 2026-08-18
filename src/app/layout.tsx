@@ -39,6 +39,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Gino (@achrovisual)" }],
   creator: "Gino",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
   openGraph: {
     title: "Gino",
     description:
@@ -69,7 +72,7 @@ export default function RootLayout({
     <html lang="en" className={`${lexend.variable} ${sourceSerif.variable}`}>
       <body className="h-screen flex flex-col overflow-hidden font-sans">
         <Header />
-        <main className="flex-1 overflow-y-auto snap-y snap-mandatory">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden snap-y snap-mandatory">
           <div className="max-w-7xl mx-auto py-8 h-full flex flex-col">
             {children}
           </div>
