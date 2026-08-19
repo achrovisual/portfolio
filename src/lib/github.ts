@@ -6,7 +6,6 @@ const FALLBACK: CommitInfo = {
   date: "",
   additions: 0,
   deletions: 0,
-  relativeTime: "unavailable",
 };
 
 export async function getLastCommit(): Promise<CommitInfo> {
@@ -48,21 +47,9 @@ export async function getLastCommit(): Promise<CommitInfo> {
       date: data.commit.committer.date,
       additions: data.stats?.additions ?? 0,
       deletions: data.stats?.deletions ?? 0,
-      relativeTime: formatRelativeTime(data.commit.committer.date),
     };
   } catch (err) {
     console.warn("GitHub fetch failed — using fallback commit info", err);
     return FALLBACK;
   }
-}
-
-function formatRelativeTime(dateStr: string): string {
-  const diffMs = Date.now() - new Date(dateStr).getTime();
-  const days = Math.floor(diffMs / 86_400_000);
-  if (days < 1) return "today";
-  if (days < 7) return `${days} day${days > 1 ? "s" : ""} ago`;
-  const weeks = Math.floor(days / 7);
-  if (weeks < 5) return `${weeks} week${weeks > 1 ? "s" : ""} ago`;
-  const months = Math.floor(days / 30);
-  return `${months} month${months > 1 ? "s" : ""} ago`;
 }
