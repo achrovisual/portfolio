@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1-beta] - 2026-08-19
+
+### Fixed
+
+- Commit relative-time now renders client-side instead of a static value baked in at build, and reflects actual elapsed hours rather than misreporting recent same-day commits as "today."
+- Rebalanced Hero headline line breaks and `clamp()` font-size range so no single line constrains scaling, allowing larger text on both mobile and desktop.
+
 ## [0.4.0-beta] - 2026-08-18
 
 ### Added
@@ -63,7 +70,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Footer with version badge (hover reveals build stack)
 - Static export deployment to GitHub Pages via GitHub Actions
 
-[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.4.0-beta...HEAD
+[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.4.1-beta...HEAD
+[0.4.1-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.0-beta...v0.4.1-beta
 [0.4.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.3.0-beta...v0.4.0-beta
 [0.3.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.2.0-beta...v0.3.0-beta
 [0.2.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.1.0-beta...v0.2.0-beta
