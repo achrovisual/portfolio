@@ -2,6 +2,7 @@ import { getLastCommit } from "@/lib/github";
 import Image from "next/image";
 import { Github, Linkedin, Envelope } from "@boxicons/react";
 import NavItem from "@/components/ui/nav-item";
+import RelativeTime from "@/components/ui/relative-time";
 
 export default async function Header() {
   const commit = await getLastCommit();
@@ -59,7 +60,7 @@ export default async function Header() {
           <span className="text-green-600">+{commit.additions}</span>
           <span className="text-red-500">-{commit.deletions}</span>
           <span>·</span>
-          <span>{commit.relativeTime}</span>
+          <RelativeTime date={commit.date} />
         </div>
       </div>
     </header>

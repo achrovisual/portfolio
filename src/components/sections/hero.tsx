@@ -23,19 +23,12 @@ import {
   Terraform,
 } from "@boxicons/react";
 
-// Structured into 4 strict lines
 const SEGMENT_LINES: Segment[][] = [
-  [{ text: "Gino is a DevOps engineer and UI" }],
-  [
-    { text: "designer who builds " },
-    { text: "reliable platforms", underline: true },
-    { text: "," },
-  ],
-  [
-    { text: "bare-metal networks", underline: true },
-    { text: ", and " },
-    { text: "intuitive digital", underline: true },
-  ],
+  [{ text: "Gino is a DevOps engineer" }],
+  [{ text: "and UI designer who builds" }],
+  [{ text: "reliable platforms", underline: true }, { text: "," }],
+  [{ text: "bare-metal networks", underline: true }, { text: "," }],
+  [{ text: "and " }, { text: "intuitive digital", underline: true }],
   [{ text: "experiences", underline: true }, { text: "." }],
 ];
 
@@ -161,7 +154,7 @@ export default function Hero() {
           {/* Invisible full-text layer — reserves final height/line-wrapping upfront */}
           <div
             className="font-serif leading-tight relative"
-            style={{ fontSize: "clamp(1.1rem, 4vw, 3rem)" }}
+            style={{ fontSize: "clamp(1.5rem, 6vw, 4.5rem)" }}
             aria-hidden="true"
           >
             <div className="invisible">
@@ -174,7 +167,7 @@ export default function Hero() {
 
             <h1
               className="absolute inset-0 font-serif leading-tight"
-              style={{ fontSize: "clamp(1.1rem, 4vw, 3rem)" }}
+              style={{ fontSize: "clamp(1.5rem, 6vw, 4.5rem)" }}
             >
               {SEGMENT_LINES.map((line, lineIndex) => {
                 const lineTextLength = line.reduce(
