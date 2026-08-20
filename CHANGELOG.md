@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2-beta] - 2026-08-20
+
+### Fixed
+
+- Capped headline font size on short landscape viewports (e.g. landscape tablets/laptops) to prevent the tech marquee and footer from clipping out of view.
+- Added periodic refresh to commit relative-time display so it stays current if the page is left open across threshold boundaries (e.g. "23 hours ago" advancing to "1 day ago").
+- Adjusted tech marquee spacing to maintain separation from the Hero headline across a wider range of viewport sizes.
+- Replaced `100vh` with `100svh` on the root layout to fix scroll-snap glitches caused by the dynamic browser chrome on mobile Safari and Edge.
+
 ## [0.4.1-beta] - 2026-08-19
 
 ### Fixed
@@ -70,7 +79,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Footer with version badge (hover reveals build stack)
 - Static export deployment to GitHub Pages via GitHub Actions
 
-[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.4.1-beta...HEAD
+[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.4.2-beta...HEAD
+[0.4.2-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.1-beta...v0.4.2-beta
 [0.4.1-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.0-beta...v0.4.1-beta
 [0.4.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.3.0-beta...v0.4.0-beta
 [0.3.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.2.0-beta...v0.3.0-beta
