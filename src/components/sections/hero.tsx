@@ -229,7 +229,7 @@ export default function Hero() {
 
         {/* Tech marquee — breaks out of the max-w-6xl container to span the full viewport */}
         <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen">
-          <p className="max-w-7xl mx-auto mb-4 px-4 md:px-8 text-sm md:text-base text-foreground">
+          <p className="max-w-7xl mx-auto mb-4 mt-48 px-4 md:px-8 text-sm md:text-base text-foreground">
             {hoveredText ?? DEFAULT_MARQUEE_TEXT}
           </p>
 
