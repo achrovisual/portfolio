@@ -24,6 +24,12 @@ export default function RelativeTime({ date }: { date: string }) {
 
   useEffect(() => {
     setRelativeTime(formatRelativeTime(date));
+
+    const interval = setInterval(() => {
+      setRelativeTime(formatRelativeTime(date));
+    }, 60_000);
+
+    return () => clearInterval(interval);
   }, [date]);
 
   return <span>{relativeTime ?? ""}</span>;
