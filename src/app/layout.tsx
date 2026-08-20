@@ -70,7 +70,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${lexend.variable} ${sourceSerif.variable}`}>
-      <body className="h-screen flex flex-col overflow-hidden font-sans">
+      <body className="h-[100svh] flex flex-col overflow-hidden font-sans">
         <Header />
         <main className="flex-1 overflow-y-auto overflow-x-hidden snap-y snap-mandatory">
           <div className="max-w-7xl mx-auto py-8 h-full flex flex-col">
