@@ -131,6 +131,10 @@ const TECH_ITEMS: TechItem[] = [
 const DEFAULT_MARQUEE_TEXT =
   "Explore my skills and tech stack by hovering over an icon";
 
+// Shared class for the headline at both layers — three-tier responsive sizing:
+// mobile (default) / tablet (md, 768px+) / desktop (lg, 1024px+)
+const HEADLINE_TEXT_SIZE =
+  "text-2xl md:text-4xl lg:text-6xl [@media(max-height:850px)]:lg:text-4xl";
 export default function Hero() {
   const displayed = useTypewriter(FULL_TEXT, 30);
   const isDone = displayed.length === FULL_TEXT.length;
@@ -153,8 +157,7 @@ export default function Hero() {
         <div className="flex flex-col gap-2">
           {/* Invisible full-text layer — reserves final height/line-wrapping upfront */}
           <div
-            className="font-serif leading-tight relative"
-            style={{ fontSize: "clamp(1.5rem, 6vw, 4.5rem)" }}
+            className={`font-serif leading-tight relative ${HEADLINE_TEXT_SIZE}`}
             aria-hidden="true"
           >
             <div className="invisible">
@@ -166,8 +169,7 @@ export default function Hero() {
             </div>
 
             <h1
-              className="absolute inset-0 font-serif leading-tight"
-              style={{ fontSize: "clamp(1.5rem, 6vw, 4.5rem)" }}
+              className={`absolute inset-0 font-serif leading-tight ${HEADLINE_TEXT_SIZE}`}
             >
               {SEGMENT_LINES.map((line, lineIndex) => {
                 const lineTextLength = line.reduce(
@@ -226,6 +228,9 @@ export default function Hero() {
             />
           </div>
         </div>
+
+        {/* Spacer: grows to fill available space, but never shrinks below min-h */}
+        <div className="flex-1 min-h-24" />
 
         {/* Tech marquee — breaks out of the max-w-6xl container to span the full viewport */}
         <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen">
