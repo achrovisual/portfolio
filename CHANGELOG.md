@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.3-beta] - 2026-08-26
+
+### Fixed
+
+- Added canonical URL metadata (`alternates.canonical`) to resolve "Duplicate without user-selected canonical" issue in Google Search Console.
+- Enforced HTTPS and single canonical host (`achrovisual.com`) at the Cloudflare edge, redirecting `http://` and `www.achrovisual.com` to the canonical URL.
+
 ## [0.4.2-beta] - 2026-08-20
 
 ### Fixed
@@ -79,7 +86,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Footer with version badge (hover reveals build stack)
 - Static export deployment to GitHub Pages via GitHub Actions
 
-[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.4.2-beta...HEAD
+[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.4.3-beta...HEAD
+[0.4.3-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.2-beta...v0.4.3-beta
 [0.4.2-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.1-beta...v0.4.2-beta
 [0.4.1-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.0-beta...v0.4.1-beta
 [0.4.0-beta]: https://github.com/achrovisual/portfolio/compare/v0.3.0-beta...v0.4.0-beta
