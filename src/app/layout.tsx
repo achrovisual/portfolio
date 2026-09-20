@@ -42,9 +42,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Gino (@achrovisual)" }],
   creator: "Gino",
-  icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-  },
   openGraph: {
     title: "Gino",
     description:
