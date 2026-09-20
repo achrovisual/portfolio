@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.4-beta] - 2026-09-20
+
+### Fixed
+
+- Resolved inconsistent favicon display across browsers/devices by moving `icon.svg` into `src/app/` and adding `apple-icon.png`, allowing Next.js file-based metadata to generate the full icon set (`favicon.ico`, `icon.svg`, `apple-touch-icon`) instead of the manual `icons` field, which only declared the SVG and caused non-SVG-capable browsers (notably Safari/iOS) to fall back to a default icon.
+
 ## [0.4.3-beta] - 2026-08-26
 
 ### Fixed
@@ -86,7 +92,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Footer with version badge (hover reveals build stack)
 - Static export deployment to GitHub Pages via GitHub Actions
 
-[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.4.3-beta...HEAD
+[Unreleased]: https://github.com/achrovisual/portfolio/compare/v0.4.4-beta...HEAD
+[0.4.4-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.3-beta...v0.4.4-beta
 [0.4.3-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.2-beta...v0.4.3-beta
 [0.4.2-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.1-beta...v0.4.2-beta
 [0.4.1-beta]: https://github.com/achrovisual/portfolio/compare/v0.4.0-beta...v0.4.1-beta
